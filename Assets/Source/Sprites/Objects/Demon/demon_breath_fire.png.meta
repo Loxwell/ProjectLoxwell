@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: 34cfe7922e8ced4479fa971be44c0325
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4308064847310032683
+    second: demon_breath_fire_0
+  - first:
+      213: -1464352662937672262
+    second: demon_breath_fire_1
+  - first:
+      213: -739732416277665077
+    second: demon_breath_fire_2
+  - first:
+      213: -6957356235764244784
+    second: demon_breath_fire_4
+  - first:
+      213: 6948884734841757731
+    second: demon_breath_fire_4
+  - first:
+      213: 7437377635397310447
+    second: demon_breath_fire_5
+  - first:
+      213: 146378744259365269
+    second: demon_breath_fire_6
+  - first:
+      213: -1544751367642228861
+    second: demon_breath_fire_7
+  - first:
+      213: 1730668667030578560
+    second: demon_breath_fire_8
+  - first:
+      213: -5050501854865056236
+    second: demon_breath_fire_9
+  - first:
+      213: 2981942216574996251
+    second: demon_breath_fire_10
+  - first:
+      213: 8827574634411331903
+    second: demon_breath_fire_11
+  - first:
+      213: 2607435851510834156
+    second: demon_breath_fire_12
+  - first:
+      213: -2822233502204328616
+    second: demon_breath_fire_13
+  - first:
+      213: 3750897798790929689
+    second: demon_breath_fire_14
+  - first:
+      213: -3817151664334318627
+    second: demon_breath_fire_15
+  - first:
+      213: -1465112283890655702
+    second: demon_breath_fire_16
+  - first:
+      213: 7350524187164781491
+    second: demon_breath_fire_17
+  - first:
+      213: -7418391992752141968
+    second: demon_breath_fire_18
+  - first:
+      213: 5906998937759941646
+    second: demon_breath_fire_19
+  - first:
+      213: 1412159619179369025
+    second: demon_breath_fire_20
+  - first:
+      213: 3842654312696227175
+    second: demon_breath_fire_21
+  - first:
+      213: -7658520705591359947
+    second: demon_breath_fire_22
+  - first:
+      213: 5804908821422613730
+    second: demon_breath_fire_23
+  - first:
+      213: -3595801543975626314
+    second: demon_breath_fire_4
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: demon_breath_fire_0
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 44
+        width: 39
+        height: 36
+      alignment: 9
+      pivot: {x: 0.974359, y: 0.9722222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f034d472259cb30800000000000000
+      internalID: 4308064847310032683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_breath_fire_1
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 9
+        width: 130
+        height: 72
+      alignment: 9
+      pivot: {x: 0.86153847, y: 0.9861111}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5e3b3f2039dabe0800000000000000
+      internalID: -1464352662937672262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_breath_fire_2
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 8
+        width: 127
+        height: 72
+      alignment: 9
+      pivot: {x: 0.92913383, y: 0.9861111}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcaade26941fbb5f0800000000000000
+      internalID: -739732416277665077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_breath_fire_3
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 9
+        width: 121
+        height: 69
+      alignment: 9
+      pivot: {x: 0.8181818, y: 0.98550725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 320a06d79d56f6060800000000000000
+      internalID: 6948884734841757731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_breath_fire_4
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 10
+        width: 122
+        height: 72
+      alignment: 9
+      pivot: {x: 0.70491797, y: 0.8333333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b918801c85291ec0800000000000000
+      internalID: -3595801543975626314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_breath_fire_5
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 23
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe79a42fd8fd63760800000000000000
+      internalID: 7437377635397310447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

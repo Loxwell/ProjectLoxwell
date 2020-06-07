@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas_Golem
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+    - {fileID: 2800000, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+    - {fileID: 2800000, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+    - {fileID: 2800000, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+    totalSpriteSurfaceArea: 69721
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 6255425934585250863, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: 6136052518172745938, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: -517475262312607346, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: -1625118886690144909, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: 8756433569321943430, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: -4306090454783415369, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: 1074240803293244666, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: -6310879841912813293, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: -1169917005122479194, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: 1573550767485438612, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: -2714012313599157705, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: 5253596206788129308, guid: ded71f743f1b4564e82903f3570641af, type: 3}
+  - {fileID: 638962855716594058, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 597113520511363075, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 9144332995697923636, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: -7878417427235233882, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 4159767330647785271, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: -6527786535888038998, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 3001064305222826701, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 4279646544716775008, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 2816281313220920020, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: -4362255911769404909, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: -7437108976248768919, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 4883148573934976432, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 9028468732119020042, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 3942905877449855683, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 7919708488046495669, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 6141443864034364148, guid: dd7273595494f05459f93b085c0544ce, type: 3}
+  - {fileID: 4855017980684469512, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+  - {fileID: -1413750077386985959, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+  - {fileID: -1726750847774862164, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+  - {fileID: 5188022557405214444, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+  - {fileID: -1299044921665385696, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+  - {fileID: -600118115694051367, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+  - {fileID: -5186314755898143812, guid: 5ac01499e75044d4aabd918b65f779d2, type: 3}
+  - {fileID: 651879003008918976, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -5402108416607813393, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 7502430578144720652, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 6727171289520201003, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 6558008888102262803, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 2311384703620619990, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 427633011112511822, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 2618668703898096715, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -3464887985433808987, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -7550749208951450825, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 7992176336182515066, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 2557526630975956314, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -2323895028683813407, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -4008087435743484220, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -5542703991323962095, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 831081188440236988, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -5612408007355834951, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -5977475587755310954, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 8028090274946752537, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -6804993625605486383, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -6919852549180125564, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -1187149880548098078, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 8010736181732982571, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -7609108291661028529, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: -9043400145109588977, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 1967008370688093546, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 8696096505607374949, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  - {fileID: 6368652587852051884, guid: f6646b7ef0037df49a7a1b6fecdc2d41, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - SP_GolemIdle_08
+  - SP_GolemIdle_09
+  - SP_GolemIdle_00
+  - SP_GolemIdle_01
+  - SP_GolemIdle_02
+  - SP_GolemIdle_03
+  - SP_GolemIdle_04
+  - SP_GolemIdle_05
+  - SP_GolemIdle_11
+  - SP_GolemIdle_06
+  - SP_GolemIdle_10
+  - SP_GolemIdle_07
+  - GolemAttack_13
+  - GolemAttack_12
+  - GolemAttack_11
+  - GolemAttack_10
+  - GolemAttack_15
+  - GolemAttack_14
+  - GolemAttack_0
+  - GolemAttack_1
+  - GolemAttack_2
+  - GolemAttack_3
+  - GolemAttack_4
+  - GolemAttack_5
+  - GolemAttack_6
+  - GolemAttack_7
+  - GolemAttack_8
+  - GolemAttack_9
+  - SP_GolemWalk_03
+  - SP_GolemWalk_02
+  - SP_GolemWalk_01
+  - SP_GolemWalk_00
+  - SP_GolemWalk_06
+  - SP_GolemWalk_05
+  - SP_GolemWalk_04
+  - SP_GolemDeath_19
+  - SP_GolemDeath_18
+  - SP_GolemDeath_11
+  - SP_GolemDeath_10
+  - SP_GolemDeath_13
+  - SP_GolemDeath_12
+  - SP_GolemDeath_15
+  - SP_GolemDeath_14
+  - SP_GolemDeath_17
+  - SP_GolemDeath_16
+  - SP_GolemDeath_2
+  - SP_GolemDeath_3
+  - SP_GolemDeath_0
+  - SP_GolemDeath_1
+  - SP_GolemDeath_6
+  - SP_GolemDeath_7
+  - SP_GolemDeath_4
+  - SP_GolemDeath_5
+  - SP_GolemDeath_8
+  - SP_GolemDeath_9
+  - SP_GolemDeath_20
+  - SP_GolemDeath_21
+  - SP_GolemDeath_22
+  - SP_GolemDeath_23
+  - SP_GolemDeath_24
+  - SP_GolemDeath_25
+  - SP_GolemDeath_26
+  - SP_GolemDeath_27
+  m_Tag: Atlas_Golem
+  m_IsVariant: 0
