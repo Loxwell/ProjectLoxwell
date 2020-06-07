@@ -20,6 +20,183 @@ TextureImporter:
   - first:
       213: 3771321878737824928
     second: cyoXV7_5
+  - first:
+      213: -2211866384444614859
+    second: SpriteMagic_Fire_0
+  - first:
+      213: -8808482876422900292
+    second: SpriteMagic_Fire_1
+  - first:
+      213: -7341727366352433617
+    second: SpriteMagic_Fire_2
+  - first:
+      213: 7953020845366268799
+    second: SpriteMagic_Fire_3
+  - first:
+      213: 2892630465713096544
+    second: SpriteMagic_Fire_4
+  - first:
+      213: 900507304957454022
+    second: SpriteMagic_Fire_5
+  - first:
+      213: -7359419035315897215
+    second: SpriteMagic_Fire_6
+  - first:
+      213: -8698525765584583168
+    second: SpriteMagic_Fire_7
+  - first:
+      213: 5151788819557323989
+    second: SpriteMagic_Fire_8
+  - first:
+      213: 6475850843575964317
+    second: SpriteMagic_Fire_9
+  - first:
+      213: 2320515770054777917
+    second: SpriteMagic_Fire_10
+  - first:
+      213: 6714548557657317747
+    second: SpriteMagic_Fire_11
+  - first:
+      213: 7012915953695790928
+    second: SpriteMagic_Fire_12
+  - first:
+      213: 8557477194307894061
+    second: SpriteMagic_Fire_13
+  - first:
+      213: -4840035011281211666
+    second: SpriteMagic_Fire_14
+  - first:
+      213: 1687059986646700221
+    second: SpriteMagic_Fire_15
+  - first:
+      213: -2428670837122548270
+    second: SpriteMagic_Fire_16
+  - first:
+      213: 3540519516563849702
+    second: SpriteMagic_Fire_17
+  - first:
+      213: 5023189485809763797
+    second: SpriteMagic_Fire_18
+  - first:
+      213: 8713737640233743470
+    second: SpriteMagic_Fire_19
+  - first:
+      213: 6387979662179622462
+    second: SpriteMagic_Fire_20
+  - first:
+      213: 5786826044343806027
+    second: SpriteMagic_Fire_21
+  - first:
+      213: -908740409927431000
+    second: SpriteMagic_Fire_22
+  - first:
+      213: 8099414925398358418
+    second: SpriteMagic_Fire_23
+  - first:
+      213: 5531398478143339239
+    second: SpriteMagic_Fire_24
+  - first:
+      213: 6022783742552690710
+    second: SpriteMagic_Fire_25
+  - first:
+      213: 990436183971019414
+    second: SpriteMagic_Fire_26
+  - first:
+      213: -6996886497420212797
+    second: SpriteMagic_Fire_27
+  - first:
+      213: 3645420316005055693
+    second: SpriteMagic_Fire_28
+  - first:
+      213: -3124919015087967938
+    second: SpriteMagic_Fire_29
+  - first:
+      213: -2591957681628072343
+    second: SpriteMagic_Fire_30
+  - first:
+      213: 3827264329339857778
+    second: SpriteMagic_Fire_31
+  - first:
+      213: -6074244542352388056
+    second: SpriteMagic_Fire_32
+  - first:
+      213: -4316009689321499935
+    second: SpriteMagic_Fire_33
+  - first:
+      213: 3303920566346674055
+    second: SpriteMagic_Fire_34
+  - first:
+      213: -137423414367272524
+    second: SpriteMagic_Fire_35
+  - first:
+      213: 246025666300678987
+    second: SpriteMagic_Fire_36
+  - first:
+      213: 3554985590655414040
+    second: SpriteMagic_Fire_37
+  - first:
+      213: -5565468602988007387
+    second: SpriteMagic_Fire_38
+  - first:
+      213: 7616265620455100290
+    second: SpriteMagic_Fire_39
+  - first:
+      213: 7568919654579086677
+    second: SpriteMagic_Fire_40
+  - first:
+      213: -4929399198369885590
+    second: SpriteMagic_Fire_41
+  - first:
+      213: -840196907790675519
+    second: SpriteMagic_Fire_42
+  - first:
+      213: 4567203064510266009
+    second: SpriteMagic_Fire_43
+  - first:
+      213: 1483504239674293995
+    second: SpriteMagic_Fire_44
+  - first:
+      213: 8706081446651852605
+    second: SpriteMagic_Fire_45
+  - first:
+      213: 5663969765178921753
+    second: SpriteMagic_Fire_46
+  - first:
+      213: 4534011537403459169
+    second: SpriteMagic_Fire_47
+  - first:
+      213: -3569318948034118677
+    second: SpriteMagic_Fire_48
+  - first:
+      213: 5022879164773582356
+    second: SpriteMagic_Fire_49
+  - first:
+      213: -2936928895007549475
+    second: SpriteMagic_Fire_50
+  - first:
+      213: -8061886831344101051
+    second: SpriteMagic_Fire_51
+  - first:
+      213: 4390122139849174306
+    second: SpriteMagic_Fire_52
+  - first:
+      213: -1871223184358003124
+    second: SpriteMagic_Fire_53
+  - first:
+      213: -4939259385390190382
+    second: SpriteMagic_Fire_54
+  - first:
+      213: -5824641052786450204
+    second: SpriteMagic_Fire_55
+  - first:
+      213: -3925294097935385347
+    second: SpriteMagic_Fire_56
+  - first:
+      213: -4999394994271571623
+    second: SpriteMagic_Fire_57
+  - first:
+      213: -7066536829626487761
+    second: Blank
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -49,7 +226,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -103,7 +280,1246 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 508
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5371d880e3fdd41e0800000000000000
+      internalID: -2211866384444614859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 432
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5b3b44e7bf1c580800000000000000
+      internalID: -8808482876422900292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_2
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 356
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e8cc2cbd1fc1a90800000000000000
+      internalID: -7341727366352433617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_3
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 508
+        width: 39
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73555b625ece5e60800000000000000
+      internalID: 7953020845366268799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_4
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 434
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0674d4f2510b42820800000000000000
+      internalID: 2892630465713096544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_5
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 359
+        width: 31
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c622ad6f9e3f7c00800000000000000
+      internalID: 900507304957454022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_6
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 510
+        width: 32
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c7fb611671ed990800000000000000
+      internalID: -7359419035315897215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_7
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 435
+        width: 27
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0068fb827e0a84780800000000000000
+      internalID: -8698525765584583168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_8
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 360
+        width: 23
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d41b83d2a4de7740800000000000000
+      internalID: 5151788819557323989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_9
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 511
+        width: 24
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9252cd1808ded950800000000000000
+      internalID: 6475850843575964317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_10
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 436
+        width: 24
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3c9ec95cc0243020800000000000000
+      internalID: 2320515770054777917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_11
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 360
+        width: 26
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 371a646865ede2d50800000000000000
+      internalID: 6714548557657317747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_12
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 510
+        width: 26
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05715b367e1e25160800000000000000
+      internalID: 7012915953695790928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_13
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 437
+        width: 30
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2b7a343b2442c670800000000000000
+      internalID: 8557477194307894061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_14
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 363
+        width: 29
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee21240dcdb4dcb0800000000000000
+      internalID: -4840035011281211666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_15
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 513
+        width: 24
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db01ad29e14a96710800000000000000
+      internalID: 1687059986646700221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_16
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 437
+        width: 26
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ddb5f4cdb0ab4ed0800000000000000
+      internalID: -2428670837122548270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_17
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 362
+        width: 27
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e14029edb3722130800000000000000
+      internalID: 3540519516563849702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_18
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 512
+        width: 25
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d50b2d2934f5b540800000000000000
+      internalID: 5023189485809763797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_19
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 438
+        width: 26
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e643518673a6de870800000000000000
+      internalID: 8713737640233743470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_20
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 364
+        width: 32
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ed2a468a9a6a850800000000000000
+      internalID: 6387979662179622462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_21
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 514
+        width: 31
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b48671e90afee4050800000000000000
+      internalID: 5786826044343806027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_22
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 439
+        width: 31
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac8b3179618363f0800000000000000
+      internalID: -908740409927431000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_23
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 365
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299bddc46f6e66070800000000000000
+      internalID: 8099414925398358418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_24
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 517
+        width: 26
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eabed8fb9973cc40800000000000000
+      internalID: 5531398478143339239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_25
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 443
+        width: 36
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 610d9dd57e9359350800000000000000
+      internalID: 6022783742552690710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_26
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 375
+        width: 39
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69a3946367cbebd00800000000000000
+      internalID: 990436183971019414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_27
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 532
+        width: 41
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c58a8b3dc016ee90800000000000000
+      internalID: -6996886497420212797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_28
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 454
+        width: 44
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcc39709672279230800000000000000
+      internalID: 3645420316005055693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_29
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 381
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3171d956be02a4d0800000000000000
+      internalID: -3124919015087967938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_30
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 537
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 966b6b9a834870cd0800000000000000
+      internalID: -2591957681628072343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_31
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 235
+        width: 90
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27b63db31ac2d1530800000000000000
+      internalID: 3827264329339857778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_32
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 140
+        width: 58
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8201b3e75c2f3bba0800000000000000
+      internalID: -6074244542352388056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_33
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 44
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e219d40e047a14c0800000000000000
+      internalID: -4316009689321499935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_34
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 237
+        width: 23
+        height: 39
+      alignment: 9
+      pivot: {x: 0.47826087, y: 0.025641026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f633b0042e9dd20800000000000000
+      internalID: 3303920566346674055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_35
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 140
+        width: 41
+        height: 83
+      alignment: 9
+      pivot: {x: 0.4634146, y: 0.036144577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b141daf126c71ef0800000000000000
+      internalID: -137423414367272524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_36
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 42
+        width: 37
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5135135, y: 0.06451613}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b431b7d3a0f0a6300800000000000000
+      internalID: 246025666300678987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_37
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 236
+        width: 47
+        height: 75
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.06666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fe5a04f88d55130800000000000000
+      internalID: 3554985590655414040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_38
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 140
+        width: 51
+        height: 78
+      alignment: 9
+      pivot: {x: 0.50980395, y: 0.025641026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5207f4eeacb73c2b0800000000000000
+      internalID: -5565468602988007387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_39
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 45
+        width: 63
+        height: 85
+      alignment: 9
+      pivot: {x: 0.4603175, y: 0.023529412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28f0f36aa3962b960800000000000000
+      internalID: 7616265620455100290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_40
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 234
+        width: 73
+        height: 77
+      alignment: 9
+      pivot: {x: 0.5205479, y: 0.012987013}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555a8a0f2543a0960800000000000000
+      internalID: 7568919654579086677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_41
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 141
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a625111db81479bb0800000000000000
+      internalID: -4929399198369885590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_42
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 45
+        width: 79
+        height: 77
+      alignment: 9
+      pivot: {x: 0.5063291, y: 0.025974026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c151c92d550754f0800000000000000
+      internalID: -840196907790675519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_43
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 234
+        width: 73
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5068493, y: 0.013888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99ab5353df6f16f30800000000000000
+      internalID: 4567203064510266009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_44
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 138
+        width: 73
+        height: 72
+      alignment: 9
+      pivot: {x: 0.49315068, y: 0.013888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee729cfe37769410800000000000000
+      internalID: 1483504239674293995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_45
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 409
+        width: 15
+        height: 14
+      alignment: 9
+      pivot: {x: 0.53333336, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d377d4de2f632d870800000000000000
+      internalID: 8706081446651852605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_46
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 310
+        width: 21
+        height: 21
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 913da001e767a9e40800000000000000
+      internalID: 5663969765178921753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_47
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 212
+        width: 39
+        height: 27
+      alignment: 9
+      pivot: {x: 0.4871795, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 166b476987b0cee30800000000000000
+      internalID: 4534011537403459169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_48
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 405
+        width: 59
+        height: 37
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.16216217}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebfa5ce35b377ec0800000000000000
+      internalID: -3569318948034118677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_49
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 308
+        width: 71
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5070422, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4164a0eecf9d4b540800000000000000
+      internalID: 5022879164773582356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_50
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 210
+        width: 82
+        height: 54
+      alignment: 9
+      pivot: {x: 0.49999997, y: 0.2037037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd79e720bbeed37d0800000000000000
+      internalID: -2936928895007549475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_51
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 403
+        width: 90
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549d55ef3ac6e1090800000000000000
+      internalID: -8061886831344101051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_52
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 306
+        width: 93
+        height: 74
+      alignment: 9
+      pivot: {x: 0.49462366, y: 0.10810811}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22da94a83d8dcec30800000000000000
+      internalID: 4390122139849174306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_53
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 208
+        width: 89
+        height: 81
+      alignment: 9
+      pivot: {x: 0.49438202, y: 0.09876543}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4eadd09d641806e0800000000000000
+      internalID: -1871223184358003124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_54
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 398
+        width: 88
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13953489}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d0bd4022c9347bb0800000000000000
+      internalID: -4939259385390190382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_55
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 301
+        width: 96
+        height: 84
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15476191}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e0a180a2d7ba2fa0800000000000000
+      internalID: -5824641052786450204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_56
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 202
+        width: 98
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfcbf95a0dd8689c0800000000000000
+      internalID: -3925294097935385347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Fire_57
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 402
+        width: 94
+        height: 51
+      alignment: 9
+      pivot: {x: 0.49999997, y: 0.13725491}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951b39a9db49e9ab0800000000000000
+      internalID: -4999394994271571623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blank
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 512
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5714286, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ce5ed813e9eed90800000000000000
+      internalID: -7066536829626487761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

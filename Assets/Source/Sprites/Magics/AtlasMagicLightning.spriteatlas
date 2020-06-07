@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AtlasMagicLightning
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+    totalSpriteSurfaceArea: 281629
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 6823463070733737748, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 5024376845243688851, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -286980228210669187, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 3704551528738983339, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -9208833477674020860, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 5660720636710325330, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 5024793538269197249, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 3275877273637403121, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 2561710537712948303, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 6213560777929963591, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 3363297648362311989, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 3524813645866763133, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -6289781384914539522, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -6767950594328492080, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 5583609812572204648, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 4526162335620143480, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -1923456552835750368, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -7118142831810305144, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -3694312938188383655, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -7516579268392579310, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 4061649292728102194, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -1642495814678103577, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 6408826035975397670, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -5818657719301816868, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -2196409284723609148, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 1624205024835418720, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -1644522197745945636, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 6781167266107924095, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -414247149664141951, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 165020110595560447, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -3738966725188600926, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 5510317211500515133, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 6439591423335355259, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 6167385874588818761, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -7671655530150502356, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -1921114466407569555, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -1219220870697423632, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 1369671978463110038, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 5627906194997340269, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 766551916084319132, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -7241540039986792033, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -3314391251048740636, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 8043455666687245335, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -5692128495277436001, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -26491743195827687, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 8066386533527038305, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 857696244382560224, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -3678627233293684735, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 8052843975186276340, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 7724895909467729241, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 6458240159067369487, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -4392354217613939854, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: 166582870507198826, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -8005152369755597329, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  - {fileID: -3816218524172204912, guid: 24786e5b9fb3dfb4b99454d7187426e9, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - LightningType0_0
+  - LightningType0_1
+  - LightningType0_2
+  - LightningType0_3
+  - LightningType0_4
+  - LightningType0_5
+  - LightningType0_6
+  - LightningType0_7
+  - LightningType0_19
+  - LightningType0_18
+  - LightningType0_13
+  - LightningType0_12
+  - LightningType0_11
+  - LightningType0_10
+  - LightningType0_17
+  - LightningType0_16
+  - LightningType0_15
+  - LightningType0_14
+  - LightningType1_100
+  - LightningType1_101
+  - LightningType1_102
+  - LightningType1_103
+  - LightningType2_309
+  - LightningType2_312
+  - LightningType2_308
+  - LightningType2_310
+  - LightningType2_311
+  - LightningType2_305
+  - LightningType2_304
+  - LightningType2_307
+  - LightningType2_306
+  - LightningType2_300
+  - LightningType2_303
+  - LightningType2_302
+  - Blank
+  - LightningType1_203
+  - LightningType1_202
+  - LightningType1_201
+  - LightningType1_200
+  - LightningType4_4
+  - LightningType4_5
+  - LightningType1_204
+  - LightningType4_0
+  - LightningType4_1
+  - LightningType4_2
+  - LightningType4_3
+  - LightningType0_20
+  - LightningType0_21
+  - LightningType3_143
+  - LightningType3_146
+  - LightningType3_147
+  - LightningType3_144
+  - LightningType3_145
+  - LightningType0_8
+  - LightningType0_9
+  m_Tag: AtlasMagicLightning
+  m_IsVariant: 0

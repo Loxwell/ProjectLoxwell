@@ -956,7 +956,7 @@ TextureImporter:
         width: 10
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -964,6 +964,720 @@ TextureImporter:
       bones: []
       spriteID: 41b0895cf3e34f930800000000000000
       internalID: 4176031198098230036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_16
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 547
+        width: 84
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e21b65559071bb80800000000000000
+      internalID: -8380793644874263838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_17
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 466
+        width: 77
+        height: 24
+      alignment: 9
+      pivot: {x: 0.53246754, y: 0.2916667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d10108cf7c02e69b0800000000000000
+      internalID: -5085090885947879395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_18
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 383
+        width: 61
+        height: 34
+      alignment: 9
+      pivot: {x: 0.52459013, y: 0.1764706}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 460ddda029c334680800000000000000
+      internalID: -8772101051242393500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_19
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 552
+        width: 69
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0.31034482}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c97c2af11eaca2eb0800000000000000
+      internalID: -4743756189234182244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_20
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 467
+        width: 47
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5319149, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb00043d354b32240800000000000000
+      internalID: 4765851102807589055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_21
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 388
+        width: 26
+        height: 24
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e044b15d92c4320800000000000000
+      internalID: 2543453884819705414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_22
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 558
+        width: 34
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.071428575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc72691b6ec5e3dc0800000000000000
+      internalID: -3657383701486622772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_23
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 476
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5405405, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f0c0e950c935d6f0800000000000000
+      internalID: -660558272035503885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_24
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 392
+        width: 44
+        height: 55
+      alignment: 9
+      pivot: {x: 0.52272725, y: 0.036363635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66521f9a2788d6b10800000000000000
+      internalID: 1976385837544318310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_25
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 563
+        width: 43
+        height: 52
+      alignment: 9
+      pivot: {x: 0.53488374, y: 0.03846154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd8f41a261e21380800000000000000
+      internalID: -9001884891430810114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_26
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 480
+        width: 29
+        height: 52
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0.03846154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e68bcd33b4b41c0800000000000000
+      internalID: -4518435115017671112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_27
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 396
+        width: 26
+        height: 53
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0.03773585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 112dbef29581225d0800000000000000
+      internalID: -3088879623087599087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_28
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 565
+        width: 35
+        height: 59
+      alignment: 9
+      pivot: {x: 0.51428574, y: 0.06779661}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d6fd728b9e7c91a0800000000000000
+      internalID: -6801422130861967655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_29
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 480
+        width: 50
+        height: 62
+      alignment: 9
+      pivot: {x: 0.52, y: 0.09677419}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39d9f1393061869f0800000000000000
+      internalID: -475105556078551661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_30
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 396
+        width: 55
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5090909, y: 0.140625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 071cb84de9e6e3ff0800000000000000
+      internalID: -54484517032050320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_31
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 565
+        width: 61
+        height: 65
+      alignment: 9
+      pivot: {x: 0.57377046, y: 0.13846155}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca127eb7427162950800000000000000
+      internalID: 6423847363955597740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_32
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 482
+        width: 68
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17460318}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 351ddb657565f17c0800000000000000
+      internalID: -4098462202766438061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_33
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 270
+        width: 57
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0.05882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f18ed1b92e57391f0800000000000000
+      internalID: -1039357472866965473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_34
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 166
+        width: 88
+        height: 85
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08235294}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b29639ac6e7d1d0800000000000000
+      internalID: -3325936042058896508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_35
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 66
+        width: 88
+        height: 89
+      alignment: 9
+      pivot: {x: 0.5227273, y: 0.06741573}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a236b8ad3115dd230800000000000000
+      internalID: 3665174817462248234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_36
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 271
+        width: 86
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.056818184}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a4772e006d7a100800000000000000
+      internalID: 119299214436420209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_37
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 171
+        width: 85
+        height: 81
+      alignment: 9
+      pivot: {x: 0.5647059, y: 0.024691358}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04d2eb6bc086d8e0800000000000000
+      internalID: -1669005000717446134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_38
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 72
+        width: 69
+        height: 79
+      alignment: 9
+      pivot: {x: 0.5072464, y: 0.025316456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63dd69de1f637d960800000000000000
+      internalID: 7626624906676329782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_39
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 280
+        width: 58
+        height: 76
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0.013157895}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 019d5d2b4883ab780800000000000000
+      internalID: -8666552390333900528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_40
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 178
+        width: 50
+        height: 78
+      alignment: 9
+      pivot: {x: 0.56, y: 0.012820513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acac75febab2471c0800000000000000
+      internalID: -4506929309636113718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_41
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 76
+        width: 53
+        height: 79
+      alignment: 9
+      pivot: {x: 0.509434, y: 0.012658228}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdbfc9e63a87acbc0800000000000000
+      internalID: -3762061895383843873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_42
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 282
+        width: 55
+        height: 79
+      alignment: 9
+      pivot: {x: 0.47272727, y: 0.012658228}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff5ce0282580e4d90800000000000000
+      internalID: -7111737611109087745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_43
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 182
+        width: 63
+        height: 78
+      alignment: 9
+      pivot: {x: 0.50793654, y: 0.012820513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343fa24561d01ca50800000000000000
+      internalID: 6539522523471213379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_44
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 81
+        width: 66
+        height: 79
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e71778c9fa818f50800000000000000
+      internalID: 6881934511013566434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_45
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 287
+        width: 62
+        height: 85
+      alignment: 9
+      pivot: {x: 0.4677419, y: 0.023529412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec246466bdde9d8f0800000000000000
+      internalID: -515119155787709746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_46
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 187
+        width: 62
+        height: 79
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.025316456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7caa19161c0de860800000000000000
+      internalID: 7560712638474923131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_47
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 86
+        width: 57
+        height: 87
+      alignment: 9
+      pivot: {x: 0.50877196, y: 0.022988506}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beea2ed7816b838d0800000000000000
+      internalID: -2866340946513842453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_48
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 295
+        width: 59
+        height: 73
+      alignment: 9
+      pivot: {x: 0.3898305, y: 0.01369863}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a3a37816f3c77d0800000000000000
+      internalID: -2919388770329806187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteMagic_Pack_49
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 194
+        width: 74
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: -0.013888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aec4c0c4fdd9cf80800000000000000
+      internalID: -8085687612691132762
       vertices: []
       indices: 
       edges: []
