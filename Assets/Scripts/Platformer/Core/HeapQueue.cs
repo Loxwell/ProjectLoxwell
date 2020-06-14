@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Runtime.InteropServices;
-using UnityEditor.ProjectWindowCallback;
+﻿using System.Collections.Generic;
+using Int32 = System.Int32;
+//using System.Net;
+//using System.Runtime.InteropServices;
+//using UnityEditor.ProjectWindowCallback;
 
-namespace Collections
+namespace DataStructure.Collections
 {
-    public class HeapQueue<T> where T : IComparable<T>, IDisposable
+    public class HeapQueue<T> where T : System.IComparable<T>
     {
         private List<T> m_items;
 
@@ -35,14 +35,19 @@ namespace Collections
             m_items = new List<T>();
         }
         
-        public void Dispose()
+        public void Clear()
         {
-            if(m_items != null)
+            m_items.Clear();
+        }
+
+        public void Destroy()
+        {
+            if (m_items != null)
             {
                 m_items.Clear();
                 m_items.TrimExcess();
             }
-            
+
             m_items = null;
         }
 
@@ -57,15 +62,14 @@ namespace Collections
         public T Pop()
         {
             if (Count == 0)
-                return default(T);
-
-            int tail = Count - 1;
+                return default;
 
             //if there are more than 1 items, returned item will be first in tree.
             //then, add last item to front of tree, shrink the list
             //and find correct index in tree for first item.
-
             T item;
+            int tail = Count - 1;
+            
             T last = m_items[tail];
             m_items.RemoveAt(tail);
 
@@ -93,7 +97,7 @@ namespace Collections
             while (pos > startPos)
             {
                 // find parent index in binary index
-                Int32 parentPos = (pos - 1) >> 1;
+                System.Int32 parentPos = (pos - 1) >> 1;
                 T parent = m_items[parentPos];
 
                 //if new item precedes or equal to parent, pos is new item position

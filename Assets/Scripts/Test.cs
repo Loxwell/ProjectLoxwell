@@ -8,14 +8,16 @@ public class Test : MonoBehaviour
 {
     private void Awake()
     {
-        int st = 0;
-        int end = 10;
-        while (end > st)
+        TestClass t = ScheduleSystem.Core.Simulation.GetModel<TestClass>();
+        if(!t)
         {
-            int change = (end - 1) >> 1;
-            UnityEngine.Debug.Log(change);
-            end = change;
+            UnityEngine.Debug.Log("TestClass is null");
         }
+    }
+
+    private void Start()
+    {
+        UnityEngine.Debug.Log(Physics2D.gravity);
     }
 
     void OnTriggerEnter2D(Collider2D Other)
@@ -23,4 +25,18 @@ public class Test : MonoBehaviour
 	    UnityEngine.Debug.Log(Other.transform.name);
     }
 
+    class TestClass
+    {
+        public float a = 10;
+
+        public TestClass()
+        {
+            UnityEngine.Debug.LogError("TestClass( ) constructor");
+        }
+
+        public static implicit operator bool(TestClass t)
+        {
+            return t != null;
+        }
+    }
 }
