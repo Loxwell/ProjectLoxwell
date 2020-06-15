@@ -7,7 +7,7 @@ namespace Platformer.GamePlay
 {
     public class EnablePlayerInput : Simulation.Event<EnablePlayerInput>
     {
-        public PlayerController player;
+        public PlayerMovementController player;
         public override void Execute()
         {
             
@@ -16,7 +16,7 @@ namespace Platformer.GamePlay
 
     public class PlayerJumped : Simulation.Event<PlayerJumped>
     {
-        public PlayerController player;
+        public PlayerMovementController player;
         public override void Execute()
         {
             
@@ -25,11 +25,21 @@ namespace Platformer.GamePlay
 
     public class PlayerLaneded : Simulation.Event<PlayerLaneded>
     {
-        public PlayerController player;
+        public PlayerMovementController player;
 
         public override void Execute()
         {
             
+        }
+    }
+
+    public class PlayerStopJump : Simulation.Event<PlayerStopJump>
+    {
+        public PlayerMovementController player;
+
+        public override void Execute()
+        {
+
         }
     }
 }

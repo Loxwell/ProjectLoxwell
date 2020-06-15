@@ -64,7 +64,7 @@ namespace LSG
                 curState = 0;
             }
 
-            public static void MarkFlag<T>(ref uint curState, T state) 
+            public static void DirtBitFlag<T>(ref uint curState, T state) 
             {
                 try
                 { 
@@ -114,7 +114,7 @@ namespace LSG
                 curState = 0;
             }
 
-            public static void MarkFlag<T>(ref int curState, T state)
+            public static void DirtBitFlag<T>(ref int curState, T state)
             {
                 try
                 {
@@ -167,7 +167,7 @@ namespace LSG
                 curState = 0;
             }
 
-            public static void MarkFlag(ref uint curState, int state)
+            public static void DirtBitFlag(ref uint curState, int state)
             {
                 curState |= 0x01u << state;
             }

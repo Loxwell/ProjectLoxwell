@@ -11,39 +11,34 @@ using static LSG.Utilities.BitField;
 namespace Platformer.Mechanics
 {
 
-    public class PlayerController : KinematicObject
+    public class PlayerMovementController : KinematicObject
     {
         const string INPUT_HORIZONTAL = "Horizontal";
-        //const string INPUT_VERTICAL = "Vertical";
+        const string INPUT_JUMP = "Jump";
+        readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         enum EJumpState : byte
         {
-            GROUNDED = 0, PREPARE_TO_JUMP, JUMPING, IN_FLIGHT, LANDED
+            GROUNDED = 0, PREPARE_TO_JUMP, JUMPING, IN_FLIGHT, LANDED, FALL
         }
 
-        public enum EState : byte
-        {
-            ENABLE_CONTROLLER, STOP_JUMP, JUMP
-        }
-
-        EJumpState JumpState
+        EJumpState CurrentJumpState
         {
             get { return m_jumpState; }
             set
             {
                 if(value != m_jumpState)
                 {
-
-                    switch (m_jumpState)
+                    switch (value)
                     {
                         case EJumpState.GROUNDED:
                             OnGrounded?.Invoke();
                             break;
                         case EJumpState.IN_FLIGHT:
+                            Schedule<PlayerJumped>().player = this;
                             OnFlight?.Invoke();
                             break;
                         case EJumpState.JUMPING:
-                            Schedule<PlayerJumped>().player = this;
                             OnJumping?.Invoke();
                             break;
                         case EJumpState.LANDED:
@@ -52,6 +47,12 @@ namespace Platformer.Mechanics
                             break;
                         case EJumpState.PREPARE_TO_JUMP:
                             OnPrepareToJump?.Invoke();
+                            velocity.y = m_jumpTakeOffSpeed * model.jumpModifier;
+                            break;
+                        case EJumpState.FALL:
+                            Schedule<PlayerStopJump>().player = this;
+                            if (velocity.y > 0)
+                                velocity.y = velocity.y * model.jumpDeceleration;
                             break;
                     }
 
@@ -66,7 +67,7 @@ namespace Platformer.Mechanics
         public event System.Action OnLanded;
         public event System.Action OnPrepareToJump;
 
-        readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
+        public bool controlEnabled;
 
         /// <summary>
         /// Max horizontal speed of the player
@@ -96,28 +97,21 @@ namespace Platformer.Mechanics
         {
             base.OnEnable();
             m_jumpState = EJumpState.GROUNDED;
-            MarkFlag(ref m_state, (int)EState.ENABLE_CONTROLLER);
+
+#if UNITY_EDITOR
+            controlEnabled = true;
+#endif
         }
 
         protected override void Update()
         {
-            if (IsMarkedFlag(m_state, (int)EState.ENABLE_CONTROLLER))
-            {
+            if (controlEnabled)
                 m_move.x = Input.GetAxis(INPUT_HORIZONTAL);
-            }
+            else
+                m_move.x = 0;
 
             UpdateJumpState();
             base.Update();
-        }
-
-        public void AddState(EState additionState)
-        {
-            MarkFlag(ref m_state, (int)additionState);
-        }
-
-        public void ReleaseState(EState deletionState)
-        {
-            ReleaseFlag(ref m_state, (int)deletionState);
         }
 
         protected override void ComputeVelocity()
@@ -132,22 +126,34 @@ namespace Platformer.Mechanics
 
         void UpdateJumpState()
         {
-            switch(JumpState)
+            switch(CurrentJumpState)
             {
                 case EJumpState.PREPARE_TO_JUMP:
-                    JumpState = EJumpState.JUMPING;
+                    CurrentJumpState = EJumpState.JUMPING;
                     break;
                 case EJumpState.JUMPING:
-                    if (!IsMarkedFlag(m_state, (int)EJumpState.GROUNDED))
-                        JumpState = EJumpState.IN_FLIGHT;
+                    if (!IsGrounded)
+                        CurrentJumpState = EJumpState.IN_FLIGHT;
                     break;
                 case EJumpState.IN_FLIGHT:
+                    if(IsGrounded)
+                        CurrentJumpState = EJumpState.GROUNDED;
                     break;
                 case EJumpState.LANDED:
+                    CurrentJumpState = EJumpState.GROUNDED;
                     break;
                 case EJumpState.GROUNDED:
+                    if (Input.GetButtonDown(INPUT_JUMP))
+                        CurrentJumpState = EJumpState.PREPARE_TO_JUMP;
+                    break;
+                case EJumpState.FALL:
+                    if (IsGrounded)
+                        CurrentJumpState = EJumpState.GROUNDED;
                     break;
             }
+
+            if(CurrentJumpState != EJumpState.GROUNDED && Input.GetButtonUp(INPUT_JUMP))
+                CurrentJumpState = EJumpState.FALL;
         }
     }
 }
