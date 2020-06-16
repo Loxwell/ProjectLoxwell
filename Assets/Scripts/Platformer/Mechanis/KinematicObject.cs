@@ -11,11 +11,13 @@ namespace Platformer.Mechanics
     {
         protected const float MIN_MOVE_DISTANCE = 0.001f;
         protected const float SHELL_RADIUS = 0.01f;
+        public Vector2 Velocity {
+            get
+            {
+                return m_velocity;
+            }
+        }
 
-        /// <summary>
-        /// The current velocity of the entity.
-        /// </summary>
-        public Vector2 velocity;
 
         /// <summary>
         /// Implements game physics for some in game entity.
@@ -29,6 +31,7 @@ namespace Platformer.Mechanics
         [SerializeField, Header("Custom Gravity coefficient"), Range(1e-7f, 2f)]
         float m_gravityModifier = 1f;
 
+
         public bool IsGrounded { get; private set; }
 
         protected Vector2 targetVelocity;
@@ -36,6 +39,11 @@ namespace Platformer.Mechanics
         protected Rigidbody2D body;
         protected ContactFilter2D contactFilter;
         protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
+
+        /// <summary>
+        /// The current velocity of the entity.
+        /// </summary>
+        Vector2 m_velocity;
 
         protected virtual void Awake()
         {
@@ -77,7 +85,7 @@ namespace Platformer.Mechanics
         /// <param name="value"></param>
         public void Bounce(float value)
         {
-            velocity.y = value;
+            m_velocity.y = value;
         }
 
         /// <summary>
@@ -86,8 +94,8 @@ namespace Platformer.Mechanics
         /// <param name="dir"></param>
         public void Bounce(Vector2 dir)
         {
-            velocity.y = dir.y;
-            velocity.x = dir.x;
+            m_velocity.y = dir.y;
+            m_velocity.x = dir.x;
         }
 
         /// <summary>
@@ -96,7 +104,7 @@ namespace Platformer.Mechanics
         /// <param name="position"></param>
         public void Teleport(Vector3 newPos)
         {
-            velocity *= 0;
+            m_velocity *= 0;
             body.position = newPos;
             body.velocity *= 0;
         }
@@ -129,15 +137,15 @@ namespace Platformer.Mechanics
 
                     if(IsGrounded)
                     {
-                        float projection = Vector2.Dot(velocity, currentNormal);
+                        float projection = Vector2.Dot(m_velocity, currentNormal);
                         // 현재 이동 속도와 정반대 방향
                         if(projection < 0)
                             // slower velocity if moving against the normal (up a hill)
-                            velocity = velocity - projection * currentNormal;
+                            m_velocity = m_velocity - projection * currentNormal;
                     }else
                     {
-                        velocity.x *= 0;
-                        velocity.y = Mathf.Min(velocity.y, 0);
+                        m_velocity.x *= 0;
+                        m_velocity.y = Mathf.Min(m_velocity.y, 0);
                     }
 
                     float modifiedDistance = hitBuffer[i].distance - SHELL_RADIUS;
@@ -151,15 +159,15 @@ namespace Platformer.Mechanics
         void UpdateMovement(float deltaTime)
         {
             //if already falling, fall faster than the jump speed, otherwise use normal gravity.
-            if (velocity.y < 0)
-                velocity += m_gravityModifier * Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
+            if (m_velocity.y < 0)
+                m_velocity += m_gravityModifier * Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
             else
-                velocity += Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
+                m_velocity += Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
 
-            velocity.x = targetVelocity.x;
+            m_velocity.x = targetVelocity.x;
             IsGrounded = false;
 
-            Vector2 deltaPosition = velocity * deltaTime;
+            Vector2 deltaPosition = m_velocity * deltaTime;
             Vector2 moveAlongGround;
             moveAlongGround.x = groundNormal.y;
             moveAlongGround.y = -groundNormal.x;
@@ -177,7 +185,7 @@ namespace Platformer.Mechanics
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            Vector2 deltaPosition = velocity * Time.deltaTime;
+            Vector2 deltaPosition = m_velocity * Time.deltaTime;
             Vector2 moveAlongGround;
             moveAlongGround.x = groundNormal.y;
             moveAlongGround.y = -groundNormal.x;

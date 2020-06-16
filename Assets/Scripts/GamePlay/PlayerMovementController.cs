@@ -17,12 +17,12 @@ namespace Platformer.Mechanics
         const string INPUT_JUMP = "Jump";
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
-        enum EJumpState : byte
+        public enum EJumpState : byte
         {
-            GROUNDED = 0, PREPARE_TO_JUMP, JUMPING, IN_FLIGHT, LANDED, FALL
+            GROUNDED = 0, PREPARE_TO_JUMP = 1, JUMPING = 2, IN_FLIGHT = 3, LANDED = 4, FALL = 5
         }
 
-        EJumpState CurrentJumpState
+        public EJumpState CurrentJumpState
         {
             get { return m_jumpState; }
             set
@@ -47,12 +47,12 @@ namespace Platformer.Mechanics
                             break;
                         case EJumpState.PREPARE_TO_JUMP:
                             OnPrepareToJump?.Invoke();
-                            velocity.y = m_jumpTakeOffSpeed * model.jumpModifier;
+                            Bounce(m_jumpTakeOffSpeed * model.jumpModifier);
                             break;
                         case EJumpState.FALL:
                             Schedule<PlayerStopJump>().player = this;
-                            if (velocity.y > 0)
-                                velocity.y = velocity.y * model.jumpDeceleration;
+                            if (Velocity.y > 0)
+                                Bounce(Velocity.y * model.jumpDeceleration);
                             break;
                     }
 
