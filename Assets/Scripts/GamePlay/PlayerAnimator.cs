@@ -6,16 +6,17 @@ using UnityEngine;
 
 using MovementController = Platformer.Mechanics.PlayerMovementController;
 using EJumpState = Platformer.Mechanics.PlayerMovementController.EJumpState;
-using UnityEditor;
-using UnityEditorInternal;
+using static LSG.Utilities.BitField;
 
 namespace LSG
 {
     public class PlayerAnimator : MonoBehaviour
     {
+        const string INPUT_VERTICAL = "Vertical";
+
         enum EState
         {
-            ERROR = -1, DEFAULT = 0, JUMP_BEGINS = 1, FALL = 2
+            ERROR = -1, DEFAULT = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6
         }
 
         Animator Animator {
@@ -35,17 +36,18 @@ namespace LSG
 
             get
             {
-                if(m_animator)
-                    return (EState) m_animator.GetInteger(m_hashState);
+                if(Animator)
+                    return (EState)Animator.GetInteger(m_hashState);
                 return (EState) (-1);
             }
         }
 
-        void RunningSpeed (float value) => m_animator.SetFloat(0, value);
+        void RunningSpeed (float value) => Animator.SetFloat(m_hashSpeed, value);
 
         MovementController m_controller;
         Animator m_animator;
         int m_hashSpeed, m_hashState;
+        uint m_state;
 
         private void Awake()
         {
@@ -71,8 +73,8 @@ namespace LSG
 
 
         private void Update()
-        {
-            Animator.SetFloat(m_hashSpeed, Mathf.Abs( m_controller.Velocity.x ));
+        {     
+            RunningSpeed(Mathf.Abs( m_controller.Velocity.x ));
         }
 
         void OnJumping()
