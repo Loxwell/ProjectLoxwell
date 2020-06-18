@@ -73,7 +73,7 @@ namespace ScheduleSystem.Core
 
 #if UNITY_EDITOR
             T instance = InstanceRegister<T>.instance;
-            Debug.Log( string.Format("GetModel<{0}>.HashCode({1})", typeof(T), instance.GetHashCode()));
+            //Debug.Log( string.Format("GetModel<{0}>.HashCode({1})", typeof(T), instance.GetHashCode()));
             return instance;
 #else
             return InstanceRegister<T>.instance;

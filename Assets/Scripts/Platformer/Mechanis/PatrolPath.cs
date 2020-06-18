@@ -7,17 +7,25 @@ namespace Platformer.Mechanics
 {
     public partial class PatrolPath : MonoBehaviour
     {
+        public Transform CachedTransform {
+            get {
+                if (!m_transform)
+                    m_transform = transform;
+                return m_transform;
+            }
+        }
+        
         /// <summary>
         /// Patrol Start Point
         /// </summary>
         [SerializeField]
-        internal Vector2 stPos;
+        public Vector2 stPos;
 
         /// <summary>
         /// Patrol Destination Point
         /// </summary>
         [SerializeField]
-        internal Vector2 edPos;
+        public Vector2 edPos;
 
         /// <summary>
         /// Create a Mover instance which is used to move an entity along the path at a certain
@@ -25,6 +33,8 @@ namespace Platformer.Mechanics
         /// <param name="speed"></param>
         /// <returns></returns>
         public Mover CreateMover(float speed = 1) => new Mover(this, speed);
+
+        Transform m_transform;
 
         public void Reset()
         {

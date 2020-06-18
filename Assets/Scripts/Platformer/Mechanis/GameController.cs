@@ -19,6 +19,12 @@ namespace Platformer.Mechanics
 
         public PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+        private void Awake()
+        {
+            if(!g_instance)
+                g_instance = this;
+        }
+
         private void OnDisable()
         {
             if (g_instance == this)

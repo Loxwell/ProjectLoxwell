@@ -40,3 +40,22 @@ public class Test : MonoBehaviour
         }
     }
 }
+
+interface ITest {
+    void Test();
+}
+
+
+public class A : ITest
+{
+    public void Test()
+    { }
+
+}
+
+public class B :  A
+{
+
+
+}
+

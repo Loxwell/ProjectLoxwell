@@ -1,5 +1,16 @@
 ﻿using System;
-using UnityEditorInternal;
+using Coroutine = UnityEngine.Coroutine;
+using MonoBehaviour = UnityEngine.MonoBehaviour;
+using IEnumerator = System.Collections.IEnumerator;
+
+public static class StaticFunctions
+{
+    public static void SafeStopCoroutine(this MonoBehaviour monoBehaviour, Coroutine routine)
+    {
+        if (routine != null)
+            monoBehaviour.StopCoroutine(routine);
+    }
+}
 
 namespace LSG.Utilities
 {

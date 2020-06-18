@@ -13,7 +13,7 @@ namespace Platformer.Mechanics {
             {
                 get {
                     p = Mathf.InverseLerp(0, m_duration, Mathf.PingPong(Time.time - stTime, m_duration));
-                    return m_path.transform.TransformPoint(Vector2.Lerp(m_path.stPos, m_path.edPos, p));
+                    return m_path.CachedTransform.TransformPoint(Vector2.Lerp(m_path.stPos, m_path.edPos, p));
                 }
             }
 
@@ -27,7 +27,6 @@ namespace Platformer.Mechanics {
                 m_duration = (path.edPos - path.stPos).magnitude / speed;
                 stTime = Time.time;
             }
-
         }
     }
 }
