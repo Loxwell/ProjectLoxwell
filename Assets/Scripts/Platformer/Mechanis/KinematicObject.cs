@@ -11,6 +11,7 @@ namespace Platformer.Mechanics
     {
         protected const float MIN_MOVE_DISTANCE = 0.001f;
         protected const float SHELL_RADIUS = 0.01f;
+
         public Vector2 Velocity {
             get
             {
@@ -122,6 +123,32 @@ namespace Platformer.Mechanics
         protected virtual void ComputeVelocity()
         { /*Empty*/ }
 
+        void UpdateMovement(float deltaTime)
+        {
+            //if already falling, fall faster than the jump speed, otherwise use normal gravity.
+            if (m_velocity.y < 0)
+                m_velocity += m_gravityModifier * Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
+            else
+                m_velocity += Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
+
+            m_velocity.x = targetVelocity.x;
+            IsGrounded = false;
+
+            Vector2 deltaPosition = m_velocity * deltaTime;
+            Vector2 moveAlongGround;
+            moveAlongGround.x = groundNormal.y;
+            moveAlongGround.y = -groundNormal.x;
+
+            Vector2 move = moveAlongGround * deltaPosition;
+
+            //horizontal movement
+            PerformMovement(move, false);
+            move = Vector2.up * deltaPosition;
+
+            // vertical movement
+            PerformMovement(move, true);
+        }
+
         void PerformMovement(Vector2 move, bool yMovement)
         {
             float distance = move.magnitude;
@@ -166,31 +193,6 @@ namespace Platformer.Mechanics
             body.position = body.position + move.normalized * distance;
         }
 
-        void UpdateMovement(float deltaTime)
-        {
-            //if already falling, fall faster than the jump speed, otherwise use normal gravity.
-            if (m_velocity.y < 0)
-                m_velocity += m_gravityModifier * Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
-            else
-                m_velocity += Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
-
-            m_velocity.x = targetVelocity.x;
-            IsGrounded = false;
-
-            Vector2 deltaPosition = m_velocity * deltaTime;
-            Vector2 moveAlongGround;
-            moveAlongGround.x = groundNormal.y;
-            moveAlongGround.y = -groundNormal.x;
-
-            Vector2 move = moveAlongGround * deltaPosition;
-
-            //horizontal movement
-            PerformMovement(move, false);
-            move = Vector2.up * deltaPosition;
-
-            // vertical movement
-            PerformMovement(move, true);
-        }
 
 #if UNITY_EDITOR
         private void OnDrawGizmos()
@@ -212,7 +214,7 @@ namespace Platformer.Mechanics
                 int cnt = body.Cast(move, contactFilter, rayHits, move.magnitude + SHELL_RADIUS);
                 for(int i = 0; i < cnt; ++i)
                 {
-                    Gizmos.DrawLine(transform.position, rayHits[i].normal * 2);
+                    Gizmos.DrawLine(transform.position, rayHits[i].normal * 10);
                 }
             }
         }

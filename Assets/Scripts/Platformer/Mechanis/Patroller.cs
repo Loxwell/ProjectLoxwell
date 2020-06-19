@@ -4,6 +4,11 @@ using Path =  Platformer.Mechanics.PatrolPath;
 
 namespace Platformer.Mechanics
 {
+    public interface IPatrolUtil
+    {
+        void SetPatroller(Patroller p);
+    }
+
     public class Patroller : MonoBehaviour
     {
         [SerializeField]
@@ -27,7 +32,11 @@ namespace Platformer.Mechanics
 
             if (m_path && m_target)
             {
-                m_currentProcess = StartCoroutine(UpdateMovingProcess());
+                Path.Mover mover = m_path.CreateMover(m_maxMovingSpeed * 0.5f);
+                if (m_target && m_target.GetComponent<IPatrolUtil>() != null)
+                    m_target.GetComponent<IPatrolUtil>().SetPatroller(this);
+
+                m_currentProcess = StartCoroutine(UpdateMovingProcess(mover));
                 return true;
             }
 
@@ -36,9 +45,9 @@ namespace Platformer.Mechanics
 
         public void Stop() => this.SafeStopCoroutine(m_currentProcess);
         
-        IEnumerator UpdateMovingProcess()
+        IEnumerator UpdateMovingProcess(Path.Mover mover)
         {
-            Path.Mover mover = m_path.CreateMover(m_maxMovingSpeed * 0.5f);
+            
             Transform t = transform;
 
             while (true)

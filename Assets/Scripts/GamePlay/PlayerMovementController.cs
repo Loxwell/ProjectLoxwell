@@ -83,7 +83,7 @@ namespace Platformer.Mechanics
 
         SpriteRenderer m_renderer;
         EJumpState m_jumpState;
-        Vector2 m_move;
+        Vector2 m_move, m_weightedVelocity;
 
         uint m_state;
 
@@ -114,6 +114,11 @@ namespace Platformer.Mechanics
             base.Update();
         }
 
+        public void AdditiveVelocity(Vector2 weightedVelocity)
+        {
+            this.m_weightedVelocity = weightedVelocity;
+        }
+
         protected override void ComputeVelocity()
         {
             if (m_move.x > 0.01f)
@@ -121,7 +126,8 @@ namespace Platformer.Mechanics
             else if (m_move.x < -0.01f)
                 m_renderer.flipX = true;
 
-            targetVelocity = m_move * m_maxSpeed;
+            targetVelocity = m_move * m_maxSpeed + m_weightedVelocity;
+            m_weightedVelocity = Vector2.zero;
         }
 
         void UpdateJumpState()
