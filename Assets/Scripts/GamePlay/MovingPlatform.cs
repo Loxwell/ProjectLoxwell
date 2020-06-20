@@ -8,18 +8,19 @@ public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
 {
     public TextMesh text;
 
-    Transform m_transform;
-    Vector3 m_prePos;
-    float m_height;
+    Transform m_transform;    
     float m_preTime;
 
-    Vector2 dir;
+    Vector2 m_dir;
+    Vector2 m_size;
 
     private void Awake()
     {
-        m_height = GetComponent<BoxCollider2D>().size.y;
         m_transform = transform;
-        m_height *= m_transform.localScale.y;
+
+        m_size = GetComponent<BoxCollider2D>().bounds.extents;
+        m_size.x *= m_transform.localScale.x;
+        m_size.y *= m_transform.localScale.y;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,7 +29,7 @@ public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
         if(p)
         {
             Initialize();
-            dir = p.transform.position - m_transform.position;
+            m_dir = p.transform.position - m_transform.position;
         }
     }
 
@@ -37,30 +38,15 @@ public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
         PlayerMovementController p = collision.transform.GetComponent<PlayerMovementController>();
         if(p)
         {
-            Vector2 size = GetComponent<BoxCollider2D>().bounds.extents;
-            size.x *= m_transform.localScale.x;
-            size.y *= m_transform.localScale.y;
-
-            if (p.transform.position.y  >= m_transform.position.y + size.y && (size.x * size.x > dir.x * dir.x))
+            if (p.transform.position.y  >= m_transform.position.y + m_size.y
+                && (m_size.x * m_size.x > m_dir.x * m_dir.x))
             {
-                text.text = "On";
-
-                dir.x += p.Velocity.x * (Time.time - m_preTime);
-                p.transform.position = m_transform.position + dir.x * Vector3.right + Vector3.up * size.y * 1.1f;
+                m_dir.x += p.Velocity.x * (Time.time - m_preTime);
+                p.transform.position = m_transform.position + m_dir.x * Vector3.right + Vector3.up * m_size.y * 1.1f;
             }
-            else
-            {
-                text.text = "Out";
-            }
-
 
             Initialize();
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        m_prePos = Vector2.zero;
     }
 
     public void SetPatroller(Patroller p)
@@ -70,9 +56,6 @@ public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
 
     void Initialize()
     {
-        
-
-        m_prePos = m_transform.position;
         m_preTime = Time.time;
     }
 }

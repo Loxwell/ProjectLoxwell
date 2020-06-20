@@ -10,14 +10,15 @@ using static LSG.Utilities.BitField;
 
 namespace LSG
 {
-    public class PlayerAnimator : MonoBehaviour
+    public class PlayerAniController : MonoBehaviour
     {
         const string INPUT_VERTICAL = "Vertical";
 
         enum EState
         {
-            ERROR = -1, DEFAULT = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6
-        }
+            ERROR = -1, DEFAULT = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
+            ATTACK = 20
+         }
 
         Animator Animator {
             get
@@ -29,7 +30,7 @@ namespace LSG
         }
         
 
-        EState AnimatorState
+        EState CurrentState
         {
             set
             { Animator.SetInteger(m_hashState, (int)value); }
@@ -53,7 +54,6 @@ namespace LSG
         {
             m_controller = GetComponent<MovementController>();
           
-
             m_hashState = Animator.StringToHash("State");
             m_hashSpeed = Animator.StringToHash("RunningSpeed");
 
@@ -71,7 +71,6 @@ namespace LSG
             m_controller.OnFlight -= OnFall;
         }
 
-
         private void Update()
         {     
             RunningSpeed(Mathf.Abs( m_controller.Velocity.x ));
@@ -79,21 +78,23 @@ namespace LSG
 
         void OnJumping()
         {
-            AnimatorState = EState.JUMP_BEGINS;
+            CurrentState = EState.JUMP_BEGINS;
         }
 
         void OnGrounded()
         {
-            AnimatorState = EState.DEFAULT;
+            CurrentState = EState.DEFAULT;
         }
 
         void OnFall()
         {
-            AnimatorState = EState.FALL;
+            CurrentState = EState.FALL;
         }
     }
 }
 
+
+#region
 /*    void AdditiveAnimFix()
     {
         float skiptime;
@@ -116,3 +117,4 @@ namespace LSG
         previousVelocity = body.velocity;
        
     }*/
+#endregion

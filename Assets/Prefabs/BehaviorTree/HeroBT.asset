@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a7c8ca992f915438a96c2077353778, type: 3}
+  m_Name: HeroBT
+  m_EditorClassIdentifier: 
+  brickName: Assets/Prefabs/BehaviorTree/HeroBT.asset
+  xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
+    version=\"1.0\">\n  <BehaviorTree id=\"0\" />\n  <runtimeInfo>\n    <BehaviorTree
+    id=\"0\" guid=\"fc6e34e80b0bd4e478978db1629105f5\" nextId=\"16\">\n      <root>\n       
+    <RepeatDecorator id=\"1\" />\n      </root>\n      <inputParams />\n      <outputParams
+    />\n      <localParams />\n    </BehaviorTree>\n    <RepeatDecorator id=\"1\"
+    loops=\"-1\" policy=\"ContinueWhenChildFails\">\n      <child>\n        <SelectorNode
+    id=\"2\" />\n      </child>\n      <inputParams />\n      <outputParams />\n     
+    <localParams />\n    </RepeatDecorator>\n    <SelectorNode id=\"2\">\n      <children>\n       
+    <elem>\n          <SequenceNode id=\"3\" />\n        </elem>\n      </children>\n     
+    <inputParams />\n      <outputParams />\n      <localParams />\n    </SelectorNode>\n   
+    <SequenceNode id=\"3\">\n      <children>\n        <elem>\n          <NotDecorator
+    id=\"14\" />\n        </elem>\n        <elem>\n          <NotDecorator id=\"15\"
+    />\n        </elem>\n        <elem>\n          <ConditionNode id=\"12\" />\n       
+    </elem>\n        <elem>\n          <ActionNode id=\"13\" />\n        </elem>\n     
+    </children>\n      <inputParams />\n      <outputParams />\n      <localParams
+    />\n    </SequenceNode>\n    <NotDecorator id=\"14\">\n      <inputParams />\n     
+    <outputParams />\n      <localParams />\n    </NotDecorator>\n    <NotDecorator
+    id=\"15\">\n      <inputParams />\n      <outputParams />\n      <localParams
+    />\n    </NotDecorator>\n    <ConditionNode id=\"12\">\n      <condition>\n       
+    <ConditionEvalNode id=\"0\" />\n      </condition>\n      <inputParams />\n     
+    <outputParams />\n      <localParams />\n    </ConditionNode>\n    <ActionNode
+    id=\"13\" action=\"Basic/SetInt\">\n      <inputParams>\n        <inputValues>\n         
+    <entry name=\"value\" type=\"System.Int32\" isBlackboard=\"False\" value=\"0\"
+    />\n        </inputValues>\n      </inputParams>\n      <outputParams>\n       
+    <outputValues>\n          <entry name=\"var\" type=\"System.Int32\" isBlackboard=\"True\"
+    blackboard=\"\" />\n        </outputValues>\n      </outputParams>\n      <localParams
+    />\n    </ActionNode>\n    <ConditionEvalNode id=\"0\" policy=\"ATOMIC_CHECK\"
+    name=\"Basic/CheckAxisDown\">\n      <inputParams />\n      <outputParams />\n     
+    <localParams />\n    </ConditionEvalNode>\n  </runtimeInfo>\n  <editorInfo>\n   
+    <BehaviorTree id=\"0\" _name=\"HeroBT\" _description=\"\" _removeIfClosed=\"False\">\n     
+    <_rootList>\n        <elem>\n          <RepeatDecorator id=\"1\" />\n       
+    </elem>\n        <elem>\n          <SelectorNode id=\"2\" />\n        </elem>\n       
+    <elem>\n          <SequenceNode id=\"3\" />\n        </elem>\n        <elem>\n         
+    <ConditionNode id=\"12\" />\n        </elem>\n        <elem>\n          <ActionNode
+    id=\"13\" />\n        </elem>\n        <elem>\n          <NotDecorator id=\"14\"
+    />\n        </elem>\n        <elem>\n          <NotDecorator id=\"15\" />\n       
+    </elem>\n      </_rootList>\n      <_nodes>\n        <nodes>\n          <RepeatDecorator
+    id=\"1\" />\n          <SelectorNode id=\"2\" />\n          <SequenceNode id=\"3\"
+    />\n          <ActionNode id=\"13\" />\n          <NotDecorator id=\"14\" />\n         
+    <NotDecorator id=\"15\" />\n          <ConditionNode id=\"12\" />\n        </nodes>\n     
+    </_nodes>\n    </BehaviorTree>\n    <RepeatDecorator id=\"1\">\n      <_data>\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"996 2\" name=\"Repeat\"
+    description=\"Repeats the execution of its child node\" cardinality=\"1\" hasParent=\"False\">\n         
+    <BehaviorTree id=\"0\" />\n          <RepeatDecorator id=\"1\" />\n        </data>\n     
+    </_data>\n    </RepeatDecorator>\n    <SelectorNode id=\"2\">\n      <_data>\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"983 118\" name=\"Selector\"
+    description=\"Executes all its children until one of them is successful\" cardinality=\"-1\"
+    hasParent=\"True\">\n          <BehaviorTree id=\"0\" />\n          <SelectorNode
+    id=\"2\" />\n          <RepeatDecorator id=\"1\" />\n        </data>\n      </_data>\n   
+    </SelectorNode>\n    <SequenceNode id=\"3\">\n      <_data>\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"403 253\" name=\"Sequence\" description=\"Executes
+    all its children in sequence until all of them are successful\" cardinality=\"-1\"
+    hasParent=\"True\">\n          <BehaviorTree id=\"0\" />\n          <SequenceNode
+    id=\"3\" />\n          <SelectorNode id=\"2\" />\n        </data>\n      </_data>\n   
+    </SequenceNode>\n    <NotDecorator id=\"14\">\n      <_data>\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"84 438\" name=\"Not\" description=\"Negates the
+    result of the execution\" cardinality=\"1\" hasParent=\"True\">\n          <BehaviorTree
+    id=\"0\" />\n          <NotDecorator id=\"14\" />\n          <SequenceNode id=\"3\"
+    />\n        </data>\n      </_data>\n    </NotDecorator>\n    <NotDecorator id=\"15\">\n     
+    <_data>\n        <data breakpoint=\"0\" selected=\"False\" position=\"245 440\"
+    name=\"Not\" description=\"Negates the result of the execution\" cardinality=\"1\"
+    hasParent=\"True\">\n          <BehaviorTree id=\"0\" />\n          <NotDecorator
+    id=\"15\" />\n          <SequenceNode id=\"3\" />\n        </data>\n      </_data>\n   
+    </NotDecorator>\n    <ConditionNode id=\"12\">\n      <_data>\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"383 438\" name=\"Basic/CheckAxisDown\"
+    description=\"\" cardinality=\"0\" hasParent=\"True\">\n          <BehaviorTree
+    id=\"0\" />\n          <ConditionNode id=\"12\" />\n          <SequenceNode id=\"3\"
+    />\n        </data>\n      </_data>\n    </ConditionNode>\n    <ActionNode id=\"13\">\n     
+    <_data>\n        <data breakpoint=\"0\" selected=\"False\" position=\"592 438\"
+    name=\"Basic/SetInt\" description=\"Sets a value to an integer variable\" cardinality=\"0\"
+    hasParent=\"True\">\n          <BehaviorTree id=\"0\" />\n          <ActionNode
+    id=\"13\" />\n          <SequenceNode id=\"3\" />\n        </data>\n      </_data>\n   
+    </ActionNode>\n  </editorInfo>\n</BehaviorBricks>"
+  zoom: 1
+  subslist: []
+  _guid: fc6e34e80b0bd4e478978db1629105f5
