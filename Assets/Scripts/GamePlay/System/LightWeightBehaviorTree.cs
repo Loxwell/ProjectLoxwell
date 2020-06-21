@@ -8,17 +8,24 @@ namespace LSG.LWBehaviorTree
 
     public enum EBTState
     {
-         DEFAULT, RUNNING, SUCCESS, FAILED
+        DEFAULT, RUNNING, SUCCESS, FAILED
     }
 
-    public interface INode
-    {
-        EBTState Update(IBlackboard bb);
+    public interface INodeBase { 
+        EBTState Update(IBlackboard bb); 
     }
 
-    public interface IBegins
+    public interface INode : INodeBase { }
+    public interface INodeTask : INodeBase { }
+
+    public interface ILateUpdate
     {
-        void OnBegin(IBlackboard bb);
+        void LateUpdate(IBlackboard bb);
+    }
+   
+    public interface IOnStart : INodeBase
+    {
+        void OnStart(IBlackboard bb);
     }
 
     public sealed class RepeatNode : CompositeNode
@@ -39,33 +46,6 @@ namespace LSG.LWBehaviorTree
 
             Initialize();
             return EBTState.SUCCESS;
-        }
-    }
-
-
-    /// <summary>
-    /// negate result
-    /// have a Child 
-    /// </summary>
-    public sealed class DecoratorNode : INode
-    {
-        INode child;
-
-        public DecoratorNode(INode node)
-        {
-            child = node;
-        }
-
-        public EBTState Update(IBlackboard bb)
-        {
-            switch(child.Update(bb))
-            {
-                case EBTState.FAILED:
-                    return EBTState.SUCCESS;
-                case EBTState.SUCCESS:
-                    return EBTState.FAILED;
-            }
-            return EBTState.RUNNING;
         }
     }
 
@@ -100,9 +80,10 @@ namespace LSG.LWBehaviorTree
     {
         public override EBTState Update(IBlackboard bb)
         {
-            for(int i = runningNode, len = children.Count; i < len; ++i)
+            for (int i = runningNode, len = children.Count; i < len; ++i)
             {
-                switch(children[i].Update(bb))
+                ((IOnStart)children[i]).OnStart(bb);
+                switch (children[i].Update(bb))
                 {
                     case EBTState.RUNNING:
                         runningNode = i;
@@ -129,6 +110,7 @@ namespace LSG.LWBehaviorTree
         {
             for (int i = runningNode, len = children.Count; i < len;)
             {
+                ((IOnStart)children[i]).OnStart(bb);
                 switch (children[i].Update(bb))
                 {
                     case EBTState.RUNNING:
@@ -148,24 +130,86 @@ namespace LSG.LWBehaviorTree
         }
     }
 
-    public abstract class ActionNode : INode, IBegins
+    /// <summary>
+    /// negate result
+    /// have a Child 
+    /// </summary>
+    public sealed class DecoratorNode : INode, IOnStart
     {
-        public abstract void OnBegin(IBlackboard bb);
+        INodeTask child;
+
+        public DecoratorNode(INodeTask node)
+        {
+            child = node;
+        }
+
+        public void OnStart(IBlackboard bb)
+        {
+            ((IOnStart)child).OnStart(bb);
+        }
+
+        public EBTState Update(IBlackboard bb)
+        {
+            switch (child.Update(bb))
+            {
+                case EBTState.FAILED:
+                    return EBTState.SUCCESS;
+                case EBTState.SUCCESS:
+                    return EBTState.FAILED;
+            }
+            return EBTState.RUNNING;
+        }
+    }
+
+    /// <summary>
+    /// negate result
+    /// have a Child 
+    /// </summary>
+    public sealed class NotDecoratorNode : INode, IOnStart
+    {
+        INodeTask child;
+
+        public NotDecoratorNode(INodeTask node)
+        {
+            child = node;
+        }
+
+        public void OnStart(IBlackboard bb)
+        {
+            ((IOnStart)child).OnStart(bb);
+        }
+
+        public EBTState Update(IBlackboard bb)
+        {
+            switch (child.Update(bb))
+            {
+                case EBTState.SUCCESS:
+                    return EBTState.SUCCESS;
+                case EBTState.FAILED:
+                    return EBTState.FAILED;
+            }
+            return EBTState.RUNNING;
+        }
+    }
+
+    public abstract class ActionNode : INodeTask, IOnStart
+    {
+        public virtual void OnStart(IBlackboard bb) { }
         public abstract EBTState Update(IBlackboard bb);
     }
 
-    public struct Condition :INode, IBegins
+    public struct Condition : INodeTask, IOnStart
     {
         public delegate EBTState CallbackUpdate(IBlackboard bb);
-        public delegate void CallbackOnBigins(IBlackboard bb);
+        public delegate void CallbackOnStart(IBlackboard bb);
 
         public CallbackUpdate onUpdate;
-        public CallbackOnBigins onBeigins;
+        public CallbackOnStart onStart;
 
-        public void OnBegin(IBlackboard bb)
+        public void OnStart(IBlackboard bb)
         {
-            if (onBeigins != null)
-                onBeigins.Invoke(bb);
+            if (onStart != null)
+                onStart.Invoke(bb);
         }
 
         public EBTState Update(IBlackboard bb)

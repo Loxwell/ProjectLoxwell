@@ -1,8 +1,7 @@
-﻿using Platformer.Mechanics;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using LSG.LWBehaviorTree;
 
 using MovementController = Platformer.Mechanics.PlayerMovementController;
 using EJumpState = Platformer.Mechanics.PlayerMovementController.EJumpState;
@@ -10,13 +9,13 @@ using static LSG.Utilities.BitField;
 
 namespace LSG
 {
-    public partial class PlayerAniController : MonoBehaviour
+    public partial class PlayerAniController : MonoBehaviour, IBlackboard
     {
         const string INPUT_VERTICAL = "Vertical";
 
         internal enum EState
         {
-            ERROR = -1, DEFAULT = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
+            ERROR = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
             ATTACK = 20
          }
 
@@ -28,7 +27,6 @@ namespace LSG
                 return m_animator;
             }
         }
-
 
         internal EState CurrentState
         {
@@ -47,8 +45,10 @@ namespace LSG
 
         MovementController m_controller;
         Animator m_animator;
+        HeroBT m_bt;
+
         int m_hashSpeed, m_hashState;
-        uint m_state;
+        uint m_state;   
 
         private void Awake()
         {
@@ -61,6 +61,8 @@ namespace LSG
             m_controller.OnLanded += OnGrounded;
             m_controller.OnPrepareToJump+= OnJumping;
             m_controller.OnFlight += OnFall;
+
+            m_bt = new HeroBT();
         }
 
         private void OnDestroy()
@@ -74,6 +76,7 @@ namespace LSG
         private void Update()
         {     
             RunningSpeed(Mathf.Abs( m_controller.Velocity.x ));
+            m_bt.Update(this);
         }
 
         void OnJumping()
@@ -83,7 +86,7 @@ namespace LSG
 
         void OnGrounded()
         {
-            CurrentState = EState.DEFAULT;
+            CurrentState = EState.IDLE;
         }
 
         void OnFall()
