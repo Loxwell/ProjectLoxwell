@@ -7,7 +7,7 @@ namespace BBCore.Conditions
     /// <summary>
     /// It is a basic condition to check if the mouse button has been pressed.
     /// </summary>
-    [Condition("Basic/CheckMouseButton")]
+    [Condition("Input/CheckMouseButton")]
     [Help("Checks whether a mouse button is pressed")]
     public class CheckMouseButton : ConditionBase
     {

@@ -5,26 +5,27 @@ using UnityEngine;
 namespace BBCore.Conditions
 {
     /// <summary>
-    /// It is a basic condition to check if the button has been pressed.
+    /// It is a basic condition to check if a key has been pressed.
     /// </summary>
-    [Condition("Basic/CheckButton")]
-    [Help("Checks whether a button is pressed")]
-    public class CheckButton : ConditionBase
+    [Condition("Input/CheckKey")]
+    [Help("Checks whether a key is pressed")]
+    public class CheckKey : ConditionBase
     {
-        ///<value>Input Button Name Parameter, jump by default.</value>
-        [InParam("button", DefaultValue = "Jump")]
-        [Help("Button expected to be pressed")]
-        public string button;
+        ///<value>Input key expected to be pressed Parameter, KeyCode.None by default.</value>
+        [InParam("key", DefaultValue = KeyCode.None)]
+        [Help("Key expected to be pressed")]
+        public KeyCode key = KeyCode.None;
         /*
         public enum MouseAction {down, up, during}
         [InParam("mouseAction", DefaultValue = MouseAction.during)]
         public MouseAction mouseAction = MouseAction.during;*/
 
+
         /// <summary>
-        /// Checks whether the button is pressed.
+        /// Checks whether the key is pressed.
         /// </summary>
-        /// <returns>True if the button is pressed.</returns>
-		public override bool Check()
+        /// <returns>True if the key is pressed.</returns>
+        public override bool Check()
         {
             /*switch (mouseAction)
             {
@@ -35,7 +36,7 @@ namespace BBCore.Conditions
                     return Input.GetMouseButtonUp(button);
 
                 case MouseAction.during:*/
-                    return Input.GetButton(button);
+                    return Input.GetKey(key);
             /*}
             return false;*/
 		}

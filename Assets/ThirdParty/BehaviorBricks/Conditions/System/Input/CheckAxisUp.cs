@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BBCore.Conditions
 {
-    [Condition("Basic/CheckAxisUp")]
+    [Condition("Input/CheckAxisUp")]
     public class CheckAxisUp : ConditionBase
     {
         public override bool Check()

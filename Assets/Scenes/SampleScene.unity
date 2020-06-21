@@ -525,7 +525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055deaed064ca4a1a8437cc2cf0dc905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1324163673}
 --- !u!1 &1265442890
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +581,7 @@ GameObject:
   - component: {fileID: 1324163674}
   - component: {fileID: 1324163673}
   m_Layer: 0
-  m_Name: New Text
+  m_Name: DebugText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1072,8 +1071,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422fb6956201c7944ae2113a1a53b0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTasksPerTick: 86
-  behavior: {fileID: 11400000, guid: fc6e34e80b0bd4e478978db1629105f5, type: 2}
+  maxTasksPerTick: 500
+  behavior: {fileID: 0}
   paused: 0
   restartWhenFinished: 0
   blackboard:

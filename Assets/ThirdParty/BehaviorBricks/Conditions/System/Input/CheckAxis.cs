@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BBCore.Conditions
 {
-    [Condition("Basic/CheckAxis")]
+    [Condition("Input/CheckAxis")]
     public class CheckAxis : ConditionBase
     {
         [InParam("axis", DefaultValue = "Horizontal")]

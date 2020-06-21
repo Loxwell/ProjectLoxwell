@@ -10,17 +10,17 @@ using static LSG.Utilities.BitField;
 
 namespace LSG
 {
-    public class PlayerAniController : MonoBehaviour
+    public partial class PlayerAniController : MonoBehaviour
     {
         const string INPUT_VERTICAL = "Vertical";
 
-        enum EState
+        internal enum EState
         {
             ERROR = -1, DEFAULT = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
             ATTACK = 20
          }
 
-        Animator Animator {
+        internal Animator HeroAnimator {
             get
             {
                 if (!m_animator)
@@ -28,22 +28,22 @@ namespace LSG
                 return m_animator;
             }
         }
-        
 
-        EState CurrentState
+
+        internal EState CurrentState
         {
             set
-            { Animator.SetInteger(m_hashState, (int)value); }
+            { HeroAnimator.SetInteger(m_hashState, (int)value); }
 
             get
             {
-                if(Animator)
-                    return (EState)Animator.GetInteger(m_hashState);
+                if(HeroAnimator)
+                    return (EState)HeroAnimator.GetInteger(m_hashState);
                 return (EState) (-1);
             }
         }
 
-        void RunningSpeed (float value) => Animator.SetFloat(m_hashSpeed, value);
+        void RunningSpeed (float value) => HeroAnimator.SetFloat(m_hashSpeed, value);
 
         MovementController m_controller;
         Animator m_animator;

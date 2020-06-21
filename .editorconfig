@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS1696: #pragma 지시문 뒤에는 한 줄로 된 주석 또는 줄의 끝이 필요합니다.
+dotnet_diagnostic.CS1696.severity = none

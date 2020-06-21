@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BBCore.Conditions
 {
-    [Condition("Basic/CheckButtonDown")]
+    [Condition("Input/CheckButtonDown")]
     [Help("Checks whether a button press")]
     public class CheckButtonDown : ConditionBase
     {

@@ -11,6 +11,7 @@ namespace Platformer.Mechanics
 
     public class Patroller : MonoBehaviour
     {
+#pragma warning disable 
         [SerializeField]
         Transform m_target;
 

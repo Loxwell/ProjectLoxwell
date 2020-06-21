@@ -6,8 +6,6 @@ using Patroller = Platformer.Mechanics.Patroller;
 
 public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
 {
-    public TextMesh text;
-
     Transform m_transform;    
     float m_preTime;
 

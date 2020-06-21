@@ -214,6 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2057442144}
   - component: {fileID: 2057442145}
+  - component: {fileID: 2057442146}
   m_Layer: 0
   m_Name: MainController
   m_TagString: Untagged
@@ -245,6 +246,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3e8603a73a1fd940af3f5ffa8050d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model:
+    virtualCamera: {fileID: 0}
+    player: {fileID: 0}
+    spawnPoint: {fileID: 0}
+    jumpModifier: 1.5
+    jumpDeceleration: 0.5
+--- !u!114 &2057442146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057442143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc1122b6d04648788156bd88d1f0901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model:

@@ -19,7 +19,8 @@ namespace Platformer.Mechanics
 
         public PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
-        private void Awake()
+      
+        protected virtual void Awake()
         {
             if(!g_instance)
                 g_instance = this;
