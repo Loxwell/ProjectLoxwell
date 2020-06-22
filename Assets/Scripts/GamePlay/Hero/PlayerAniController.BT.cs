@@ -10,23 +10,26 @@ namespace LSG
         internal class HeroBT
         {
             RepeatNode root;
-
-            internal HeroBT()
+            HeroBlackboard m_bb;
+            internal HeroBT(HeroBlackboard bb)
             {
+
+                m_bb = bb;
                 root = new RepeatNode();
                 SequenceNode crouchState = new SequenceNode();
                 root.Add(crouchState);
 
-                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = JumpButton, onStart = null }));
-                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = JumpButtonDown, onStart = null}));
-                crouchState.Add(new NotDecoratorNode( new Condition() { onUpdate = AxisDown, onStart = null }));
+                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
+                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButtonDown, onStart = null}));
+                crouchState.Add(new NotDecoratorNode( new Condition() { onUpdate = ConditionAxisDown, onStart = null }));
                 crouchState.Add(new DecoratorNode( CreateNodeTask<HeroCrouchAction>()));
-                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ActionButtonDown, onStart = null }));
+                crouchState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
+                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionActionButtonDown, onStart = null }));
             }
 
-            public void Update(IBlackboard bb)
+            public void Update()
             {
-                root.Update(bb);
+                root.Update(m_bb);
             }
         }
 
@@ -38,49 +41,66 @@ namespace LSG
             }
             public override void OnStart(IBlackboard bb)
             {
-                PlayerAniController hero = (PlayerAniController)bb;
-                hero.CurrentState = EState.CROUCH;
+                HeroBlackboard heroBB = (HeroBlackboard)bb;
+                heroBB.playerAniController.CurrentState = EState.CROUCH;
             }
 
             public override EBTState Update(IBlackboard bb)
             {
+                HeroBlackboard heroBB = (HeroBlackboard)bb;
+                AnimatorStateInfo info = heroBB.playerAniController.Animator.GetCurrentAnimatorStateInfo(0);
+                
+                if( info.fullPathHash == Animator.StringToHash(heroBB.aniStateCrouching))
+                {
+                    heroBB.playerAniController.ControlEnabled = false;
+                    return EBTState.SUCCESS;
+                }else if ((info.fullPathHash == Animator.StringToHash(heroBB.aniStateJumpFall)) ||
+                    info.fullPathHash == Animator.StringToHash(heroBB.aniStateJumping) ||
+                    info.fullPathHash == Animator.StringToHash(heroBB.aniStateJumpClimb)
+                    )
+                {
+                    heroBB.playerAniController.ControlEnabled = true;
+                    return EBTState.FAILED;
+                }
+
                 return EBTState.RUNNING;
             }
         }
 
-        static EBTState AxisDown(IBlackboard bb)
+        static EBTState ConditionAxisDown(IBlackboard bb)
         {
             if (Input.GetAxisRaw("Vertical") < 0)
                 return EBTState.SUCCESS;
-            PlayerAniController hero = (PlayerAniController)bb;
-            if (hero.CurrentState == EState.CROUCH)
-                hero.CurrentState = EState.IDLE;
+
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            if (heroBB.playerAniController.CurrentState == EState.CROUCH)
+                heroBB.playerAniController.CurrentState = EState.IDLE;
 
             return EBTState.FAILED;
         }
 
-        static EBTState JumpButtonDown(IBlackboard bb)
+        static EBTState ConditionJumpButtonDown(IBlackboard bb)
         {
             if (Input.GetButtonDown("Jump") )
                 return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
-        static EBTState JumpButton(IBlackboard bb)
+        static EBTState ConditionJumpButton(IBlackboard bb)
         {
             if (Input.GetButton("Jump"))
                 return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
-        static EBTState ActionButtonDown(IBlackboard bb)
+        static EBTState ConditionActionButtonDown(IBlackboard bb)
         {
             if (Input.GetButtonDown("Fire1"))
                 return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
-        static EBTState ActionButton(IBlackboard bb)
+        static EBTState ConditionActionButton(IBlackboard bb)
         {
             if (Input.GetButton("Fire1"))
                 return EBTState.SUCCESS;

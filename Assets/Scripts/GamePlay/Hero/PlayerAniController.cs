@@ -6,6 +6,7 @@ using LSG.LWBehaviorTree;
 using MovementController = Platformer.Mechanics.PlayerMovementController;
 using EJumpState = Platformer.Mechanics.PlayerMovementController.EJumpState;
 using static LSG.Utilities.BitField;
+using UnityEditor;
 
 namespace LSG
 {
@@ -19,7 +20,7 @@ namespace LSG
             ATTACK = 20
          }
 
-        internal Animator HeroAnimator {
+        internal Animator Animator {
             get
             {
                 if (!m_animator)
@@ -31,21 +32,33 @@ namespace LSG
         internal EState CurrentState
         {
             set
-            { HeroAnimator.SetInteger(m_hashState, (int)value); }
+            { Animator.SetInteger(m_hashState, (int)value); }
 
             get
             {
-                if(HeroAnimator)
-                    return (EState)HeroAnimator.GetInteger(m_hashState);
+                if(Animator)
+                    return (EState)Animator.GetInteger(m_hashState);
                 return (EState) (-1);
             }
         }
 
-        void RunningSpeed (float value) => HeroAnimator.SetFloat(m_hashSpeed, value);
+        internal bool ControlEnabled
+        {
+            get { return m_controller.controlEnabled; }
+            set
+            {
+                m_controller.controlEnabled = value;
+            }
+        }
 
-        MovementController m_controller;
-        Animator m_animator;
-        HeroBT m_bt;
+        void RunningSpeed (float value) => Animator.SetFloat(m_hashSpeed, value);
+
+        [SerializeField]
+        string m_crouchAniState;
+
+        private MovementController m_controller;
+        private Animator m_animator;
+        private HeroBT m_bt;
 
         int m_hashSpeed, m_hashState;
         uint m_state;   
@@ -62,7 +75,11 @@ namespace LSG
             m_controller.OnPrepareToJump+= OnJumping;
             m_controller.OnFlight += OnFall;
 
-            m_bt = new HeroBT();
+
+            HeroBlackboard bb = AssetDatabase.LoadAssetAtPath<HeroBlackboard>("Assets/Resources/BB/HeroBlackboard.asset");
+            bb.animator = Animator;
+            bb.playerAniController = this;
+            m_bt = new HeroBT(bb);
         }
 
         private void OnDestroy()
@@ -76,7 +93,7 @@ namespace LSG
         private void Update()
         {     
             RunningSpeed(Mathf.Abs( m_controller.Velocity.x ));
-            m_bt.Update(this);
+            m_bt.Update();
         }
 
         void OnJumping()

@@ -1059,3 +1059,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7e94554aab12e4ca08953238eb3f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_crouchAniState: Base Layer.STATE_CROUCH.STATE_CROUCHING
