@@ -13,14 +13,14 @@ namespace LSG
             HeroBlackboard m_bb;
             internal HeroBT(HeroBlackboard bb)
             {
-
                 m_bb = bb;
                 root = new RepeatNode();
                 SequenceNode crouchState = new SequenceNode();
                 root.Add(crouchState);
 
-                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
-                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButtonDown, onStart = null}));
+                crouchState.Add(new NotDecoratorNode(new Condition() { onUpdate = ConditionIdlingState, onStart = null }));
+                //crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
+                //crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButtonDown, onStart = null}));
                 crouchState.Add(new NotDecoratorNode( new Condition() { onUpdate = ConditionAxisDown, onStart = null }));
                 crouchState.Add(new DecoratorNode( CreateNodeTask<HeroCrouchAction>()));
                 crouchState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
@@ -65,6 +65,18 @@ namespace LSG
 
                 return EBTState.RUNNING;
             }
+        }
+
+        static EBTState ConditionIdlingState(IBlackboard bb)
+        {
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            switch (heroBB.playerAniController.CurrentState)
+            {
+                case EState.IDLE:
+                case EState.CROUCH:
+                    return EBTState.SUCCESS;
+            }
+            return EBTState.FAILED;
         }
 
         static EBTState ConditionAxisDown(IBlackboard bb)
