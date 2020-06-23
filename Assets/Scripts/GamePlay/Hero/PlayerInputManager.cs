@@ -61,7 +61,7 @@ namespace LSG
 #endif
 
             bb.curFrameInputState = m_inputState;
-            bb.m_preFrameInputState = m_preInputState;
+            bb.preFrameInputState = m_preInputState;
             m_preInputState = m_inputState;
         }
 

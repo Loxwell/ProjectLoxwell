@@ -8,7 +8,7 @@ namespace LSG.GameControllers
 {
     public class GameManager : GameController
     {
-        public static PlayerAniController hero;
+        public static PlayerMainController hero;
 
         protected override void Awake()
         {
@@ -21,7 +21,7 @@ namespace LSG.GameControllers
 
 #if UNITY_EDITOR
             // 동적 생성 해서 메모리 관리 할 것
-            hero = GameObject.FindObjectOfType<PlayerAniController>();
+            hero = GameObject.FindObjectOfType<PlayerMainController>();
 #endif
 
             base.model.player = hero.GetComponent<KinematicObject>();

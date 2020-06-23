@@ -6,12 +6,15 @@ using LSG.LWBehaviorTree;
 using MovementController = Platformer.Mechanics.PlayerMovementController;
 using EJumpState = Platformer.Mechanics.PlayerMovementController.EActionState;
 using static LSG.Utilities.BitField;
-
+using System;
 
 namespace LSG
 {
-    public partial class PlayerAniController : MonoBehaviour, IBlackboard
+    public partial class PlayerMainController : MonoBehaviour, IBlackboard, 
+        IEquatable<int>, IEquatable<PlayerMainController>, IEquatable<string>
     {
+
+#if UNITY_EDITOR
         public TextMesh debugText;
         public TextMesh heroState;
 
@@ -19,17 +22,16 @@ namespace LSG
         {
             debugText.text = v;
         }
-
-
-        const string INPUT_VERTICAL = "Vertical";
+#endif
 
         internal enum EState
         {
-            ERROR = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
+            NONE = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
             ATTACK = 20
          }
 
-        internal Animator Animator {
+        internal Animator Animator 
+        {
             get
             {
                 if (!m_animator)
@@ -41,7 +43,13 @@ namespace LSG
         internal EState CurrentState
         {
             set
-            { Animator.SetInteger(m_hashState, (int)value); }
+            {
+                if(value != m_state)
+                {
+                    m_state = value;
+                    Animator.SetInteger(m_hashState, (int)value);
+                }
+            }
 
             get
             {
@@ -51,13 +59,6 @@ namespace LSG
             }
         }
 
-        internal AnimatorStateInfo StateInfo
-        {
-            get
-            {
-                return Animator.GetCurrentAnimatorStateInfo(0);
-            }
-        }
 
         internal bool Freezing
         {
@@ -76,8 +77,6 @@ namespace LSG
             }
         }
 
-        void RunningSpeed (float value) => Animator.SetFloat(m_hashSpeed, value);
-
 #pragma warning disable
         [SerializeField]
         HeroBlackboard heroBB;
@@ -86,6 +85,7 @@ namespace LSG
         private Animator m_animator;
         private HeroBT m_bt;
 
+        EState m_state;
         int m_hashSpeed, m_hashState;
         uint m_inputstate;   
 
@@ -102,7 +102,13 @@ namespace LSG
             m_controller.OnFlight += OnFall;
 
             heroBB.controller = this;
+            
             m_bt = new HeroBT(heroBB);
+        }
+
+        void OnEnable()
+        {
+            Initialize();
         }
 
         private void OnDestroy()
@@ -115,11 +121,34 @@ namespace LSG
 
         private void Update()
         {
-
+#if UNITY_EDITOR
+            // Debug
             heroState.text = CurrentState.ToString();
-
-            RunningSpeed(Mathf.Abs( m_controller.Velocity.x ));
+#endif
+            Animator.SetFloat(m_hashSpeed, Mathf.Abs( m_controller.Velocity.x ));
+            heroBB.isGrounded = m_controller.IsGrounded;
             m_bt.Update();
+        }
+
+        public bool Equals(string aniStateFullName)
+        {
+            return Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash(aniStateFullName);
+        }
+
+        public bool Equals(int aniHashFullPath)
+        {
+            return Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == aniHashFullPath;
+        }
+
+        public bool Equals(PlayerMainController other)
+        {
+            return base.Equals(other);
+        }
+
+        public void Initialize()
+        {
+            heroBB.isGrounded = false;
+            m_state = EState.NONE;
         }
 
         void OnJumping()
