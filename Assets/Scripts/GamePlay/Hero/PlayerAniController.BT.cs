@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-
 using LSG.LWBehaviorTree;
+using static HeroBlackboard;
+using static LSG.LWBehaviorTree.Condition;
 
 namespace LSG
 {
@@ -22,9 +22,10 @@ namespace LSG
                 //crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
                 //crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionJumpButtonDown, onStart = null}));
                 crouchState.Add(new NotDecoratorNode( new Condition() { onUpdate = ConditionAxisDown, onStart = null }));
-                crouchState.Add(new DecoratorNode( CreateNodeTask<HeroCrouchAction>()));
+                crouchState.Add(new NotDecoratorNode(CreateNodeTask<HeroCrouchAction>()));
                 crouchState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
-                crouchState.Add(new DecoratorNode( new Condition() { onUpdate = ConditionActionButtonDown, onStart = null }));
+                crouchState.Add(new NotDecoratorNode(new Condition() { onUpdate = ConditionActionButtonDown, onStart = null }));
+                crouchState.Add(new NotDecoratorNode(CreateNodeTask<HeroCrouchAttack>()));
             }
 
             public void Update()
@@ -33,35 +34,66 @@ namespace LSG
             }
         }
 
-        internal class HeroCrouchAction : ActionNode
+        internal class HeroCrouchAttack : ActionNode
         {
-            public HeroCrouchAction() :base()
-            {
-                Debug.Log("HeroCrouchAction constructor");
-            }
+            int m_fullpath;
+
             public override void OnStart(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.playerAniController.CurrentState = EState.CROUCH;
+                
             }
 
             public override EBTState Update(IBlackboard bb)
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
-                AnimatorStateInfo info = heroBB.playerAniController.Animator.GetCurrentAnimatorStateInfo(0);
-                
-                if( info.fullPathHash == Animator.StringToHash(heroBB.aniStateCrouching))
+                AnimatorStateInfo info = heroBB.controller.StateInfo;
+                if (info.fullPathHash
+                    == Animator.StringToHash(heroBB.aniStateCrouchAttack))
                 {
-                    heroBB.playerAniController.ControlEnabled = false;
+                    if(info.normalizedTime >= 0.9f)
+                    {
+                        return EBTState.SUCCESS;
+                    }   
+                }
+
+                return EBTState.RUNNING;
+            }
+        }
+
+        internal class HeroCrouchAction : ActionNode
+        {
+            public override void OnStart(IBlackboard bb)
+            {
+                HeroBlackboard heroBB = (HeroBlackboard)bb;
+                heroBB.controller.CurrentState = EState.ATTACK;                
+            }
+
+            public override EBTState Update(IBlackboard bb)
+            {
+                HeroBlackboard heroBB = (HeroBlackboard)bb;
+                AnimatorStateInfo info = heroBB.controller.StateInfo; ;
+                int state = info.fullPathHash;
+
+                if (state  == Animator.StringToHash(heroBB.aniStateCrouching))
+                {
+                    heroBB.controller.ControlEnabled = false;
+
+                    heroBB.controller.Debug("HeroCrouchAction true");
+ 
                     return EBTState.SUCCESS;
-                }else if ((info.fullPathHash == Animator.StringToHash(heroBB.aniStateJumpFall)) ||
-                    info.fullPathHash == Animator.StringToHash(heroBB.aniStateJumping) ||
-                    info.fullPathHash == Animator.StringToHash(heroBB.aniStateJumpClimb)
-                    )
+
+                }else if ((state == Animator.StringToHash(heroBB.aniStateJumpFall)) ||
+                    state == Animator.StringToHash(heroBB.aniStateJumping) ||
+                    state == Animator.StringToHash(heroBB.aniStateJumpClimb))
                 {
-                    heroBB.playerAniController.ControlEnabled = true;
+                    heroBB.controller.ControlEnabled = true;
+
+                    heroBB.controller.Debug("HeroCrouchAction false");
+
                     return EBTState.FAILED;
                 }
+
+                heroBB.controller.Debug("HeroCrouchAction running");
 
                 return EBTState.RUNNING;
             }
@@ -70,7 +102,10 @@ namespace LSG
         static EBTState ConditionIdlingState(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
-            switch (heroBB.playerAniController.CurrentState)
+
+            heroBB.controller.Debug("ConditionIdlingState");
+
+            switch (heroBB.controller.CurrentState)
             {
                 case EState.IDLE:
                 case EState.CROUCH:
@@ -81,47 +116,75 @@ namespace LSG
 
         static EBTState ConditionAxisDown(IBlackboard bb)
         {
-            if (Input.GetAxisRaw("Vertical") < 0)
-                return EBTState.SUCCESS;
-
             HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (heroBB.playerAniController.CurrentState == EState.CROUCH)
-                heroBB.playerAniController.CurrentState = EState.IDLE;
+            AnimatorStateInfo info = heroBB.controller.StateInfo;
+
+            heroBB.controller.Debug("ConditionAxisDown");
+
+
+            if (IsCurFrameInputState(heroBB, EInputState.DOWN_KEY))
+            {
+                heroBB.controller.ControlEnabled = false;
+                return EBTState.SUCCESS;
+            }
+
+            if(Animator.StringToHash(heroBB.aniStateCrouching) == info.fullPathHash ||
+                Animator.StringToHash(heroBB.aniStateStandUp) == info.fullPathHash)
+            {
+                heroBB.controller.Debug("ConditionAxisDown stand up");
+                return EBTState.RUNNING;
+            }
+
+            heroBB.controller.Debug("ConditionAxisDown false");
+
+            if (heroBB.controller.CurrentState == EState.CROUCH)
+                heroBB.controller.CurrentState = EState.IDLE;
+
+            heroBB.controller.ControlEnabled = true;
 
             return EBTState.FAILED;
         }
 
         static EBTState ConditionJumpButtonDown(IBlackboard bb)
         {
-            if (Input.GetButtonDown("Jump") )
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            if (IsCurFrameInputState(heroBB, EInputState.JUMP) && !IsPreFrameInputState(heroBB, EInputState.JUMP))
                 return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
         static EBTState ConditionJumpButton(IBlackboard bb)
         {
-            if (Input.GetButton("Jump"))
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            if (IsCurFrameInputState(heroBB, EInputState.ACTION_1))
                 return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
         static EBTState ConditionActionButtonDown(IBlackboard bb)
         {
-            if (Input.GetButtonDown("Fire1"))
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            if (IsCurFrameInputState(heroBB, EInputState.ACTION_1) && !IsPreFrameInputState(heroBB, EInputState.ACTION_1))
+            {
+#if UNITY_EDITOR
+
+                heroBB.controller.Debug("Crouch Begin Attack");
+#endif
+
                 return EBTState.SUCCESS;
+            }
+
             return EBTState.FAILED;
         }
 
         static EBTState ConditionActionButton(IBlackboard bb)
         {
-            if (Input.GetButton("Fire1"))
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+
+            if (IsPreFrameInputState(heroBB, EInputState.ACTION_1))
                 return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
-        static T CreateNodeTask<T>() where T : INodeTask, new()
-        {
-            return new T();
-        }
     }
 }

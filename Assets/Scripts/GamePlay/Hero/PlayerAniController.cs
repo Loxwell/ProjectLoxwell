@@ -4,14 +4,23 @@ using UnityEngine;
 using LSG.LWBehaviorTree;
 
 using MovementController = Platformer.Mechanics.PlayerMovementController;
-using EJumpState = Platformer.Mechanics.PlayerMovementController.EJumpState;
+using EJumpState = Platformer.Mechanics.PlayerMovementController.EActionState;
 using static LSG.Utilities.BitField;
-using UnityEditor;
+
 
 namespace LSG
 {
     public partial class PlayerAniController : MonoBehaviour, IBlackboard
     {
+        public TextMesh debugText;
+        public TextMesh heroState;
+
+        public void Debug(string v)
+        {
+            debugText.text = v;
+        }
+
+
         const string INPUT_VERTICAL = "Vertical";
 
         internal enum EState
@@ -42,26 +51,43 @@ namespace LSG
             }
         }
 
-        internal bool ControlEnabled
+        internal AnimatorStateInfo StateInfo
         {
-            get { return m_controller.controlEnabled; }
+            get
+            {
+                return Animator.GetCurrentAnimatorStateInfo(0);
+            }
+        }
+
+        internal bool Freezing
+        {
             set
             {
-                m_controller.controlEnabled = value;
+                m_controller.Freezing = value;
+            }
+        }
+
+        internal bool ControlEnabled
+        {
+            get { return m_controller.ControlEnabled; }
+            set
+            {
+                m_controller.ControlEnabled = value;
             }
         }
 
         void RunningSpeed (float value) => Animator.SetFloat(m_hashSpeed, value);
 
+#pragma warning disable
         [SerializeField]
-        string m_crouchAniState;
+        HeroBlackboard heroBB;
 
         private MovementController m_controller;
         private Animator m_animator;
         private HeroBT m_bt;
 
         int m_hashSpeed, m_hashState;
-        uint m_state;   
+        uint m_inputstate;   
 
         private void Awake()
         {
@@ -75,11 +101,8 @@ namespace LSG
             m_controller.OnPrepareToJump+= OnJumping;
             m_controller.OnFlight += OnFall;
 
-
-            HeroBlackboard bb = AssetDatabase.LoadAssetAtPath<HeroBlackboard>("Assets/Resources/BB/HeroBlackboard.asset");
-            bb.animator = Animator;
-            bb.playerAniController = this;
-            m_bt = new HeroBT(bb);
+            heroBB.controller = this;
+            m_bt = new HeroBT(heroBB);
         }
 
         private void OnDestroy()
@@ -91,7 +114,10 @@ namespace LSG
         }
 
         private void Update()
-        {     
+        {
+
+            heroState.text = CurrentState.ToString();
+
             RunningSpeed(Mathf.Abs( m_controller.Velocity.x ));
             m_bt.Update();
         }

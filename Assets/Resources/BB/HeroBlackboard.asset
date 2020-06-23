@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2c984356157db4096ca0274ac2b8bb, type: 3}
   m_Name: HeroBlackboard
   m_EditorClassIdentifier: 
+  aniStateStandUp: Base Layer.STATE_CROUCH.STATE_STAND_UP
   aniStateCrouching: Base Layer.STATE_CROUCH.STATE_CROUCHING
   aniSateStandup: Base Layer.STATE_CROUCH.STATE_STAND_UP
   aniStateJumping: Base Layer.STATE_JUMP.STATE_JUMPING

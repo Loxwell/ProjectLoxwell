@@ -219,5 +219,11 @@ namespace LSG.LWBehaviorTree
             
             return onUpdate.Invoke(bb);
         }
+
+        public static T CreateNodeTask<T>() where T : INodeTask, new()
+        {
+            return new T();
+        }
     }
+
 }

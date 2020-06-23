@@ -35,9 +35,10 @@ namespace Platformer.Mechanics
 
         public bool IsGrounded { get; private set; }
 
+        protected Rigidbody2D body;
+
         protected Vector2 targetVelocity;
         protected Vector2 groundNormal;
-        protected Rigidbody2D body;
         protected ContactFilter2D contactFilter;
         protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
