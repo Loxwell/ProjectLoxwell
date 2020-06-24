@@ -10,7 +10,6 @@ using static LSG.Utilities.BitField;
 
 namespace Platformer.Mechanics
 {
-
     public class PlayerMovementController : KinematicObject
     {
         const string INPUT_HORIZONTAL = "Horizontal";
@@ -19,7 +18,8 @@ namespace Platformer.Mechanics
 
         public enum EActionState : byte
         {
-            GROUNDED = 0, PREPARE_TO_JUMP = 1, JUMPING = 2, IN_FLIGHT = 3, LANDED = 4, FALL = 5, FREEZE = 6, CONTROL_ENABLED = 7
+            IDLE = 0, PREPARE_TO_JUMP = 1, JUMPING = 2, IN_FLIGHT = 3, LANDED = 4, FALL = 5, 
+            FREEZE = 6, CONTROL_ENABLED = 7, LEFT = 8, RIGHT = 9
         }
 
         public EActionState CurrentJumpState
@@ -27,11 +27,11 @@ namespace Platformer.Mechanics
             get { return m_jumpState; }
             set
             {
-                if(value != m_jumpState)
+                if (value != m_jumpState)
                 {
                     switch (value)
                     {
-                        case EActionState.GROUNDED:
+                        case EActionState.IDLE:
                             OnGrounded?.Invoke();
                             break;
                         case EActionState.IN_FLIGHT:
@@ -61,10 +61,10 @@ namespace Platformer.Mechanics
             }
         }
 
-
         public bool ForwardTo
         {
-            get {
+            get
+            {
                 return !m_renderer.flipX;
             }
         }
@@ -77,7 +77,7 @@ namespace Platformer.Mechanics
         {
             get
             {
-                return IsMarkedFlag(m_state, (int)EActionState.FREEZE);
+                return IsMarkedFlag(m_curState, (int)EActionState.FREEZE);
             }
 
             set
@@ -85,9 +85,9 @@ namespace Platformer.Mechanics
                 ControlEnabled = !value;
 
                 if (value)
-                    SetFlag(ref m_state, (int)EActionState.FREEZE);
+                    SetFlag(ref m_curState, (int)EActionState.FREEZE);
                 else
-                    ReleaseFlag(ref m_state, (int)EActionState.FREEZE);
+                    ReleaseFlag(ref m_curState, (int)EActionState.FREEZE);
 
             }
         }
@@ -100,18 +100,38 @@ namespace Platformer.Mechanics
         {
             get
             {
-                return IsMarkedFlag(m_state, (int)EActionState.CONTROL_ENABLED) && !Freezing;
+                return IsMarkedFlag(m_curState, (int)EActionState.CONTROL_ENABLED) && !Freezing;
             }
 
             set
             {
                 if (value)
-                    SetFlag(ref m_state, (int)EActionState.CONTROL_ENABLED);
+                    SetFlag(ref m_curState, (int)EActionState.CONTROL_ENABLED);
                 else
-                    ReleaseFlag(ref m_state, (int)EActionState.CONTROL_ENABLED);
+                    ReleaseFlag(ref m_curState, (int)EActionState.CONTROL_ENABLED);
             }
         }
 
+        bool IsJumpButtonDown
+        {
+            get
+            {
+                return ControlEnabled &&
+                    (Input.GetButtonDown(INPUT_JUMP) || 
+                    (IsMarkedFlag(m_curState, (int)EActionState.JUMPING) && 
+                    !IsMarkedFlag(m_preState, (int)EActionState.JUMPING)));
+            }
+        }
+
+        bool IsJumpButtonUp
+        {
+            get
+            {
+                return !ControlEnabled || (Input.GetButtonUp(INPUT_JUMP) ||
+                   (!IsMarkedFlag(m_curState, (int)EActionState.JUMPING) &&
+                    IsMarkedFlag(m_preState, (int)EActionState.JUMPING)));
+            }
+        }
 
         public event System.Action OnGrounded;
         public event System.Action OnFlight;
@@ -136,23 +156,24 @@ namespace Platformer.Mechanics
         EActionState m_jumpState;
         Vector2 m_move;
 
-        int m_state;
+        int m_curState, m_preState;
         float m_faceTo;
+
 
         protected override void Awake()
         {
             base.Awake();
-            ClearFlags(ref m_state);
+
             m_renderer = GetComponentInChildren<SpriteRenderer>();
+            ClearFlags(ref m_curState);
             Freezing = true;
         }
 
         protected override void OnEnable()
         {
             base.OnEnable();
-            m_jumpState = EActionState.GROUNDED;
+            m_jumpState = EActionState.IDLE;
             m_faceTo = 0;
-
 #if UNITY_EDITOR
             Freezing = false;
 #endif
@@ -160,7 +181,7 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
-            m_move.x = Input.GetAxis(INPUT_HORIZONTAL);
+            m_move.x = UpdateDirection();
 
             if (!Freezing)
                 m_faceTo = m_move.x;
@@ -169,9 +190,28 @@ namespace Platformer.Mechanics
 
             if (!ControlEnabled)
             { m_move.x = 0; }
-            
+
             UpdateJumpState();
             base.Update();
+            m_preState = m_curState;
+        }
+
+        /// <summary>
+        /// 키보드, 키패드 미 대응 기기에서 동작 시킬 목적
+        /// Jump button down
+        /// </summary>
+        public void ActionJump()
+        {
+            if (ControlEnabled)
+                SetFlag(ref m_curState, (int)EActionState.JUMPING);
+        }
+
+        /// <summary>
+        /// Jump button up
+        /// </summary>
+        public void JumpCancel()
+        {
+            ReleaseFlag(ref m_curState, (int)EActionState.JUMPING);
         }
 
         protected override void ComputeVelocity()
@@ -184,9 +224,25 @@ namespace Platformer.Mechanics
             targetVelocity = m_move * m_maxSpeed;
         }
 
+
+        // 왼쪽 오른쪽 방향 입력 함수 정의할 것
+
+        float UpdateDirection()
+        {
+            float dir = Input.GetAxis(INPUT_HORIZONTAL);
+
+            // (가상) 키패드 입력으로 처리 예정
+            if (dir == 0)
+            {
+
+            }
+
+            return dir;
+        }
+
         void UpdateJumpState()
         {
-            switch(CurrentJumpState)
+            switch (CurrentJumpState)
             {
                 case EActionState.PREPARE_TO_JUMP:
                     CurrentJumpState = EActionState.JUMPING;
@@ -196,23 +252,23 @@ namespace Platformer.Mechanics
                         CurrentJumpState = EActionState.IN_FLIGHT;
                     break;
                 case EActionState.IN_FLIGHT:
-                    if(IsGrounded)
-                        CurrentJumpState = EActionState.GROUNDED;
+                    if (IsGrounded)
+                        CurrentJumpState = EActionState.IDLE;
                     break;
                 case EActionState.LANDED:
-                    CurrentJumpState = EActionState.GROUNDED;
+                    CurrentJumpState = EActionState.IDLE;
                     break;
-                case EActionState.GROUNDED:
-                    if (Input.GetButtonDown(INPUT_JUMP))
+                case EActionState.IDLE:
+                    if (IsJumpButtonDown)
                         CurrentJumpState = EActionState.PREPARE_TO_JUMP;
                     break;
                 case EActionState.FALL:
                     if (IsGrounded)
-                        CurrentJumpState = EActionState.GROUNDED;
+                        CurrentJumpState = EActionState.IDLE;
                     break;
             }
 
-            if(CurrentJumpState != EActionState.GROUNDED && Input.GetButtonUp(INPUT_JUMP))
+            if (CurrentJumpState != EActionState.IDLE && IsJumpButtonUp)
                 CurrentJumpState = EActionState.FALL;
         }
     }

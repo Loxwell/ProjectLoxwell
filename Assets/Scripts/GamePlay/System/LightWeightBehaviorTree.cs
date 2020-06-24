@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LSG.LWBehaviorTree
@@ -134,11 +135,11 @@ namespace LSG.LWBehaviorTree
     /// negate result
     /// have a Child 
     /// </summary>
-    public sealed class DecoratorNode : INode, IOnStart
+    public sealed class NegationDecoratorNode : INode, IOnStart
     {
         INodeTask child;
 
-        public DecoratorNode(INodeTask node)
+        public NegationDecoratorNode(INodeTask node)
         {
             child = node;
         }
@@ -165,11 +166,11 @@ namespace LSG.LWBehaviorTree
     /// negate result
     /// have a Child 
     /// </summary>
-    public sealed class NotDecoratorNode : INode, IOnStart
+    public sealed class DecoratorNode : INode, IOnStart
     {
         INodeTask child;
 
-        public NotDecoratorNode(INodeTask node)
+        public DecoratorNode(INodeTask node)
         {
             child = node;
         }
@@ -194,8 +195,14 @@ namespace LSG.LWBehaviorTree
 
     public abstract class ActionNode : INodeTask, IOnStart
     {
+        protected ActionNode() { }
         public virtual void OnStart(IBlackboard bb) { }
         public abstract EBTState Update(IBlackboard bb);
+
+        public static T CreateNodeTask<T>() where T : INodeTask, new()
+        {
+            return new T();
+        }
     }
 
     public struct Condition : INodeTask, IOnStart
@@ -220,10 +227,6 @@ namespace LSG.LWBehaviorTree
             return onUpdate.Invoke(bb);
         }
 
-        public static T CreateNodeTask<T>() where T : INodeTask, new()
-        {
-            return new T();
-        }
     }
 
 }

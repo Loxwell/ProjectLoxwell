@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LSG.LWBehaviorTree;
-
-using MovementController = Platformer.Mechanics.PlayerMovementController;
-using EJumpState = Platformer.Mechanics.PlayerMovementController.EActionState;
-using static LSG.Utilities.BitField;
 using System;
+using MovementController = Platformer.Mechanics.PlayerMovementController;
+using HeroBT = BT.LSG.PlayerMainController.HeroBT;
+
+using static LSG.Utilities.BitField;
 
 namespace LSG
 {
@@ -23,10 +23,9 @@ namespace LSG
             debugText.text = v;
         }
 #endif
-
         internal enum EState
         {
-            NONE = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
+            ERROR = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
             ATTACK = 20
          }
 
@@ -44,18 +43,19 @@ namespace LSG
         {
             set
             {
-                if(value != m_state)
+                if(m_state != value)
                 {
                     m_state = value;
-                    Animator.SetInteger(m_hashState, (int)value);
+                    Animator.SetInteger(m_hashState, m_cachedAniState = (int)value);
                 }
             }
 
             get
             {
-                if(Animator)
-                    return (EState)Animator.GetInteger(m_hashState);
-                return (EState) (-1);
+                //if(Animator)
+                //    return (EState)Animator.GetInteger(m_hashState);
+                // 현재 외부에서 확인 되는 상태
+                return m_state;
             }
         }
 
@@ -85,9 +85,9 @@ namespace LSG
         private Animator m_animator;
         private HeroBT m_bt;
 
-        EState m_state;
-        int m_hashSpeed, m_hashState;
-        uint m_inputstate;   
+        private EState m_state;
+        private int m_hashSpeed, m_hashState, m_cachedAniState;
+        private uint m_inputstate;   
 
         private void Awake()
         {
@@ -102,7 +102,6 @@ namespace LSG
             m_controller.OnFlight += OnFall;
 
             heroBB.controller = this;
-            
             m_bt = new HeroBT(heroBB);
         }
 
@@ -127,6 +126,7 @@ namespace LSG
 #endif
             Animator.SetFloat(m_hashSpeed, Mathf.Abs( m_controller.Velocity.x ));
             heroBB.isGrounded = m_controller.IsGrounded;
+            heroBB.isControled = m_controller.ControlEnabled;
             m_bt.Update();
         }
 
@@ -148,21 +148,25 @@ namespace LSG
         public void Initialize()
         {
             heroBB.isGrounded = false;
-            m_state = EState.NONE;
+            m_state = EState.ERROR;
+            m_cachedAniState = (int)EState.ERROR;
         }
 
         void OnJumping()
         {
+            //m_state = EState.JUMP_BEGINS;
             CurrentState = EState.JUMP_BEGINS;
         }
 
         void OnGrounded()
         {
+            //m_state = EState.IDLE;
             CurrentState = EState.IDLE;
         }
 
         void OnFall()
         {
+            //m_state = EState.IDLE;
             CurrentState = EState.FALL;
         }
     }

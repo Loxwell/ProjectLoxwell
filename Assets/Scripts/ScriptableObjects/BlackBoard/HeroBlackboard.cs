@@ -41,6 +41,8 @@ public class HeroBlackboard : ScriptableObject, IBlackboard
     public uint preFrameInputState;
     [NonSerialized]
     public bool isGrounded;
+    [NonSerialized]
+    public bool isControled;
 
     public static bool IsCurFrameInputState(HeroBlackboard bb, EInputState state)
     {

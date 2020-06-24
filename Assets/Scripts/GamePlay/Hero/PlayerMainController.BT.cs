@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using LSG.LWBehaviorTree;
-using static HeroBlackboard;
-using static LSG.LWBehaviorTree.Condition;
 
-namespace LSG
+using EState = LSG.PlayerMainController.EState;
+using EInputState = LSG.EInputState;
+
+using static HeroBlackboard;
+using static LSG.LWBehaviorTree.ActionNode;
+
+namespace BT.LSG
 {
     public partial class PlayerMainController
     {
@@ -15,17 +19,24 @@ namespace LSG
             {
                 m_bb = bb;
                 root = new RepeatNode();
-                SequenceNode crouchState = new SequenceNode();
-                root.Add(crouchState);
+                SequenceNode crouchngState = new SequenceNode();
+                SequenceNode jumpingState = new SequenceNode();
 
-                crouchState.Add(new NotDecoratorNode(new Condition() { onUpdate = ConditionIdlingState, onStart = null }));
-                crouchState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionJumpButtonDown, onStart = null }));
-                crouchState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
-                crouchState.Add(new NotDecoratorNode( new Condition() { onUpdate = ConditionAxisDown, onStart = null }));
-                crouchState.Add(new NotDecoratorNode(CreateNodeTask<ActionHeroCrouch>()));
-                crouchState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionJumpButton, onStart = null }));
-                crouchState.Add(new NotDecoratorNode(new Condition() { onUpdate = ConditionActionButtonDown, onStart = null }));
-                crouchState.Add(new NotDecoratorNode(CreateNodeTask<ActionHeroCrouchAttack>()));
+                root.Add(crouchngState);
+                root.Add(jumpingState);
+
+                // Crouch State
+                crouchngState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionAxisDown, onStart = null }));
+                crouchngState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionIsGrounded, onStart = null }));
+                crouchngState.Add(new DecoratorNode(CreateNodeTask<ActionHeroCrouch>()));
+                crouchngState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionActionButtonDown, onStart = null }));
+                crouchngState.Add(new DecoratorNode(CreateNodeTask<ActionHeroCrouchAttack>()));
+
+                // Jump State
+                jumpingState.Add(new NegationDecoratorNode(new Condition() { onUpdate = ConditionIsGrounded, onStart = null }));
+                jumpingState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionHeroJumping, onStart = null }));
+                jumpingState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionActionButtonDown, onStart = null }));
+                jumpingState.Add(new DecoratorNode(CreateNodeTask<ActionJumpAttack>()));
             }
 
             public void Update()
@@ -34,10 +45,9 @@ namespace LSG
             }
         }
 
+        #region CROUCH STATE
         internal class ActionHeroCrouchAttack : ActionNode
         {
-            int m_fullpath;
-
             public override void OnStart(IBlackboard bb)
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
@@ -53,7 +63,7 @@ namespace LSG
                     {
                         heroBB.controller.CurrentState = EState.CROUCH;
                         return EBTState.SUCCESS;
-                    }   
+                    }
                 }
 
                 return EBTState.RUNNING;
@@ -80,23 +90,11 @@ namespace LSG
                     return EBTState.RUNNING;
                 }
 
-                if ( heroBB.controller.Equals(heroBB.aniStateCrouching))
+                if (heroBB.controller.Equals(heroBB.aniStateCrouching))
                 {
                     heroBB.controller.Debug("HeroCrouchAction true");
 
                     return EBTState.SUCCESS;
-
-                }else if (
-                    (heroBB.controller.Equals(heroBB.aniStateJumpingBegins) ||
-                    heroBB.controller.Equals(heroBB.aniStateJumpFall) ||
-                    heroBB.controller.Equals(heroBB.aniStateJumping)  ||
-                    heroBB.controller.Equals(heroBB.aniStateJumpClimb)))
-                {
-                    heroBB.controller.ControlEnabled = true;
-
-                    heroBB.controller.Debug("HeroCrouchAction Jumping");
-
-                    return EBTState.FAILED;
                 }
 
                 heroBB.controller.Debug("HeroCrouchAction fail");
@@ -105,76 +103,97 @@ namespace LSG
             }
         }
 
-        static EBTState ConditionIdlingState(IBlackboard bb)
-        {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
-
-            heroBB.controller.Debug("ConditionIdlingState");
-
-            switch (heroBB.controller.CurrentState)
-            {
-                case EState.IDLE:
-                case EState.CROUCH:
-                    heroBB.controller.Debug("Crouch start ");
-                    return EBTState.SUCCESS;
-            }
-            
-            return EBTState.FAILED;
-        }
-
-
-        
         // 현재 상태 키입려이 아래인지 확인 만 하고 
         // 상태 이상은 다음 시퀀서에서 처리 할 것
         static EBTState ConditionAxisDown(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
-
-            heroBB.controller.Debug("ConditionAxisDown");
-
             if (IsCurFrameInputState(heroBB, EInputState.DOWN_KEY))
-            {
-                heroBB.controller.ControlEnabled = false;
-
-                heroBB.controller.Debug("current Push DownKey");
-
                 return EBTState.SUCCESS;
-            }
 
             // 일어서는 중 에 이동 처리를 막기 위한 조건문
-            if ((IsCurFrameInputState(heroBB, EInputState.LEFT_KEY) || IsCurFrameInputState(heroBB, EInputState.RIGHT_KEY)) 
-                && (heroBB.Equals(heroBB.aniStateStandUp)|| heroBB.Equals(heroBB.aniStateCrouching))
-                )
+            if ((heroBB.controller.Equals(heroBB.aniStateStandUp) || heroBB.controller.Equals(heroBB.aniStateCrouching)))
             {
-                heroBB.controller.Debug("current Left or Right DownKey");
-
                 heroBB.controller.CurrentState = EState.IDLE;
                 return EBTState.RUNNING;
             }
-              
-            if (heroBB.controller.CurrentState == EState.CROUCH)
-                heroBB.controller.CurrentState = EState.IDLE;
-
-            heroBB.controller.Debug("ConditionAxisDown false");
             heroBB.controller.ControlEnabled = true;
             return EBTState.FAILED;
         }
+        #endregion CROUCH
 
-        
 
-        static EBTState ConditionJumpButtonDown(IBlackboard bb)
+        #region JUMP STATE
+        class ActionJumpAttack : ActionNode
+        {
+            public override void OnStart(IBlackboard bb)
+            {
+                HeroBlackboard heroBB = (HeroBlackboard)bb;
+                heroBB.controller.CurrentState = EState.ATTACK;
+            }
+
+            public override EBTState Update(IBlackboard bb)
+            {
+                HeroBlackboard heroBB = (HeroBlackboard)bb;
+
+                //heroBB.controller.Debug("");
+
+
+                if (!heroBB.isGrounded)
+                {
+                    if (!heroBB.controller.Equals(heroBB.aniStateJumpAttack))
+                        return EBTState.RUNNING;
+
+                    if (heroBB.controller.Equals(heroBB.aniStateJumpAttack))
+                    {
+                        if (heroBB.controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9)
+                            return EBTState.RUNNING;
+                        heroBB.controller.CurrentState = EState.FALL;
+                        
+                        return EBTState.SUCCESS;
+                    }
+                }
+                heroBB.controller.CurrentState = EState.IDLE;
+                return EBTState.FAILED;
+            }
+        }
+
+        #endregion
+        static EBTState ConditionHeroJumping(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (IsCurFrameInputState(heroBB, EInputState.JUMP) && !IsPreFrameInputState(heroBB, EInputState.JUMP))
+            if (!heroBB.isGrounded && heroBB.controller.CurrentState != EState.FALL)
+            {
                 return EBTState.SUCCESS;
+            }else if (heroBB.controller.CurrentState == EState.FALL)
+            {
+                return EBTState.SUCCESS;
+            }
+            
             return EBTState.FAILED;
         }
 
-        static EBTState ConditionJumpButton(IBlackboard bb)
+        static EBTState ConditionIsGrounded(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (IsCurFrameInputState(heroBB, EInputState.JUMP))
+
+            heroBB.controller.Debug("ConditionIdlingState");
+            if (heroBB.isGrounded)
+            {
+                heroBB.controller.Debug("Crouch start ");
                 return EBTState.SUCCESS;
+            }
+
+            return EBTState.FAILED;
+        }
+
+        static EBTState ConditionHeroControlEnabled(IBlackboard bb)
+        {
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+
+            if (heroBB.isControled)
+                return EBTState.SUCCESS;
+
             return EBTState.FAILED;
         }
 
@@ -194,6 +213,22 @@ namespace LSG
             return EBTState.FAILED;
         }
 
+        static EBTState ConditionJumpButtonDown(IBlackboard bb)
+        {
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            if (IsCurFrameInputState(heroBB, EInputState.JUMP) && !IsPreFrameInputState(heroBB, EInputState.JUMP))
+                return EBTState.SUCCESS;
+            return EBTState.FAILED;
+        }
+
+        static EBTState ConditionJumpButton(IBlackboard bb)
+        {
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            if (IsCurFrameInputState(heroBB, EInputState.JUMP))
+                return EBTState.SUCCESS;
+            return EBTState.FAILED;
+        }
+
         static EBTState ConditionActionButton(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
@@ -202,6 +237,5 @@ namespace LSG
                 return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
-
     }
 }
