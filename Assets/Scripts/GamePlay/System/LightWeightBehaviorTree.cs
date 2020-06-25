@@ -42,11 +42,14 @@ namespace LSG.LWBehaviorTree
                         return EBTState.RUNNING;
                     case EBTState.FAILED:
                         continue;
+                    case EBTState.SUCCESS:
+                        Initialize();
+                        return EBTState.SUCCESS;
                 }
             }
 
             Initialize();
-            return EBTState.SUCCESS;
+            return EBTState.FAILED;
         }
     }
 
@@ -111,7 +114,9 @@ namespace LSG.LWBehaviorTree
         {
             for (int i = runningNode, len = children.Count; i < len;)
             {
-                ((IOnStart)children[i]).OnStart(bb);
+                if(children[i] is IOnStart )
+                    ((IOnStart)children[i]).OnStart(bb);
+
                 switch (children[i].Update(bb))
                 {
                     case EBTState.RUNNING:
