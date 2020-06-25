@@ -57,7 +57,7 @@ namespace LSG.LWBehaviorTree
     {
         protected List<INode> children;
         protected int runningNode;
-
+        protected EBTState preState;
         protected CompositeNode()
         {
             children = new List<INode>();
@@ -66,6 +66,7 @@ namespace LSG.LWBehaviorTree
 
         public virtual void Initialize()
         {
+            preState = EBTState.DEFAULT;
             runningNode = 0;
         }
 
@@ -86,12 +87,14 @@ namespace LSG.LWBehaviorTree
         {
             for (int i = runningNode, len = children.Count; i < len; ++i)
             {
-                ((IOnStart)children[i]).OnStart(bb);
-                switch (children[i].Update(bb))
+                if(preState != EBTState.RUNNING && children[i] is IOnStart)
+                    ((IOnStart)children[i]).OnStart(bb);
+
+                switch (preState = children[i].Update(bb))
                 {
                     case EBTState.RUNNING:
                         runningNode = i;
-                        break;
+                        return EBTState.RUNNING;
                     case EBTState.SUCCESS:
                         Initialize();
                         return EBTState.SUCCESS;
@@ -114,10 +117,10 @@ namespace LSG.LWBehaviorTree
         {
             for (int i = runningNode, len = children.Count; i < len;)
             {
-                if(children[i] is IOnStart )
+                if (preState != EBTState.RUNNING && children[i] is IOnStart)
                     ((IOnStart)children[i]).OnStart(bb);
 
-                switch (children[i].Update(bb))
+                switch (preState = children[i].Update(bb))
                 {
                     case EBTState.RUNNING:
                         runningNode = i;
@@ -130,7 +133,6 @@ namespace LSG.LWBehaviorTree
                         return EBTState.FAILED;
                 }
             }
-
             Initialize();
             return EBTState.SUCCESS;
         }
@@ -200,6 +202,8 @@ namespace LSG.LWBehaviorTree
 
     public abstract class ActionNode : INodeTask, IOnStart
     {
+        static List<INodeTask> g_actions;
+
         protected ActionNode() { }
         public virtual void OnStart(IBlackboard bb) { }
         public abstract EBTState Update(IBlackboard bb);
@@ -231,7 +235,6 @@ namespace LSG.LWBehaviorTree
             
             return onUpdate.Invoke(bb);
         }
-
     }
 
 }

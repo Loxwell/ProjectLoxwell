@@ -18,14 +18,13 @@ namespace BT.LSG
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
                 heroBB.controller.CurrentState = EState.ATTACK;
+                UnityEngine.Debug.LogWarning("ActionJumpAttack()");
+                heroBB.controller.Print("ActionJumpAttack()");
             }
 
             public override EBTState Update(IBlackboard bb)
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
-
-                //heroBB.controller.Debug("");
-
 
                 if (!heroBB.isGrounded)
                 {
@@ -46,9 +45,20 @@ namespace BT.LSG
             }
         }
 
+        static EBTState ConditionHeroJumpClimbAniState(IBlackboard bb)
+        {
+            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            if (heroBB.controller.Equals(heroBB.aniStateJumpClimb))
+                return EBTState.SUCCESS;
+            return EBTState.FAILED;
+        }
+
         static EBTState ConditionHeroJumpAniState(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
+
+            heroBB.controller.Print("ConditionHeroJumpAniState()");
+
             if (heroBB.controller.Equals(heroBB.aniStateJumpFall) ||
                 heroBB.controller.Equals(heroBB.aniStateJumping) ||
                 heroBB.controller.Equals(heroBB.aniStateJumpingBegins))

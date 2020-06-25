@@ -18,7 +18,7 @@ namespace LSG
         public TextMesh debugText;
         public TextMesh heroState;
 
-        public void Debug(string v)
+        public void Print(string v)
         {
             debugText.text = v;
         }
@@ -122,7 +122,7 @@ namespace LSG
         {
 #if UNITY_EDITOR
             // Debug
-            heroState.text = CurrentState.ToString();
+            heroState.text = CurrentState.ToString()  + " : " +  m_controller.IsGrounded.ToString();
 #endif
             Animator.SetFloat(m_hashSpeed, Mathf.Abs( m_controller.Velocity.x ));
             heroBB.isGrounded = m_controller.IsGrounded;

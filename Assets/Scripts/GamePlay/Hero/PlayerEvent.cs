@@ -10,7 +10,6 @@ namespace Platformer.GamePlay
         public PlayerMovementController player;
         public override void Execute()
         {
-            UnityEngine.Debug.Log("EnablePlayerInput");
         }
     }
 
@@ -19,7 +18,6 @@ namespace Platformer.GamePlay
         public PlayerMovementController player;
         public override void Execute()
         {
-            UnityEngine.Debug.Log("PlayerJumped");
         }
     }
 
@@ -29,7 +27,6 @@ namespace Platformer.GamePlay
 
         public override void Execute()
         {
-            UnityEngine.Debug.Log("PlayerLaneded");
         }
     }
 
@@ -39,7 +36,6 @@ namespace Platformer.GamePlay
 
         public override void Execute()
         {
-            UnityEngine.Debug.Log("PlayerStopJump");
         }
     }
 }

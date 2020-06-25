@@ -6,6 +6,7 @@ using EInputState = LSG.EInputState;
 
 using static HeroBlackboard;
 using static LSG.LWBehaviorTree.ActionNode;
+using System.Diagnostics;
 
 namespace BT.LSG
 {
@@ -18,6 +19,8 @@ namespace BT.LSG
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
                 heroBB.controller.CurrentState = EState.ATTACK;
+                UnityEngine.Debug.LogWarning("ActionJumpAttack()");
+                heroBB.controller.Print("ActionHeroCrouchAttack()");
             }
 
             public override EBTState Update(IBlackboard bb)
@@ -43,6 +46,8 @@ namespace BT.LSG
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
                 heroBB.controller.CurrentState = EState.CROUCH;
                 heroBB.controller.ControlEnabled = false;
+                UnityEngine.Debug.LogWarning("앉음()");
+                heroBB.controller.Print("ActionHeroCrouch()");
             }
 
             public override EBTState Update(IBlackboard bb)
@@ -51,20 +56,13 @@ namespace BT.LSG
 
                 if (heroBB.controller.Equals(heroBB.aniStateCrouchingBegins))
                 {
-                    heroBB.controller.Debug("aniStateCrouchingBegins Running");
-
                     return EBTState.RUNNING;
                 }
 
                 if (heroBB.controller.Equals(heroBB.aniStateCrouching))
                 {
-                    heroBB.controller.Debug("HeroCrouchAction true");
-
                     return EBTState.SUCCESS;
                 }
-
-                heroBB.controller.Debug("HeroCrouchAction fail");
-
                 return EBTState.FAILED;
             }
         }
@@ -74,13 +72,8 @@ namespace BT.LSG
         static EBTState ConditionAxisDown(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
-
-            heroBB.controller.Debug("ConditionAxisDown() Begin");
-
             if (IsCurFrameInputState(heroBB, EInputState.DOWN_KEY))
                 return EBTState.SUCCESS;
-
-            heroBB.controller.Debug("ConditionAxisDown() fail");
 
             // 일어서는 중 에 이동 처리를 막기 위한 조건문
             if ((heroBB.controller.Equals(heroBB.aniStateStandUp) || heroBB.controller.Equals(heroBB.aniStateCrouching)))

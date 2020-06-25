@@ -6,7 +6,6 @@ using static LSG.Utilities.BitField;
 
 public class HeroBlackboard : ScriptableObject, IBlackboard
 {
-
     [SerializeField]
     public string aniStateCrouchingBegins = "Base Layer.STATE_CROUCH.STATE_CROUCHING_BEGINS";
     [SerializeField]
@@ -43,6 +42,7 @@ public class HeroBlackboard : ScriptableObject, IBlackboard
     public bool isGrounded;
     [NonSerialized]
     public bool isControled;
+
 
     public static bool IsCurFrameInputState(HeroBlackboard bb, EInputState state)
     {
