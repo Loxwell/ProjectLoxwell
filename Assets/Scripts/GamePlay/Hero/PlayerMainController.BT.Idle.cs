@@ -42,16 +42,16 @@ namespace BT.LSG
             public override void OnStart(IBlackboard bb)
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.controller.CurrentState = EState.ATTACK;
+                heroBB.controller.Attack(heroBB.aniClipStandAttack);
                 UnityEngine.Debug.LogWarning("ActionStandAttack()");
             }
 
             public override EBTState Update(IBlackboard bb)
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
-                if (heroBB.controller.Equals(heroBB.aniNormalAttack) || heroBB.controller.Equals(heroBB.aniStateIdle))
+                if (heroBB.controller.Equals(heroBB.aniStateAttack) || heroBB.controller.Equals(heroBB.aniStateIdle))
                 {
-                    if (heroBB.controller.Equals(heroBB.aniNormalAttack) &&
+                    if (heroBB.controller.Equals(heroBB.aniStateAttack) &&
                         heroBB.controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9)
                         return EBTState.SUCCESS;
 

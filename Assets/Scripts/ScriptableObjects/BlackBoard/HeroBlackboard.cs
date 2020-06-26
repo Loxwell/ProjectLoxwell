@@ -26,11 +26,7 @@ public class HeroBlackboard : ScriptableObject, IBlackboard
     public string aniStateIdle = "Base Layer.STATE_IDLE";
 
     [SerializeField]
-    public string aniStateCrouchAttack = "Base Layer.STATE_ATTACK.STATE_CROUCH_ATTACK";
-    [SerializeField]
-    public string aniStateJumpAttack = "Base Layer.STATE_ATTACK.STATE_JUMP_ATTACK";
-    [SerializeField]
-    public string aniNormalAttack = "Base Layer.STATE_ATTACK.STATE_NORMAL_ATTACK";
+    public string aniStateAttack = "Base Layer.STATE_ATTACK";
 
     [SerializeField]
     public AnimationClip aniClipStandAttack;

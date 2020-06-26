@@ -7,6 +7,7 @@ using MovementController = Platformer.Mechanics.PlayerMovementController;
 using HeroBT = BT.LSG.PlayerMainController.HeroBT;
 
 using static LSG.Utilities.BitField;
+using UnityEditorInternal;
 
 namespace LSG
 {
@@ -83,6 +84,7 @@ namespace LSG
 
         private MovementController m_controller;
         private Animator m_animator;
+        private AttackMotion m_attackMotion;
         private HeroBT m_bt;
 
         private EState m_state;
@@ -92,6 +94,7 @@ namespace LSG
         private void Awake()
         {
             m_controller = GetComponent<MovementController>();
+            m_attackMotion = new AttackMotion(Animator);
 
             m_hashState = Animator.StringToHash("State");
             m_hashSpeed = Animator.StringToHash("RunningSpeed");
@@ -142,7 +145,8 @@ namespace LSG
 
         public void Attack(AnimationClip attackClip)
         {
-
+            m_attackMotion.Set(attackClip);
+            CurrentState = EState.ATTACK;
         }
 
         public bool Equals(string aniStateFullName)
@@ -188,13 +192,41 @@ namespace LSG
 
         private AnimatorOverrideController animatorOverrideController;
 
-        internal class Attacaker
+        public class AnimationClipOverrides : List<KeyValuePair<AnimationClip, AnimationClip>>
         {
-            AnimatorOverrideController animatorOverrideController;
-            internal Attacaker(Animator ani)
+            public AnimationClipOverrides(int capacity) : base(capacity) { }
+
+            public AnimationClip this[string name]
             {
-                animatorOverrideController = new AnimatorOverrideController(ani.runtimeAnimatorController);
-                ani.runtimeAnimatorController = animatorOverrideController;
+                get { return this.Find(x => x.Key.name.Equals(name)).Value; }
+                set
+                {
+                    int index = this.FindIndex(x => x.Key.name.Equals(name));
+                    if (index != -1)
+                        this[index] = new KeyValuePair<AnimationClip, AnimationClip>(this[index].Key, value);
+                }
+            }
+        }
+
+        internal class AttackMotion
+        {
+            AnimatorOverrideController aoc;
+            AnimationClipOverrides clipOverrides;
+            Animator animator;
+            internal AttackMotion(Animator ani)
+            {
+                this.animator = ani;
+                aoc = new AnimatorOverrideController(animator.runtimeAnimatorController);
+                clipOverrides = new AnimationClipOverrides(aoc.overridesCount);
+                foreach (var a in aoc.animationClips)
+                    clipOverrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(a, a));
+                animator.runtimeAnimatorController = aoc;
+            }
+
+            public void Set( AnimationClip newClip )
+            {
+                clipOverrides["Ani_HeroAttack"] = newClip;
+                aoc.ApplyOverrides(clipOverrides);
             }
         }
     }
@@ -251,4 +283,5 @@ namespace LSG
 /*
  https://docs.unity3d.com/ScriptReference/AnimatorOverrideController.html
 동적으로 애니메이터의 상태에 애니 클립을 적용 하는 예제
+https://support.unity3d.com/hc/en-us/articles/205845885-Animator-state-is-reset-when-AnimationClips-are-replaced-using-an-AnimatorControllerOverride
  */

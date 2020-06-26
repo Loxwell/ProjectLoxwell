@@ -17,7 +17,7 @@ namespace BT.LSG
             public override void OnStart(IBlackboard bb)
             {
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.controller.CurrentState = EState.ATTACK;
+                heroBB.controller.Attack(heroBB.aniClipJumpingAttack);
                 UnityEngine.Debug.LogWarning("ActionJumpAttack()");
                 heroBB.controller.Print("ActionJumpAttack()");
             }
@@ -28,10 +28,10 @@ namespace BT.LSG
 
                 if (!heroBB.isGrounded)
                 {
-                    if (!heroBB.controller.Equals(heroBB.aniStateJumpAttack))
+                    if (!heroBB.controller.Equals(heroBB.aniStateAttack))
                         return EBTState.RUNNING;
 
-                    if (heroBB.controller.Equals(heroBB.aniStateJumpAttack))
+                    if (heroBB.controller.Equals(heroBB.aniStateAttack))
                     {
                         if (heroBB.controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9)
                             return EBTState.RUNNING;
