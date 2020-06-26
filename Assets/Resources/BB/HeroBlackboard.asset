@@ -23,3 +23,8 @@ MonoBehaviour:
   aniStateCrouchAttack: Base Layer.STATE_ATTACK.STATE_CROUCH_ATTACK
   aniStateJumpAttack: Base Layer.STATE_ATTACK.STATE_JUMP_ATTACK
   aniNormalAttack: Base Layer.STATE_ATTACK.STATE_NORMAL_ATTACK
+  aniClipStandAttack: {fileID: 7400000, guid: 6084024a1d3cd304daf025154fc83ac3, type: 2}
+  aniClipJumpingAttack: {fileID: 7400000, guid: 4e686fd9f0c238c4a831bb6272e2b474,
+    type: 2}
+  aniClipCrouchingAttack: {fileID: 7400000, guid: a6ea766ba5443ba4e90c5eb9f01ded16,
+    type: 2}

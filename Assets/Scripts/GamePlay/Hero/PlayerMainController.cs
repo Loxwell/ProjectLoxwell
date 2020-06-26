@@ -10,7 +10,7 @@ using static LSG.Utilities.BitField;
 
 namespace LSG
 {
-    public partial class PlayerMainController : MonoBehaviour, IBlackboard, 
+    public partial class PlayerMainController : MonoBehaviour, IBlackboard,
         IEquatable<int>, IEquatable<PlayerMainController>, IEquatable<string>
     {
 
@@ -25,11 +25,11 @@ namespace LSG
 #endif
         internal enum EState
         {
-            ERROR = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2 , CROUCH = 6, JUMP_CLIMB = 10,
+            ERROR = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2, CROUCH = 6, JUMP_CLIMB = 10,
             ATTACK = 20
-         }
+        }
 
-        internal Animator Animator 
+        internal Animator Animator
         {
             get
             {
@@ -43,7 +43,7 @@ namespace LSG
         {
             set
             {
-                if(m_state != value)
+                if (m_state != value)
                 {
                     m_state = value;
                     Animator.SetInteger(m_hashState, m_cachedAniState = (int)value);
@@ -87,18 +87,18 @@ namespace LSG
 
         private EState m_state;
         private int m_hashSpeed, m_hashState, m_cachedAniState;
-        private uint m_inputstate;   
+        private uint m_inputstate;
 
         private void Awake()
         {
             m_controller = GetComponent<MovementController>();
-          
+
             m_hashState = Animator.StringToHash("State");
             m_hashSpeed = Animator.StringToHash("RunningSpeed");
 
             m_controller.OnGrounded += OnGrounded;
             m_controller.OnLanded += OnGrounded;
-            m_controller.OnPrepareToJump+= OnJumping;
+            m_controller.OnPrepareToJump += OnJumping;
             m_controller.OnFlight += OnFall;
 
             heroBB.controller = this;
@@ -122,12 +122,27 @@ namespace LSG
         {
 #if UNITY_EDITOR
             // Debug
-            heroState.text = CurrentState.ToString()  + " : " +  m_controller.IsGrounded.ToString();
+            heroState.text = CurrentState.ToString() + " : " + m_controller.IsGrounded.ToString();
 #endif
-            Animator.SetFloat(m_hashSpeed, Mathf.Abs( m_controller.Velocity.x ));
+            Animator.SetFloat(m_hashSpeed, Mathf.Abs(m_controller.Velocity.x));
             heroBB.isGrounded = m_controller.IsGrounded;
             heroBB.isControled = m_controller.ControlEnabled;
             m_bt.Update();
+        }
+
+        public void SetStateCrouch()
+        {
+
+        }
+
+        public void SetStateIdle()
+        {
+
+        }
+
+        public void Attack(AnimationClip attackClip)
+        {
+
         }
 
         public bool Equals(string aniStateFullName)
@@ -169,6 +184,19 @@ namespace LSG
             //m_state = EState.IDLE;
             CurrentState = EState.FALL;
         }
+
+
+        private AnimatorOverrideController animatorOverrideController;
+
+        internal class Attacaker
+        {
+            AnimatorOverrideController animatorOverrideController;
+            internal Attacaker(Animator ani)
+            {
+                animatorOverrideController = new AnimatorOverrideController(ani.runtimeAnimatorController);
+                ani.runtimeAnimatorController = animatorOverrideController;
+            }
+        }
     }
 }
 
@@ -197,3 +225,30 @@ namespace LSG
        
     }*/
 #endregion
+
+
+
+
+//https://docs.unity3d.com/kr/current/Manual/AnimatorOverrideController.html
+/* animator 
+ public class WeaponTemplate : MonoBehaviour {
+     
+     public int damage;
+     //weapon animations override
+     public AnimatorOverrideController animationsOverride;
+ 
+     //character animator
+     public Animator anim;
+ 
+     public void Equip(){
+       anim.runtimeAnimatorController = animationsOverride;
+     }
+ 
+ }
+ */
+
+
+/*
+ https://docs.unity3d.com/ScriptReference/AnimatorOverrideController.html
+동적으로 애니메이터의 상태에 애니 클립을 적용 하는 예제
+ */

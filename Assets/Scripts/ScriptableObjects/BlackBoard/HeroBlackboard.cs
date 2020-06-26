@@ -32,6 +32,13 @@ public class HeroBlackboard : ScriptableObject, IBlackboard
     [SerializeField]
     public string aniNormalAttack = "Base Layer.STATE_ATTACK.STATE_NORMAL_ATTACK";
 
+    [SerializeField]
+    public AnimationClip aniClipStandAttack;
+    [SerializeField]
+    public AnimationClip aniClipJumpingAttack;
+    [SerializeField]
+    public AnimationClip aniClipCrouchingAttack;
+
     [NonSerialized]
     public PlayerMainController controller;
     [NonSerialized]
