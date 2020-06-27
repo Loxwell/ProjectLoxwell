@@ -19,9 +19,11 @@ namespace LSG
         public TextMesh debugText;
         public TextMesh heroState;
 
+
         public void Print(string v)
         {
-            debugText.text = v;
+            if(debugText)
+                debugText.text = v;
         }
 #endif
         internal enum EState
@@ -125,7 +127,8 @@ namespace LSG
         {
 #if UNITY_EDITOR
             // Debug
-            heroState.text = CurrentState.ToString() + " : " + m_controller.IsGrounded.ToString();
+            if(heroState)
+                heroState.text = CurrentState.ToString() + " : " + m_controller.IsGrounded.ToString();
 #endif
             Animator.SetFloat(m_hashSpeed, Mathf.Abs(m_controller.Velocity.x));
             heroBB.isGrounded = m_controller.IsGrounded;
