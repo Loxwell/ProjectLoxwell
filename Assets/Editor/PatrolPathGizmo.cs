@@ -18,7 +18,6 @@ namespace Platformer.Editor
 
                 if(cc.changed)
                 {
-                    sp.x = ep.x = 0;
                     path.stPos = sp;
                     path.edPos = ep;
                 }
@@ -34,6 +33,10 @@ namespace Platformer.Editor
             Vector3 ed = path.CachedTransform.TransformPoint(path.edPos);
 
             Handles.color = Color.yellow;
+            Handles.Label(path.CachedTransform.position, path.gameObject.name);
+            Handles.Label(path.CachedTransform.position - Vector3.up * 0.3f, (st - ed).magnitude.ToString());
+            Handles.Label(st, "ST");
+            Handles.Label(ed, "ED");
             Handles.DrawDottedLine(st, ed, 5);
             Handles.DrawSolidDisc(st, path.CachedTransform.forward, 0.1f);
             Handles.DrawSolidDisc(ed, path.CachedTransform.forward, 0.1f);
