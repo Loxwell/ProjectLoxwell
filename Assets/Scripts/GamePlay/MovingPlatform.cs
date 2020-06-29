@@ -4,9 +4,18 @@ using UnityEngine;
 using PlayerMovementController = Platformer.Mechanics.PlayerMovementController;
 using Patroller = Platformer.Mechanics.Patroller;
 using BT.LSG;
+using System;
 
 public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
 {
+    Vector3 CurPosition
+    {
+        get
+        {
+            return m_transform.position + Vector3.up * m_boxScale.y * 1.1f;
+        }
+    }
+
     Transform m_transform;    
     float m_preTime;
 
@@ -24,7 +33,16 @@ public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
     private void Awake()
     {
         m_transform = transform;
-        m_box = GetComponent<BoxCollider2D>();
+        BoxCollider2D [] boxes = GetComponents<BoxCollider2D>();
+        foreach(var b in boxes)
+        {
+            if (!b.isTrigger)
+            {
+                m_box = b;
+                break;
+            }
+        }
+
         m_boxScale = m_box.size * 0.5f;
     }
 
@@ -57,24 +75,23 @@ public class MovingPlatform : MonoBehaviour, Platformer.Mechanics.IPatrolUtil
         PlayerMovementController p = collision.transform.GetComponent<PlayerMovementController>();
         if(p)
         {
-            if (p.transform.position.y  >= m_boxScale.y + m_box.offset.y
+            if (p.transform.position.y  >= m_transform.position.y + m_box.offset.y
                 && (m_boxScale.x * m_boxScale.x > m_dir.x * m_dir.x))
             {
                 float deltaTime = (Time.time - m_preTime);
                 m_dir.x += p.Velocity.x * deltaTime;
-                m_dir.y += (p.Velocity.y + m_movingDir.y) * deltaTime;
-               
-                p.transform.position = m_transform.position + Vector3.up * m_boxScale.y * 1.1f + m_dir;
+                m_dir.y = 0;
+                p.transform.position = CurPosition + m_dir;
             }
 
             Initialize();
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerStay2D(Collider2D collider)
     {
-        LSG.PlayerInputManager p = target.GetComponent<LSG.PlayerInputManager>();
-        if(p != null)
+        PlayerMovementController p = collider.gameObject.GetComponent<PlayerMovementController>();
+        if (p != null)
         {
             
         }

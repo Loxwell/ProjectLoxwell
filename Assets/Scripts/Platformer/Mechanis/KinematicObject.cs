@@ -19,6 +19,8 @@ namespace Platformer.Mechanics
             }
         }
 
+        public bool IsGrounded { get; private set; }
+
 
         /// <summary>
         /// Implements game physics for some in game entity.
@@ -31,9 +33,6 @@ namespace Platformer.Mechanics
         /// </summary>
         [SerializeField, Header("Custom Gravity coefficient"), Range(1e-7f, 2f)]
         float m_gravityModifier = 1f;
-
-
-        public bool IsGrounded { get; private set; }
 
         protected Rigidbody2D body;
 
@@ -132,22 +131,22 @@ namespace Platformer.Mechanics
             else
                 m_velocity += Physics2D.gravity /*(0.0, -9.8)*/* deltaTime;
 
+            // 좌우 움직임 속도
             m_velocity.x = targetVelocity.x;
             IsGrounded = false;
 
             Vector2 deltaPosition = m_velocity * deltaTime;
             Vector2 moveAlongGround;
+            
+            // 지면에 수직, clock-wise
             moveAlongGround.x = groundNormal.y;
             moveAlongGround.y = -groundNormal.x;
 
-            Vector2 move = moveAlongGround * deltaPosition;
-
+            // 지면에 수직하는 방향으로 델타 위치 만큼 이동
             //horizontal movement
-            PerformMovement(move, false);
-            move = Vector2.up * deltaPosition;
-
+            PerformMovement(moveAlongGround * deltaPosition, false);
             // vertical movement
-            PerformMovement(move, true);
+            PerformMovement(Vector2.up * deltaPosition, true);
         }
 
         void PerformMovement(Vector2 move, bool yMovement)
@@ -198,6 +197,9 @@ namespace Platformer.Mechanics
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
+            if (!Application.isPlaying)
+                return;
+
             Vector2 deltaPosition = m_velocity * Time.deltaTime;
             Vector2 moveAlongGround;
             moveAlongGround.x = groundNormal.y;
