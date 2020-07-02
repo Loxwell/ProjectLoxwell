@@ -20,7 +20,6 @@ namespace BT.LSG
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
                 heroBB.controller.Attack(heroBB.aniClipCrouchingAttack);
                 UnityEngine.Debug.LogWarning("ActionJumpAttack()");
-                heroBB.controller.Print("ActionHeroCrouchAttack()");
             }
 
             public override EBTState Update(IBlackboard bb)
@@ -47,7 +46,6 @@ namespace BT.LSG
                 heroBB.controller.CurrentState = EState.CROUCH;
                 heroBB.controller.ControlEnabled = false;
                 UnityEngine.Debug.LogWarning("앉음()");
-                heroBB.controller.Print("ActionHeroCrouch()");
             }
 
             public override EBTState Update(IBlackboard bb)

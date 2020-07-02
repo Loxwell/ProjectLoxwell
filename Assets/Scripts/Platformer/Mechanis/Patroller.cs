@@ -26,7 +26,10 @@ namespace Platformer.Mechanics
         private void OnEnable() => MovingBegins();
         
         private void OnDisable() => Stop();
-        
+
+
+
+
         public bool MovingBegins()
         {
             Stop();
@@ -34,6 +37,11 @@ namespace Platformer.Mechanics
             if (m_path && m_target)
             {
                 Path.Mover mover = m_path.CreateMover(m_maxMovingSpeed * 0.5f);
+
+#if UNITY_EDITOR
+                m_debugMover = mover;
+#endif
+
                 if (m_target && m_target.GetComponent<IPatrolUtil>() != null)
                     m_target.GetComponent<IPatrolUtil>().SetPatroller(this);
 
@@ -58,5 +66,14 @@ namespace Platformer.Mechanics
                 yield return null;
             }
         }
+
+#if UNITY_EDITOR
+        Path.Mover m_debugMover;
+        private void OnDrawGizmos()
+        {
+            if(m_debugMover != null)
+                m_debugMover.OnDrawGizmo(transform.position + Vector3.up * 0.5f);
+        }
+#endif
     }
 }

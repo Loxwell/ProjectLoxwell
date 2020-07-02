@@ -9,6 +9,9 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(Rigidbody2D)), DisallowMultipleComponent]
     public class KinematicObject : MonoBehaviour
     {
+
+        public static int cnt = 0;
+
         protected const float MIN_MOVE_DISTANCE = 0.001f;
         protected const float SHELL_RADIUS = 0.01f;
 
@@ -31,7 +34,7 @@ namespace Platformer.Mechanics
         /// <summary>
         /// A custom gravity coefficient applied to this entity.
         /// </summary>
-        [SerializeField, Header("Custom Gravity coefficient"), Range(1e-7f, 2f)]
+        [SerializeField, Header("Custom Gravity coefficient"), Range(1e-7f, 50f)]
         float m_gravityModifier = 1f;
 
         protected Rigidbody2D body;
@@ -133,7 +136,7 @@ namespace Platformer.Mechanics
 
             // 좌우 움직임 속도
             m_velocity.x = targetVelocity.x;
-            IsGrounded = false;
+             IsGrounded = false;
 
             Vector2 deltaPosition = m_velocity * deltaTime;
             Vector2 moveAlongGround;

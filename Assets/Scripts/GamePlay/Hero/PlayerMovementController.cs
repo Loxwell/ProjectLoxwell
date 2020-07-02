@@ -154,6 +154,10 @@ namespace Platformer.Mechanics
 
         SpriteRenderer m_renderer;
         EActionState m_jumpState;
+        
+        /// <summary>
+        /// 수평 이동 방향
+        /// </summary>
         Vector2 m_move;
 
         int m_curState, m_preState;

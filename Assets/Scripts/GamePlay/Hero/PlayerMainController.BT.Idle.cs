@@ -70,7 +70,6 @@ namespace BT.LSG
                 heroBB.controller.CurrentState = EState.IDLE;
                 heroBB.controller.ControlEnabled = true;
                 UnityEngine.Debug.Log("ActionHeroIdle()");
-                heroBB.controller.Print("ActionHeroIdle()");
             }
             public override EBTState Update(IBlackboard bb)
             {

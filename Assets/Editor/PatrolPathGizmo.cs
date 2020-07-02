@@ -31,7 +31,6 @@ namespace Platformer.Editor
         {
             Vector3 st = path.CachedTransform.TransformPoint(path.stPos);
             Vector3 ed = path.CachedTransform.TransformPoint(path.edPos);
-
             Handles.color = Color.yellow;
             Handles.Label(path.CachedTransform.position, path.gameObject.name);
             Handles.Label(path.CachedTransform.position - Vector3.up * 0.3f, (st - ed).magnitude.ToString());

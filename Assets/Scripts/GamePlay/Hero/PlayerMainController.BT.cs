@@ -56,12 +56,8 @@ namespace BT.LSG
                 subCrouchngState.Add(new NegationDecoratorNode(CreateNodeTask<ActionHeroIdle>()));
 
                 // Jump State
-                jumpingState.Add(new NegationDecoratorNode(new Condition() { onUpdate = ConditionIsGrounded, onStart = (IBlackboard value)=> {
-                    ((HeroBlackboard)value).controller.Print("점프 단계 지상 조건 판단");
-                } }));
-                jumpingState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionHeroJumping, onStart = (IBlackboard value)=> {
-                    ((HeroBlackboard)value).controller.Print("점프 단계 현재 점프중인지 판단");
-                } }));
+                jumpingState.Add(new NegationDecoratorNode(new Condition() { onUpdate = ConditionIsGrounded, onStart = null}));
+                jumpingState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionHeroJumping, onStart = null}));
                 jumpingState.Add(new DecoratorNode(new Condition() { onUpdate = ConditionActionButtonDown, onStart = null }));
                 jumpingState.Add(subJumpingState);
                 subJumpingState.Add(new NegationDecoratorNode(CreateNodeTask<ActionJumpAttack>()));
@@ -97,7 +93,6 @@ namespace BT.LSG
 
             if (heroBB.isGrounded)
             {
-                heroBB.controller.Print("ConditionIsGrounded");
                 return EBTState.SUCCESS;
             }
 
@@ -109,11 +104,6 @@ namespace BT.LSG
             HeroBlackboard heroBB = (HeroBlackboard)bb;
             if (IsCurFrameInputState(heroBB, EInputState.ACTION_1) && !IsPreFrameInputState(heroBB, EInputState.ACTION_1))
             {
-#if UNITY_EDITOR
-
-                heroBB.controller.Print("ConditionActionButtonDown");
-#endif
-
                 return EBTState.SUCCESS;
             }
 

@@ -5,27 +5,15 @@ using LSG.LWBehaviorTree;
 using System;
 using MovementController = Platformer.Mechanics.PlayerMovementController;
 using HeroBT = BT.LSG.PlayerMainController.HeroBT;
+using AnimatorHelper = LSG.Utilities.AnimatorHelper;
 
 using static LSG.Utilities.BitField;
-using UnityEditorInternal;
 
 namespace LSG
 {
     public partial class PlayerMainController : MonoBehaviour, IBlackboard,
         IEquatable<int>, IEquatable<PlayerMainController>, IEquatable<string>
     {
-
-#if UNITY_EDITOR
-        public TextMesh debugText;
-        public TextMesh heroState;
-
-
-        public void Print(string v)
-        {
-            if(debugText)
-                debugText.text = v;
-        }
-#endif
         internal enum EState
         {
             ERROR = -1, IDLE = 0, JUMP_BEGINS = 1, FALL = 2, CROUCH = 6, JUMP_CLIMB = 10,
@@ -86,7 +74,7 @@ namespace LSG
 
         private MovementController m_controller;
         private Animator m_animator;
-        private AttackMotion m_attackMotion;
+        private AnimatorHelper m_attackMotion;
         private HeroBT m_bt;
 
         private EState m_state;
@@ -96,7 +84,7 @@ namespace LSG
         private void Awake()
         {
             m_controller = GetComponent<MovementController>();
-            m_attackMotion = new AttackMotion(Animator);
+            m_attackMotion = new AnimatorHelper(Animator);
 
             m_hashState = Animator.StringToHash("State");
             m_hashSpeed = Animator.StringToHash("RunningSpeed");
@@ -125,11 +113,6 @@ namespace LSG
 
         private void Update()
         {
-#if UNITY_EDITOR
-            // Debug
-            if(heroState)
-                heroState.text = CurrentState.ToString() + " : " + m_controller.IsGrounded.ToString();
-#endif
             Animator.SetFloat(m_hashSpeed, Mathf.Abs(m_controller.Velocity.x));
             heroBB.isGrounded = m_controller.IsGrounded;
             heroBB.isControled = m_controller.ControlEnabled;
@@ -148,7 +131,7 @@ namespace LSG
 
         public void Attack(AnimationClip attackClip)
         {
-            m_attackMotion.Set(attackClip);
+            m_attackMotion.ChangeClip("Ani_HeroAttack", attackClip);
             CurrentState = EState.ATTACK;
         }
 
@@ -193,45 +176,9 @@ namespace LSG
         }
 
 
-        private AnimatorOverrideController animatorOverrideController;
+       
 
-        public class AnimationClipOverrides : List<KeyValuePair<AnimationClip, AnimationClip>>
-        {
-            public AnimationClipOverrides(int capacity) : base(capacity) { }
-
-            public AnimationClip this[string name]
-            {
-                get { return this.Find(x => x.Key.name.Equals(name)).Value; }
-                set
-                {
-                    int index = this.FindIndex(x => x.Key.name.Equals(name));
-                    if (index != -1)
-                        this[index] = new KeyValuePair<AnimationClip, AnimationClip>(this[index].Key, value);
-                }
-            }
-        }
-
-        internal class AttackMotion
-        {
-            AnimatorOverrideController aoc;
-            AnimationClipOverrides clipOverrides;
-            Animator animator;
-            internal AttackMotion(Animator ani)
-            {
-                this.animator = ani;
-                aoc = new AnimatorOverrideController(animator.runtimeAnimatorController);
-                clipOverrides = new AnimationClipOverrides(aoc.overridesCount);
-                foreach (var a in aoc.animationClips)
-                    clipOverrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(a, a));
-                animator.runtimeAnimatorController = aoc;
-            }
-
-            public void Set( AnimationClip newClip )
-            {
-                clipOverrides["Ani_HeroAttack"] = newClip;
-                aoc.ApplyOverrides(clipOverrides);
-            }
-        }
+      
     }
 }
 
@@ -263,28 +210,3 @@ namespace LSG
 
 
 
-
-//https://docs.unity3d.com/kr/current/Manual/AnimatorOverrideController.html
-/* animator 
- public class WeaponTemplate : MonoBehaviour {
-     
-     public int damage;
-     //weapon animations override
-     public AnimatorOverrideController animationsOverride;
- 
-     //character animator
-     public Animator anim;
- 
-     public void Equip(){
-       anim.runtimeAnimatorController = animationsOverride;
-     }
- 
- }
- */
-
-
-/*
- https://docs.unity3d.com/ScriptReference/AnimatorOverrideController.html
-동적으로 애니메이터의 상태에 애니 클립을 적용 하는 예제
-https://support.unity3d.com/hc/en-us/articles/205845885-Animator-state-is-reset-when-AnimationClips-are-replaced-using-an-AnimatorControllerOverride
- */

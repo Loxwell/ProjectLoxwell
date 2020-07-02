@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -27,6 +28,13 @@ namespace Platformer.Mechanics {
                 m_duration = (path.edPos - path.stPos).magnitude / speed;
                 stTime = Time.time;
             }
+
+#if UNITY_EDITOR
+            public void OnDrawGizmo(Vector3 pos)
+            {
+                Handles.Label(pos,  "Duration : " + m_duration.ToString());
+            }
+#endif
         }
     }
 }

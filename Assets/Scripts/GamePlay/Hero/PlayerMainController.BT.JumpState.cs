@@ -19,7 +19,6 @@ namespace BT.LSG
                 HeroBlackboard heroBB = (HeroBlackboard)bb;
                 heroBB.controller.Attack(heroBB.aniClipJumpingAttack);
                 UnityEngine.Debug.LogWarning("ActionJumpAttack()");
-                heroBB.controller.Print("ActionJumpAttack()");
             }
 
             public override EBTState Update(IBlackboard bb)
@@ -56,8 +55,6 @@ namespace BT.LSG
         static EBTState ConditionHeroJumpAniState(IBlackboard bb)
         {
             HeroBlackboard heroBB = (HeroBlackboard)bb;
-
-            heroBB.controller.Print("ConditionHeroJumpAniState()");
 
             if (heroBB.controller.Equals(heroBB.aniStateJumpFall) ||
                 heroBB.controller.Equals(heroBB.aniStateJumping) ||

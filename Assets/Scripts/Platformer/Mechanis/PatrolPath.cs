@@ -45,8 +45,7 @@ namespace Platformer.Mechanics
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(stPos, edPos);
+            
         }
 #endif
     }
