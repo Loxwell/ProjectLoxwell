@@ -7,11 +7,12 @@ using TileBase = UnityEngine.Tilemaps.TileBase;
 using AnimatorHelper = LSG.Utilities.AnimatorHelper;
 using PhysicsHelper = Platformer.Mechanics.Helper.PhysicsHelper;
 using FallthroughReseter = Platformer.Mechanics.FallthroughReseter;
+using Damager = Platformer.Player.Module.Damager;
 using Mechanics.AI.StateMachine;
 
 namespace Platformer.Player
 {
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(MovementController))]
     [RequireComponent(typeof(Animator))]
     public class PlayerCharacter : MonoBehaviour
     {
@@ -35,6 +36,9 @@ namespace Platformer.Player
         public SpriteRenderer spriteRenderer;
         [SerializeField]
         public Transform cameraFollowTarget;
+        [SerializeField]
+        public Damager meleeDamager;
+        [SerializeField]
         public PlayerInputManager inputManager;
 
         [SerializeField]
@@ -90,7 +94,7 @@ namespace Platformer.Player
         public AnimationClip aniJumpingAttack;
 
         protected AnimatorHelper m_animator;
-        protected CharacterController m_CharacterController;
+        protected MovementController m_CharacterController;
         protected CapsuleCollider2D m_Capsule;
         protected Transform m_Transform;
         protected TileBase m_CurrentSurface;
@@ -114,7 +118,7 @@ namespace Platformer.Player
         {
             s_PlayerInstance = this;
 
-            m_CharacterController = GetComponent<CharacterController>();
+            m_CharacterController = GetComponent<MovementController>();
             m_animator = new AnimatorHelper(GetComponent<Animator>());
             m_Capsule = GetComponent<CapsuleCollider2D>();
             m_Transform = transform;
@@ -234,13 +238,13 @@ namespace Platformer.Player
 
         public void EnableMeleeAttack()
         {
-            //meleeDamager.EnableDamage();
-            //meleeDamager.disableDamageAfterHit = true;
+            meleeDamager.EnableDamage();
+            meleeDamager.disableDamageAfterHit = true;
         }
 
         public void DisableMeleeAttack()
         {
-            //meleeDamager.DisableDamage();
+            meleeDamager.DisableDamage();
         }
         #endregion
 

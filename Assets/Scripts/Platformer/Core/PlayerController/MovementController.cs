@@ -14,7 +14,7 @@ namespace Platformer.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
-    public class CharacterController : MonoBehaviour, ICharacterController
+    public class MovementController : MonoBehaviour, ICharacterController
     {
         public Collider2D[] GroundColliders { get { return m_GroundColliders; } }
 

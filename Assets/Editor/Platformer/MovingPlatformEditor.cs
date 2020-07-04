@@ -2,11 +2,12 @@
 using UnityEditor;
 using MovingPlatform = Platformer.Mechanics.MovingPlatform;
 using PlatformCatcher = Platformer.Mechanics.PlatformCatcher;
+using UnityScript.Scripting.Pipeline;
 
 namespace Platformer.Editor
 {
-
-    [CustomEditor(typeof(Mechanics.MovingPlatform))]
+    [CanEditMultipleObjects()]
+    [CustomEditor(typeof(MovingPlatform))]
     public class MovingPlatformEditor : UnityEditor.Editor
     {
         MovingPlatform m_MovingPlatform;
@@ -202,6 +203,47 @@ namespace Platformer.Editor
             }
         }
 
+        [DrawGizmo(GizmoType.NonSelected | GizmoType.Selected  | GizmoType.NotInSelectionHierarchy)]
+        static void OnDrawGizmo(MovingPlatform platform ,GizmoType gizmoType)
+        {
+            Collider2D c = platform.GetComponent<Collider2D>();
+            if(c)
+            {
+                Gizmos.color = Color.green;
+                if(c.GetType() == typeof(BoxCollider2D))
+                {
+                    Gizmos.DrawWireCube(platform.transform.position, c.bounds.size);
+                }else if( c.GetType() == typeof(CircleCollider2D))
+                {
+                    Gizmos.DrawWireSphere(platform.transform.position,((CircleCollider2D)c).radius);
+                }
+                else if(c.GetType() == typeof(CapsuleCollider2D))
+                {
+                    
+                }
+            }
+            float distance = 0;
+            Vector3[] localPositions = platform.localNodes;
+            Handles.color = Color.yellow;
+            for (int i = 0 , len = localPositions.Length ; i < len ; ++i)
+            {
+                Handles.Label(platform.transform.position, platform.gameObject.name);
+                Handles.DrawSolidDisc(platform.transform.TransformPoint(localPositions[i]), Vector3.forward, 0.1f);
+                if(i <= len - 2)
+                {
+                    Vector3 st = platform.transform.TransformPoint(localPositions[i]);
+                    Vector3 ed = platform.transform.TransformPoint(localPositions[i + 1]);
+                    
+                    if ((gizmoType & GizmoType.NonSelected) != 0)
+                        Handles.DrawDottedLine(st, ed, 5);
+                    distance += (ed - st).magnitude;
+                }
+            }
+
+            Handles.Label(platform.transform.position + Vector3.up * 0.5f, distance.ToString());
+        }
+
+
         void MovePreview()
         {
             //compute pos from 0-1 preview pos
@@ -220,6 +262,9 @@ namespace Platformer.Editor
 
             Vector3 localPos = Vector3.Lerp(m_MovingPlatform.localNodes[starting], m_MovingPlatform.localNodes[starting + 1], localRatio);
 
+            if(MovingPlatformPreview.preview == null)
+               MovingPlatformPreview.CreateNewPreview(m_MovingPlatform);
+                
             MovingPlatformPreview.preview.transform.position = m_MovingPlatform.transform.TransformPoint(localPos);
 
             SceneView.RepaintAll();

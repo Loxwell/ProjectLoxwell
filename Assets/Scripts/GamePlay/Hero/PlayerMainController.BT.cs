@@ -6,10 +6,13 @@ using EInputState = LSG.EInputState;
 
 using static HeroBlackboard;
 using static LSG.LWBehaviorTree.ActionNode;
+#pragma warning disable
 using static BT.LSG.PlayerMainController;
 
 namespace BT.LSG
 {
+#pragma warning disable
+    [System.Obsolete("사용안함")]
     public partial class PlayerMainController
     {
         internal class HeroBT

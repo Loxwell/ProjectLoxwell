@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Platformer.Data.Utils
+namespace Platformer.GenericData.Utils
 {
     /// <summary>
     /// Classes that implement this interface should have an serialized instance of DataSettings to register through.

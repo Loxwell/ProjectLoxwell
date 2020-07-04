@@ -1,6 +1,6 @@
 ﻿
 using UnityEngine;
-
+using System;
 using Platformer.Model;
 using ScheduleSystem.Core;
 using Platformer.GamePlay;
@@ -10,6 +10,7 @@ using static LSG.Utilities.BitField;
 
 namespace Platformer.Mechanics
 {
+    [Obsolete("사용안함")]
     public class PlayerMovementController : KinematicObject
     {
         const string INPUT_HORIZONTAL = "Horizontal";

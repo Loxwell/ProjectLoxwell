@@ -7,6 +7,7 @@ using PlayerMainController = LSG.PlayerMainController;
 
 namespace LSG.GameControllers
 {
+#pragma warning disable
     public class GameManager : GameController
     {
         public static PlayerMainController hero;

@@ -34,7 +34,7 @@ public class HeroBlackboard : ScriptableObject, IBlackboard
     public AnimationClip aniClipJumpingAttack;
     [SerializeField]
     public AnimationClip aniClipCrouchingAttack;
-
+#pragma warning disable
     [NonSerialized]
     public PlayerMainController controller;
     [NonSerialized]

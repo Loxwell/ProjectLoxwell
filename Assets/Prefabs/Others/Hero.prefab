@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 6891774131777817143}
   - component: {fileID: 6891774133251862101}
   - component: {fileID: 2062111270}
-  - component: {fileID: 2062111269}
   - component: {fileID: 4871387935929884327}
   - component: {fileID: 3742431829290628503}
   - component: {fileID: 902313732947938517}
+  - component: {fileID: 6891774133251862100}
+  - component: {fileID: 1526584447467421151}
   m_Layer: 31
   m_Name: Hero
   m_TagString: Untagged
@@ -145,17 +146,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.57}
   m_Size: {x: 0.85, y: 1.15}
   m_Direction: 0
---- !u!210 &2062111269
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6891774131777817142}
-  m_Enabled: 1
-  m_SortingLayerID: -1632063907
-  m_SortingLayer: 4
-  m_SortingOrder: 0
 --- !u!114 &4871387935929884327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6891774131777817143}
   cameraFollowTarget: {fileID: 0}
+  meleeDamager: {fileID: 6891774133251862100}
   inputManager: {fileID: 902313732947938517}
   maxSpeed: 5
   groundAcceleration: 100
@@ -193,7 +184,7 @@ MonoBehaviour:
   airborneAccelProportion: 1
   airborneDecelProportion: 0.5
   gravity: 32
-  gravityReduction: 0.01
+  gravityReduction: 1
   jumpSpeed: 30
   jumpAbortSpeedReduction: 100
   hurtJumpAngle: 45
@@ -220,3 +211,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52edfff3172643f0906edbade9a6555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6891774133251862100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891774131777817142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5878cd62e4024741816eec4fec02ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  offset: {x: 0.85, y: 0.5}
+  size: {x: 0.9, y: 0.7}
+  offsetBasedOnSpriteFacing: 1
+  spriteRenderer: {fileID: 6891774131777817143}
+  canHitTriggers: 0
+  forceRespawn: 0
+  ignoreInvincibility: 0
+  disableDamageAfterHit: 1
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 3072
+  OnDamageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNonDamageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1526584447467421151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891774131777817142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d860896a4fe6214d9735a251d25d9d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 5
+  invulnerableAfterDamage: 1
+  invulnerabilityDuration: 3
+  disableOnDeath: 0
+  centreOffset: {x: 0, y: 1}
+  OnHealthSet:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGainHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  dataSettings:
+    dataTag: bc98b730-1b2a-4432-be98-efb7181881ad
+    persistenceType: 3

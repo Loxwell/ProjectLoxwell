@@ -11,6 +11,7 @@ using static LSG.Utilities.BitField;
 
 namespace LSG
 {
+    [System.Obsolete("사용안함")]
     public partial class PlayerMainController : MonoBehaviour, IBlackboard,
         IEquatable<int>, IEquatable<PlayerMainController>, IEquatable<string>
     {

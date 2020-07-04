@@ -17,8 +17,6 @@ namespace GamePlay.StateMachine
 
         public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //)
-            //    animator.Play(m_HashAirborneMeleeAttackState, layerIndex, stateInfo.normalizedTime);
             float deltaTime = Time.deltaTime;
             m_MonoBehaviour.UpdateFacing();
             m_MonoBehaviour.UpdateJump(deltaTime);

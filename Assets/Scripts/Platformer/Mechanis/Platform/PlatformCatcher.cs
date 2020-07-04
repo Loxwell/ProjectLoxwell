@@ -6,8 +6,6 @@ namespace Platformer.Mechanics
 {
     public class PlatformCatcher : MonoBehaviour
     {
-        
-
         public Rigidbody2D platformRigidbody;
         public ContactFilter2D contactFilter;
 
@@ -161,7 +159,6 @@ namespace Platformer.Mechanics
 
             return false;
         }
-
 
         void CheckRigidbodyContacts(Rigidbody2D rb)
         {
