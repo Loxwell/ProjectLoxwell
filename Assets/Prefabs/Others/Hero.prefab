@@ -76,7 +76,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073741824
   groundedRaycastDistance: 0.1
+  m_usingRigidbody: 0
 --- !u!114 &3742431829290628503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +178,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6891774131777817143}
   cameraFollowTarget: {fileID: 0}
   meleeDamager: {fileID: 6891774133251862100}
+  damageable: {fileID: 0}
   inputManager: {fileID: 902313732947938517}
   maxSpeed: 5
   groundAcceleration: 100
@@ -253,20 +255,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d860896a4fe6214d9735a251d25d9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 5
+  startingHealth: 1000
   invulnerableAfterDamage: 1
   invulnerabilityDuration: 3
-  disableOnDeath: 0
   centreOffset: {x: 0, y: 1}
   OnHealthSet:
     m_PersistentCalls:
       m_Calls: []
   OnTakeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3742431829290628503}
+        m_MethodName: OnHurt
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   OnDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3742431829290628503}
+        m_MethodName: OnDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGainHealth:
     m_PersistentCalls:
       m_Calls: []

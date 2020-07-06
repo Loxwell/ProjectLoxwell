@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using Damager =  Platformer.Player.Module.Damager;
+using Damager =  Platformer.Module.Damager;
 namespace Platformer.Editor
 {
     [CustomEditor(typeof(Damager))]

@@ -4,7 +4,7 @@ using LSG.LWBehaviorTree;
 using EState = LSG.PlayerMainController.EState;
 using EInputState = LSG.EInputState;
 
-using static HeroBlackboard;
+using static PlayerBlackboard;
 using static LSG.LWBehaviorTree.ActionNode;
 using System.Diagnostics;
 
@@ -16,10 +16,10 @@ namespace BT.LSG
 
         static EBTState ConditionPlayingIdleState(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
 
-            if(heroBB.controller.Equals(heroBB.aniStateIdle))
-                return EBTState.SUCCESS;
+            //if(heroBB.controller.Equals(heroBB.aniStateIdle))
+            //    return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
@@ -27,8 +27,8 @@ namespace BT.LSG
         {
             public override void OnStart(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.controller.ControlEnabled = false;
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //heroBB.controller.ControlEnabled = false;
             }
 
             public override EBTState Update(IBlackboard bb)
@@ -41,22 +41,22 @@ namespace BT.LSG
         {
             public override void OnStart(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.controller.Attack(heroBB.aniClipStandAttack);
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //heroBB.controller.Attack(heroBB.aniClipStandAttack);
                 UnityEngine.Debug.LogWarning("ActionStandAttack()");
             }
 
             public override EBTState Update(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                if (heroBB.controller.Equals(heroBB.aniStateAttack) || heroBB.controller.Equals(heroBB.aniStateIdle))
-                {
-                    if (heroBB.controller.Equals(heroBB.aniStateAttack) &&
-                        heroBB.controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9)
-                        return EBTState.SUCCESS;
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //if (heroBB.controller.Equals(heroBB.aniStateAttack) || heroBB.controller.Equals(heroBB.aniStateIdle))
+                //{
+                //    if (heroBB.controller.Equals(heroBB.aniStateAttack) &&
+                //        heroBB.controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9)
+                //        return EBTState.SUCCESS;
 
-                    return EBTState.RUNNING;
-                }
+                //    return EBTState.RUNNING;
+                //}
 
                 return EBTState.FAILED;
             }
@@ -66,16 +66,16 @@ namespace BT.LSG
         {
             public override void OnStart(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.controller.CurrentState = EState.IDLE;
-                heroBB.controller.ControlEnabled = true;
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //heroBB.controller.CurrentState = EState.IDLE;
+                //heroBB.controller.ControlEnabled = true;
                 UnityEngine.Debug.Log("ActionHeroIdle()");
             }
             public override EBTState Update(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                if (heroBB.controller.Equals(heroBB.aniStateIdle))
-                    return EBTState.SUCCESS;
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //if (heroBB.controller.Equals(heroBB.aniStateIdle))
+                //    return EBTState.SUCCESS;
                 return EBTState.RUNNING;
             }
         }

@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace LSG.LWBehaviorTree
 {
+    //[System.Serializable]
     public interface IBlackboard
     { }
+
+    public interface IBlackboard <T> : IBlackboard
+    {
+        T GetInstance();
+    }
 
     public enum EBTState
     {

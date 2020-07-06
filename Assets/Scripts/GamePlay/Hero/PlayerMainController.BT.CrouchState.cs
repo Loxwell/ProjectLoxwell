@@ -4,7 +4,7 @@ using LSG.LWBehaviorTree;
 using EState = LSG.PlayerMainController.EState;
 using EInputState = LSG.EInputState;
 
-using static HeroBlackboard;
+using static PlayerBlackboard;
 using static LSG.LWBehaviorTree.ActionNode;
 using System.Diagnostics;
 
@@ -17,22 +17,22 @@ namespace BT.LSG
         {
             public override void OnStart(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.controller.Attack(heroBB.aniClipCrouchingAttack);
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //heroBB.controller.Attack(heroBB.aniClipCrouchingAttack);
                 UnityEngine.Debug.LogWarning("ActionJumpAttack()");
             }
 
             public override EBTState Update(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                if (heroBB.controller.Equals(heroBB.aniStateAttack))
-                {
-                    if (heroBB.controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
-                    {
-                        heroBB.controller.CurrentState = EState.CROUCH;
-                        return EBTState.SUCCESS;
-                    }
-                }
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //if (heroBB.controller.Equals(heroBB.aniStateAttack))
+                //{
+                //    if (heroBB.controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+                //    {
+                //        heroBB.controller.CurrentState = EState.CROUCH;
+                //        return EBTState.SUCCESS;
+                //    }
+                //}
 
                 return EBTState.RUNNING;
             }
@@ -42,25 +42,25 @@ namespace BT.LSG
         {
             public override void OnStart(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
-                heroBB.controller.CurrentState = EState.CROUCH;
-                heroBB.controller.ControlEnabled = false;
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+                //heroBB.controller.CurrentState = EState.CROUCH;
+                //heroBB.controller.ControlEnabled = false;
                 UnityEngine.Debug.LogWarning("앉음()");
             }
 
             public override EBTState Update(IBlackboard bb)
             {
-                HeroBlackboard heroBB = (HeroBlackboard)bb;
+                PlayerBlackboard heroBB = (PlayerBlackboard)bb;
 
-                if (heroBB.controller.Equals(heroBB.aniStateCrouchingBegins))
-                {
-                    return EBTState.RUNNING;
-                }
+                //if (heroBB.controller.Equals(heroBB.aniStateCrouchingBegins))
+                //{
+                //    return EBTState.RUNNING;
+                //}
 
-                if (heroBB.controller.Equals(heroBB.aniStateCrouching))
-                {
-                    return EBTState.SUCCESS;
-                }
+                //if (heroBB.controller.Equals(heroBB.aniStateCrouching))
+                //{
+                //    return EBTState.SUCCESS;
+                //}
                 return EBTState.FAILED;
             }
         }
@@ -69,17 +69,17 @@ namespace BT.LSG
         // 상태 이상은 다음 시퀀서에서 처리 할 것
         static EBTState ConditionAxisDown(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (IsCurFrameInputState(heroBB, EInputState.DOWN_KEY))
-                return EBTState.SUCCESS;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+            //if (IsCurFrameInputState(heroBB, EInputState.DOWN_KEY))
+            //    return EBTState.SUCCESS;
 
-            // 일어서는 중 에 이동 처리를 막기 위한 조건문
-            if ((heroBB.controller.Equals(heroBB.aniStateStandUp) || heroBB.controller.Equals(heroBB.aniStateCrouching)))
-            {
-                heroBB.controller.CurrentState = EState.IDLE;
-                return EBTState.RUNNING;
-            }
-            heroBB.controller.ControlEnabled = true;
+            //// 일어서는 중 에 이동 처리를 막기 위한 조건문
+            //if ((heroBB.controller.Equals(heroBB.aniStateStandUp) || heroBB.controller.Equals(heroBB.aniStateCrouching)))
+            //{
+            //    heroBB.controller.CurrentState = EState.IDLE;
+            //    return EBTState.RUNNING;
+            //}
+            //heroBB.controller.ControlEnabled = true;
 
             return EBTState.FAILED;
         }

@@ -71,7 +71,7 @@ namespace LSG
 
 #pragma warning disable
         [SerializeField]
-        HeroBlackboard heroBB;
+        PlayerBlackboard heroBB;
 
         private MovementController m_controller;
         private Animator m_animator;
@@ -95,7 +95,7 @@ namespace LSG
             m_controller.OnPrepareToJump += OnJumping;
             m_controller.OnFlight += OnFall;
 
-            heroBB.controller = this;
+            //heroBB.controller = this;
             m_bt = new HeroBT(heroBB);
         }
 
@@ -115,8 +115,8 @@ namespace LSG
         private void Update()
         {
             Animator.SetFloat(m_hashSpeed, Mathf.Abs(m_controller.Velocity.x));
-            heroBB.isGrounded = m_controller.IsGrounded;
-            heroBB.isControled = m_controller.ControlEnabled;
+            //heroBB.isGrounded = m_controller.IsGrounded;
+            //heroBB.isControled = m_controller.ControlEnabled;
             m_bt.Update();
         }
 
@@ -153,7 +153,7 @@ namespace LSG
 
         public void Initialize()
         {
-            heroBB.isGrounded = false;
+            //heroBB.isGrounded = false;
             m_state = EState.ERROR;
             m_cachedAniState = (int)EState.ERROR;
         }

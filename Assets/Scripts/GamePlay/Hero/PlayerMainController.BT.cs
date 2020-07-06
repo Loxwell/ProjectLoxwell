@@ -4,7 +4,7 @@ using LSG.LWBehaviorTree;
 using EState = LSG.PlayerMainController.EState;
 using EInputState = LSG.EInputState;
 
-using static HeroBlackboard;
+using static PlayerBlackboard;
 using static LSG.LWBehaviorTree.ActionNode;
 #pragma warning disable
 using static BT.LSG.PlayerMainController;
@@ -18,8 +18,8 @@ namespace BT.LSG
         internal class HeroBT
         {
             RepeatNode root;
-            HeroBlackboard m_bb;
-            internal HeroBT(HeroBlackboard bb)
+            PlayerBlackboard m_bb;
+            internal HeroBT(PlayerBlackboard bb)
             {
                 m_bb = bb;
                 root = new RepeatNode();
@@ -92,68 +92,68 @@ namespace BT.LSG
     
         static EBTState ConditionIsGrounded(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
 
-            if (heroBB.isGrounded)
-            {
-                return EBTState.SUCCESS;
-            }
+            //if (heroBB.isGrounded)
+            //{
+            //    return EBTState.SUCCESS;
+            //}
 
             return EBTState.FAILED;
         }
 
         static EBTState ConditionActionButtonDown(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (IsCurFrameInputState(heroBB, EInputState.ACTION_1) && !IsPreFrameInputState(heroBB, EInputState.ACTION_1))
-            {
-                return EBTState.SUCCESS;
-            }
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+            //if (IsCurFrameInputState(heroBB, EInputState.ACTION_1) && !IsPreFrameInputState(heroBB, EInputState.ACTION_1))
+            //{
+            //    return EBTState.SUCCESS;
+            //}
 
             return EBTState.FAILED;
         }
 
         static EBTState ConditionActionButton(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
 
-            if (IsPreFrameInputState(heroBB, EInputState.ACTION_1))
-                return EBTState.SUCCESS;
+            //if (IsPreFrameInputState(heroBB, EInputState.ACTION_1))
+            //    return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
         static EBTState ConditionMovingState(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (IsCurFrameInputState(heroBB, EInputState.RIGHT_KEY) ||
-                IsCurFrameInputState(heroBB, EInputState.LEFT_KEY))
-                return EBTState.SUCCESS;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+            //if (IsCurFrameInputState(heroBB, EInputState.RIGHT_KEY) ||
+            //    IsCurFrameInputState(heroBB, EInputState.LEFT_KEY))
+            //    return EBTState.SUCCESS;
 
             return EBTState.FAILED;
         }
 
         static EBTState ConditionJumpButtonDown(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (IsCurFrameInputState(heroBB, EInputState.JUMP) && !IsPreFrameInputState(heroBB, EInputState.JUMP))
-                return EBTState.SUCCESS;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+            //if (IsCurFrameInputState(heroBB, EInputState.JUMP) && !IsPreFrameInputState(heroBB, EInputState.JUMP))
+            //    return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
         static EBTState ConditionJumpButton(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
-            if (IsCurFrameInputState(heroBB, EInputState.JUMP))
-                return EBTState.SUCCESS;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
+            //if (IsCurFrameInputState(heroBB, EInputState.JUMP))
+            //    return EBTState.SUCCESS;
             return EBTState.FAILED;
         }
 
         static EBTState ConditionHeroControlEnabled(IBlackboard bb)
         {
-            HeroBlackboard heroBB = (HeroBlackboard)bb;
+            PlayerBlackboard heroBB = (PlayerBlackboard)bb;
 
-            if (heroBB.isControled)
-                return EBTState.SUCCESS;
+            //if (heroBB.isControled)
+            //    return EBTState.SUCCESS;
 
             return EBTState.FAILED;
         }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Animations;
 
-namespace Mechanics.AI.StateMachine
+namespace Platformer.Mechanics.AI.StateMachine
 {
     public class SceneLinkedSMB<TMonoBehaviour> : SealedSMB
         where TMonoBehaviour : MonoBehaviour
