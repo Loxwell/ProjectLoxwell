@@ -72,6 +72,14 @@ namespace Platformer.Mechanics.AI
 
         public float flickeringDuration = 0.1f;
 
+        #region EventTrigger
+        public System.Action onHurt;
+        public System.Action onBeginAttack;
+        public System.Action onAttack;
+        public System.Action onEndAttack;
+
+        #endregion
+
         #region CAMERA
         [SerializeField]
         public float cameraHorizontalFacingOffset;
@@ -163,7 +171,7 @@ namespace Platformer.Mechanics.AI
 
         private void FixedUpdate()
         {
-            m_CharacterController.Move(m_MoveVector * Time.fixedDeltaTime);
+            m_CharacterController.Move(m_MoveVector * Time.deltaTime);
             m_animator.Animator.SetFloat(HASH_PARAM_MOVING_SPEED, Mathf.Abs( m_MoveVector.x) );
             m_animator.Animator.SetFloat(HASH_PARAM_JUMP_VELOCITY, m_MoveVector.y);
         }
@@ -210,19 +218,24 @@ namespace Platformer.Mechanics.AI
             UpdateFacing(damageable.GetDamageDirection().x > 0f);
             damageable.EnableInvulnerability();
 
-            //m_Animator.SetTrigger(m_HashHurtPara);
+
 
             //we only force respawn if helath > 0, otherwise both forceRespawn & Death trigger are set in the animator, messing with each other.
-            //if (damageable.CurrentHealth > 0 && damager.forceRespawn)
-            //    m_Animator.SetTrigger(m_HashForcedRespawnPara);
-
+            if (damageable.CurrentHealth > 0 && damager.forceRespawn)
+            {
+                // Respawn
+                // m_Animator.SetTrigger(m_HashForcedRespawnPara);
+            }
+            
+            //m_Animator.SetTrigger(m_HashHurtPara);
             //m_Animator.SetBool(m_HashGroundedPara, false);
             //hurtAudioPlayer.PlayRandomSound();
+            onHurt?.Invoke();
+
 
             //if the health is < 0, mean die callback will take care of respawn
             if (damager.forceRespawn && damageable.CurrentHealth > 0)
             {
-
                 //StartCoroutine(DieRespawnCoroutine(false, true));
             }
         }

@@ -71,7 +71,6 @@ namespace Platformer.Core
             IsGrounded = true;
         }
 
-
         void FixedUpdate()
         {
             float deltaTime = Time.deltaTime;

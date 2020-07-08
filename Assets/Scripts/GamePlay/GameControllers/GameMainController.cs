@@ -13,5 +13,14 @@ public class GameMainController : MonoBehaviour
     private void Awake()
     {
         m_playerBlackboard.player = m_player.transform;
+        //m_player.gameObject.SetActive(false);
     }
+
+    //private IEnumerator Start()
+    //{
+
+    //    AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("CastleScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+    //    yield return async;
+    //    m_player.gameObject.SetActive(true);
+    //}
 }

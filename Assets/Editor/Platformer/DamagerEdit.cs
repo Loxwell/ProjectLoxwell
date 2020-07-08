@@ -4,7 +4,7 @@ using UnityEngine;
 using Damager =  Platformer.Module.Damager;
 namespace Platformer.Editor
 {
-    [CustomEditor(typeof(Damager))]
+    [CustomEditor(typeof(Damager), true), CanEditMultipleObjects]
     public class DamagerEditor : UnityEditor.Editor
     {
         static BoxBoundsHandle s_BoxBoundsHandle = new BoxBoundsHandle();

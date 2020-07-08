@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - Player
+  - 
   - PlayerProjectile
   - GroundType
   - FlyerType
@@ -35,14 +35,17 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Platform
+  - Player
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Background
     uniqueID: 2091598115
+    locked: 0
+  - name: Structure
+    uniqueID: 626026533
     locked: 0
   - name: Object
     uniqueID: 2085467627
