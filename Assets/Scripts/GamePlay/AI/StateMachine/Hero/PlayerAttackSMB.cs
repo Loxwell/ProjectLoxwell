@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Mechanics.AI.StateMachine;
-using Platformer.Mechanics.AI;
+using Platformer.Mechanics;
 
 namespace InGame.StateMachine.Player
 {
@@ -12,7 +12,6 @@ namespace InGame.StateMachine.Player
 
         public override void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            m_MonoBehaviour.EnableMeleeAttack();
             m_MonoBehaviour.SetHorizontalMovement(0);
         }
 

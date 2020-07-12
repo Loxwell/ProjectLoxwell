@@ -9,7 +9,7 @@ namespace ScheduleSystem.Core
         static HeapQueue<Simulation.Event> g_eventsQueue = new HeapQueue<Simulation.Event>();
         static Dictionary<System.Type, Stack<Simulation.Event>> g_eventPools = new Dictionary<System.Type, Stack<Simulation.Event>>();
 
-        public static T New<T>() where T : Simulation.Event, new()
+        public static T New<T>(params object[] param) where T : Simulation.Event, new()
         {
             Stack<Simulation.Event> pool;
             if (!g_eventPools.TryGetValue(typeof(T), out pool))
@@ -19,10 +19,13 @@ namespace ScheduleSystem.Core
                 g_eventPools[typeof(T)] = pool;
             }
 
+            T t;
             if (pool.Count > 0)
-                return (T)pool.Pop();
-
-            return new T();
+                t = (T)pool.Pop();
+            else
+                t = new T();
+            t.Initialize(param);
+            return t;
         }
 
         public static void Clear()
@@ -42,11 +45,15 @@ namespace ScheduleSystem.Core
         /// <returns>The event.</returns>
         /// <param name="tick">Tick.</param>
         /// <typeparam name="T">The event type parameter.</typeparam>
-        public static T Schedule<T>(float tick = 0) where T : Simulation.Event, new()
+        public static T Schedule<T>(float tick = 0, params object[] param) where T : Simulation.Event, new()
         {
-            T ev = New<T>();
-            ev.tick = Time.time + tick;
-            g_eventsQueue.Push(ev);
+            T ev = New<T>(param);
+
+            if(ev)
+            {
+                ev.tick = Time.time + tick;
+                g_eventsQueue.Push(ev);
+            }
 
             return ev;
         }

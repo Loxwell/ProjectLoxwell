@@ -31,8 +31,9 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 5f4701724e9847545842ec6b8d936f3f, type: 3}
-    - {fileID: 102900000, guid: 5a6e2005f6743454cb8ce10f728dd69e, type: 3}
-    totalSpriteSurfaceArea: 2225944
+    - {fileID: 2800000, guid: 79c5fd990fe56eb48ae7800a1196d42c, type: 3}
+    - {fileID: 2800000, guid: c3f0dc81a372cb74b94aa51eb40b888e, type: 3}
+    totalSpriteSurfaceArea: 102899
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -60,23 +61,11 @@ SpriteAtlas:
   - {fileID: 397097929416413675, guid: 5f4701724e9847545842ec6b8d936f3f, type: 3}
   - {fileID: -1543217010333661713, guid: 5f4701724e9847545842ec6b8d936f3f, type: 3}
   - {fileID: -5028440906225434919, guid: 5f4701724e9847545842ec6b8d936f3f, type: 3}
-  - {fileID: 21300000, guid: 1cd60e9478ae2b245a5ecbc60be5ecee, type: 3}
-  - {fileID: 21300000, guid: 585ef4f7a194de44caf1b1f97105621b, type: 3}
   - {fileID: -1942182241733349406, guid: 79c5fd990fe56eb48ae7800a1196d42c, type: 3}
   - {fileID: -1777966378339041917, guid: 79c5fd990fe56eb48ae7800a1196d42c, type: 3}
   - {fileID: -7186964210032965423, guid: 79c5fd990fe56eb48ae7800a1196d42c, type: 3}
   - {fileID: 4308193963110470378, guid: 79c5fd990fe56eb48ae7800a1196d42c, type: 3}
   - {fileID: 627033734086394543, guid: 79c5fd990fe56eb48ae7800a1196d42c, type: 3}
-  - {fileID: 21300000, guid: d3204f9943d019b4a90879c6e2fe34a3, type: 3}
-  - {fileID: 247566083284196043, guid: 5bcfb10b9f9115043970d2d750d321dc, type: 3}
-  - {fileID: 8135197567728275041, guid: 5bcfb10b9f9115043970d2d750d321dc, type: 3}
-  - {fileID: 8194014454749447231, guid: 5bcfb10b9f9115043970d2d750d321dc, type: 3}
-  - {fileID: 479896802230843966, guid: 5bcfb10b9f9115043970d2d750d321dc, type: 3}
-  - {fileID: -7969665090295155263, guid: 5bcfb10b9f9115043970d2d750d321dc, type: 3}
-  - {fileID: 21300000, guid: 08604c0b0f939064b8ae0adbd2496987, type: 3}
-  - {fileID: 21300000, guid: 8003308ba0b8f0f43b3d61abe82627ff, type: 3}
-  - {fileID: 21300000, guid: 08fb1bdb4b902e1469c4b1e577a37a90, type: 3}
-  - {fileID: 3461294877425244600, guid: 6c443b6f7529ee548bd2bfe0568d371c, type: 3}
   m_PackedSpriteNamesToIndex:
   - heart_animated_2_1
   - heart_animated_2_0
@@ -102,22 +91,10 @@ SpriteAtlas:
   - SP_CastleTileset_13
   - SP_CastleTileset_12
   - SP_CastleTileset_15
-  - border
-  - heart
   - SP_CastleBackground_4
   - SP_CastleBackground_0
   - SP_CastleBackground_1
   - SP_CastleBackground_2
   - SP_CastleBackground_3
-  - health_bar
-  - heart_animated_1_4
-  - heart_animated_1_2
-  - heart_animated_1_3
-  - heart_animated_1_0
-  - heart_animated_1_1
-  - background
-  - health_bar_decoration
-  - Mist
-  - SP_CasleColumns_0
   m_Tag: Atlas_Tiles
   m_IsVariant: 0

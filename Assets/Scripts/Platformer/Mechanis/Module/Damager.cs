@@ -17,8 +17,8 @@ namespace Platformer.Module
         //call that from inside the onDamageableHIt or OnNonDamageableHit to get what was hit.
         public Collider2D LastHit { get { return m_LastHit; } }
 
-        public float damage = 1;
-        /// <summary>
+        public int damage = 1;
+        /// <summary>   
         /// Position으로 부터 Raycast 시작점
         /// </summary>
         public Vector2 offset = new Vector2(1.5f, 1f);
@@ -78,10 +78,10 @@ namespace Platformer.Module
         {
             if (!m_CanDamage)
                 return;
-            Attack();
+            UpdateCollision();
         }
 
-        public void Attack()
+        public void UpdateCollision()
         {
             // 공격을 가할 물체의 크기
             Vector2 bodyScale = m_DamagerTransform.lossyScale;

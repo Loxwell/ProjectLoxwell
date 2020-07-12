@@ -29,6 +29,7 @@ namespace LSG
 
         uint m_curInputState;
         uint m_preInputState;
+        bool m_enable;
 
         private void Awake()
         {
@@ -42,12 +43,16 @@ namespace LSG
 
         private void OnEnable()
         {
+            m_enable = true;
             Initialize();
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
+            if (!m_enable)
+                return;
+
             m_preInputState = m_curInputState;
 
             if (Input.GetButton("Jump"))
@@ -85,6 +90,17 @@ namespace LSG
         void Initialize()
         {
             m_preInputState = m_curInputState = (int)EInputState.NONE;
+        }
+
+        public void Enable()
+        {
+            m_enable = true;
+        }
+
+        public void Disable()
+        {
+            Initialize();
+            m_enable = false;
         }
 
         #region DOWN

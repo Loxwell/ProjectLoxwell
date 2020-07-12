@@ -6,13 +6,12 @@ using UnityEngine;
 using TileBase = UnityEngine.Tilemaps.TileBase;
 using AnimatorHelper = LSG.Utilities.AnimatorHelper;
 using PhysicsHelper = Platformer.Mechanics.Helper.PhysicsHelper;
-using FallthroughReseter = Platformer.Mechanics.FallthroughReseter;
 using Damager = Platformer.Module.Damager;
 using Damageable = Platformer.Module.Damageable;
 using MovementController = Platformer.Core.MovementController;
 using Platformer.Mechanics.AI.StateMachine;
 
-namespace Platformer.Mechanics.AI
+namespace Platformer.Mechanics
 {
     [RequireComponent(typeof(MovementController))]
     [RequireComponent(typeof(Animator))]
@@ -31,7 +30,7 @@ namespace Platformer.Mechanics.AI
         /// </summary>
         protected const float GROUNDED_STICKING_VELOCITY_MULTIPLIER = 3f;
 
-        public static PlayerCharacter PlayerInstance { get { return s_PlayerInstance; } }
+        public static PlayerCharacter PlayerInstance => s_PlayerInstance;
         protected static PlayerCharacter s_PlayerInstance;
 
         [SerializeField]
@@ -73,11 +72,12 @@ namespace Platformer.Mechanics.AI
         public float flickeringDuration = 0.1f;
 
         #region EventTrigger
-        public System.Action onHurt;
-        public System.Action onBeginAttack;
-        public System.Action onAttack;
-        public System.Action onEndAttack;
-
+        public event System.Action onHurt;
+        public event System.Action onBeginAttack;
+        public event System.Action onAttack;
+        public event System.Action onEndAttack;
+        public event System.Action onRespawn;
+        public event System.Action onGrounded;
         #endregion
 
         #region CAMERA
@@ -111,7 +111,7 @@ namespace Platformer.Mechanics.AI
         protected Collider2D m_collider;
         protected Transform m_Transform;
         protected TileBase m_CurrentSurface;
-
+        protected Checkpoint m_lastCheckPoint;
         /// <summary>
         /// /used in non alloc version of physic function
         /// </summary>
@@ -126,6 +126,8 @@ namespace Platformer.Mechanics.AI
 
         protected bool m_StartingFacingLeft = false;
         protected bool m_InPause = false;
+
+        private Coroutine m_curProcess;
 
         void Awake()
         {
@@ -144,6 +146,7 @@ namespace Platformer.Mechanics.AI
         {
             m_MoveVector = Vector2.up * GROUNDED_STICKING_VELOCITY_MULTIPLIER * -1;
             m_animator.Animator.SetBool(HASH_PARAM_GROUNDED, true);
+            DisableMeleeAttack();
         }
 
         void Start()
@@ -209,6 +212,32 @@ namespace Platformer.Mechanics.AI
             m_CharacterController.Teleport(colliderBottom);
         }
 
+        public void Teleport()
+        {
+            if (m_lastCheckPoint != null)
+            {
+                m_CharacterController.Teleport(m_lastCheckPoint.Position);
+            }
+            else
+            {
+                m_CharacterController.Teleport(m_StartingPosition);
+            }
+            m_lastCheckPoint = null;
+        }
+
+        public void StartFlickering()
+        {
+            StopFlickering();
+            m_curProcess = StartCoroutine(FlickerProcess());
+        }
+
+        public void StopFlickering()
+        {
+            if (m_curProcess != null)
+                StopCoroutine(m_curProcess);
+            spriteRenderer.enabled = true;
+        }
+
         public void OnHurt(Damager damager, Damageable damageable)
         {
             //if the player don't have control, we shouldn't be able to be hurt as this wouldn't be fair
@@ -218,24 +247,18 @@ namespace Platformer.Mechanics.AI
             UpdateFacing(damageable.GetDamageDirection().x > 0f);
             damageable.EnableInvulnerability();
 
-
-
-            //we only force respawn if helath > 0, otherwise both forceRespawn & Death trigger are set in the animator, messing with each other.
-            if (damageable.CurrentHealth > 0 && damager.forceRespawn)
-            {
-                // Respawn
-                // m_Animator.SetTrigger(m_HashForcedRespawnPara);
-            }
-            
             //m_Animator.SetTrigger(m_HashHurtPara);
             //m_Animator.SetBool(m_HashGroundedPara, false);
             //hurtAudioPlayer.PlayRandomSound();
             onHurt?.Invoke();
+            StartFlickering();
 
-
-            //if the health is < 0, mean die callback will take care of respawn
-            if (damager.forceRespawn && damageable.CurrentHealth > 0)
+            // we only force respawn if helath > 0, otherwise both forceRespawn & Death trigger are set in the animator, 
+            // messing with each other.
+            // if the health is < 0, mean die callback will take care of respawn
+            if (damageable.CurrentHealth > 0 && damager.forceRespawn)
             {
+                onRespawn?.Invoke();
                 //StartCoroutine(DieRespawnCoroutine(false, true));
             }
         }
@@ -253,7 +276,7 @@ namespace Platformer.Mechanics.AI
         /// <returns></returns>
         public bool IsFalling() => m_MoveVector.y< 0f && !m_animator.Animator.GetBool(HASH_PARAM_GROUNDED);
 
-        public float GetFacing() => spriteRenderer.flipX != spriteOriginallyFacesLeft? -1f : 1f;
+        public float GetFacing() => (spriteRenderer.flipX != spriteOriginallyFacesLeft)? -1f : 1f;
 
         public void UpdateFacing()
         {
@@ -290,13 +313,27 @@ namespace Platformer.Mechanics.AI
             return inputManager.keyAction1.IsKeyDown;
         }
 
-        public void Attack(AnimationClip attackClip)
+        public void BeginsAttacking()
+        {
+            onBeginAttack?.Invoke();
+        }
+
+        public void UpdateAttacking(AnimationClip attackClip)
         {
             // Ani_HeroAttack - Animator에 등록 되어 있는 애니메이션 클립명
             // 클립 이름을 Key로 사용
             m_animator.ChangeClip("Ani_HeroAttack", attackClip);
             m_animator.Animator.SetTrigger(HASH_PARAM_ATTACK);
         }
+
+        /// <summary>
+        /// Animation Event
+        /// </summary>
+        public void Attack()
+        {
+            EnableMeleeAttack();
+            onAttack?.Invoke();
+        }    
 
         public void EnableMeleeAttack()
         {
@@ -307,6 +344,7 @@ namespace Platformer.Mechanics.AI
         public void DisableMeleeAttack()
         {
             meleeDamager.DisableDamage();
+            onEndAttack?.Invoke();
         }
         #endregion
 
@@ -334,8 +372,7 @@ namespace Platformer.Mechanics.AI
                 if (!m_animator.Animator.GetBool(HASH_PARAM_GROUNDED) && m_MoveVector.y < -1.0f)
                 {
                     // only play the landing sound if falling "fast" enough (avoid small bump playing the landing sound)
-                    // 착지음
-                    //landingAudioPlayer.PlayRandomSound(m_CurrentSurface);
+                    onGrounded?.Invoke();
                 }
             }
             else
@@ -390,6 +427,11 @@ namespace Platformer.Mechanics.AI
             UpdateGravity(deltaTime); //m_MoveVector.y -= gravity * deltaTime;
         }
 
+        public void SetChekpoint(Checkpoint checkpoint)
+        {
+            m_lastCheckPoint = checkpoint;
+        }
+
         public bool CheckForJumpInput() => inputManager.keyJump.IsKeyDown;
 
         public bool CheckForFallInput() => inputManager.VerticalAxis < -float.Epsilon && CheckForJumpInput();
@@ -433,13 +475,28 @@ namespace Platformer.Mechanics.AI
             return fallthroughColliderCount == colliderCount;
         }
 
+        IEnumerator FlickerProcess()
+        {
+            float timer = 0f;
+
+            WaitForSeconds ws = new WaitForSeconds(flickeringDuration);
+
+            while (timer < damageable.invulnerabilityDuration)
+            {
+                spriteRenderer.enabled = !spriteRenderer.enabled;
+                yield return ws;
+                timer += flickeringDuration;
+            }
+
+            spriteRenderer.enabled = true;
+        }
+
         IEnumerator FallThroughtInvincibility()
         {
             damageable.EnableInvulnerability(true);
             yield return new WaitForSeconds(0.5f);
             damageable.DisableInvulnerability();
         }
-
 
         void UpdateGravity(float deltaTime)
         {

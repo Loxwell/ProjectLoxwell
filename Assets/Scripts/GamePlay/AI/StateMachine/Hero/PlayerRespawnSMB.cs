@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Platformer.Mechanics.AI;
+using Platformer.Mechanics;
 using Platformer.Mechanics.AI.StateMachine;
 
 namespace InGame.StateMachine.Player

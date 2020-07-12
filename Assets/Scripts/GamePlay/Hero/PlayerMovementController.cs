@@ -36,14 +36,14 @@ namespace Platformer.Mechanics
                             OnGrounded?.Invoke();
                             break;
                         case EActionState.IN_FLIGHT:
-                            Schedule<PlayerJumped>().player = this;
+                            Schedule<PlayerJumped>(0).player = this;
                             OnFlight?.Invoke();
                             break;
                         case EActionState.JUMPING:
                             OnJumping?.Invoke();
                             break;
                         case EActionState.LANDED:
-                            Schedule<PlayerLaneded>().player = this;
+                            Schedule<PlayerLaneded>(0).player = this;
                             OnLanded?.Invoke();
                             break;
                         case EActionState.PREPARE_TO_JUMP:
@@ -51,7 +51,7 @@ namespace Platformer.Mechanics
                             Bounce(m_jumpTakeOffSpeed * model.jumpModifier);
                             break;
                         case EActionState.FALL:
-                            Schedule<PlayerStopJump>().player = this;
+                            Schedule<PlayerStopJump>(0).player = this;
                             if (Velocity.y > 0)
                                 Bounce(Velocity.y * model.jumpDeceleration);
                             break;

@@ -120,6 +120,8 @@ GameObject:
   - component: {fileID: 902313732947938517}
   - component: {fileID: 6891774133251862100}
   - component: {fileID: 1526584447467421151}
+  - component: {fileID: 194094289}
+  - component: {fileID: 836400775}
   m_Layer: 31
   m_Name: Hero
   m_TagString: Untagged
@@ -180,7 +182,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -280,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6891774131777817143}
-  cameraFollowTarget: {fileID: 0}
+  cameraFollowTarget: {fileID: 1993362818}
   meleeDamager: {fileID: 6891774133251862100}
   damageable: {fileID: 1526584447467421151}
   inputManager: {fileID: 902313732947938517}
@@ -359,9 +361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d860896a4fe6214d9735a251d25d9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 1000
+  startingHealth: 20
   invulnerableAfterDamage: 1
-  invulnerabilityDuration: 3
+  invulnerabilityDuration: 1
   centreOffset: {x: 0, y: 1}
   OnHealthSet:
     m_PersistentCalls:
@@ -400,3 +402,23 @@ MonoBehaviour:
   dataSettings:
     dataTag: bc98b730-1b2a-4432-be98-efb7181881ad
     persistenceType: 3
+--- !u!114 &194094289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891774131777817142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25f4b4abd25d0d458f80e2e89d64074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!81 &836400775
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891774131777817142}
+  m_Enabled: 1

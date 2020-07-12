@@ -4,6 +4,7 @@ using UnityEngine;
 using Platformer;
 using Platformer.Mechanics.AI.StateMachine;
 using Platformer.Utils;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -195,27 +196,49 @@ namespace Platformer.Mechanics.AI
         }
 
         //Call every frame when the enemy is in pursuit to check for range & Trigger the attack if in range
-        public void CheckMeleeAttack()
+        public bool CheckMeleeAttack()
         {
             //we lost the target, shouldn't shoot
             if (!target)
-                return;
+                return false;
 
             if ((target.position - transform.position).sqrMagnitude < (meleeRange * meleeRange))
             {
                 //meleeAttackAudio.PlayRandomSound();
                 OnAttackingBegins?.Invoke();
+                return true;
             }
+
+            return false;
+        }
+
+        // 정면 장애물 확인
+        // we circle cast with a size sligly small than the collider height. That avoid to collide with very small bump on the ground
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="forwardDistance"></param>
+        /// <returns>true : 장애물 존재 fasle : 장애물 없음</returns>
+        public bool CheckForObstacleForward(float forwardDistance)
+        {
+#if UNITY_EDITOR
+            Debug.DrawRay(m_Collider.bounds.center, m_SpriteForward * forwardDistance);
+#endif
+            return Physics2D.CircleCast(m_Collider.bounds.center, m_Collider.bounds.extents.y - 0.2f, m_SpriteForward, forwardDistance, m_Filter.layerMask.value);
+        }
+
+        // 아래 방향 절벽 확인
+        public bool CheckForObstacleDown(float forwardDistance)
+        {
+            // 가는 방향 살짝 앞 위치
+            Vector3 castingPosition = (Vector2)(transform.position + m_LocalBounds.center) + m_SpriteForward * m_LocalBounds.extents.x;
+            return !Physics2D.CircleCast(castingPosition, 0.1f, Vector2.down, m_LocalBounds.extents.y + 0.2f, m_movementController.groundedLayerMask.value);
         }
 
         public bool CheckForObstacle(float forwardDistance)
         {
-            // 정면 장애물 확인
-            // we circle cast with a size sligly small than the collider height. That avoid to collide with very small bump on the ground
-            if (Physics2D.CircleCast(m_Collider.bounds.center, m_Collider.bounds.extents.y - 0.2f, m_SpriteForward, forwardDistance, m_Filter.layerMask.value))
-            {
+            if (CheckForObstacleForward(forwardDistance))
                 return true;
-            }
             
             // 가는 방향 살짝 앞 위치
             Vector3 castingPosition = (Vector2)(transform.position + m_LocalBounds.center) + m_SpriteForward * m_LocalBounds.extents.x;
@@ -223,9 +246,7 @@ namespace Platformer.Mechanics.AI
 #if UNITY_EDITOR
             Debug.DrawLine(castingPosition, castingPosition + Vector3.down * (m_LocalBounds.extents.y + 0.2f));
 #endif
-
-            // 아래 방향 절벽 확인
-            if (!Physics2D.CircleCast(castingPosition, 0.1f, Vector2.down, m_LocalBounds.extents.y + 0.2f, m_movementController.groundedLayerMask.value))
+            if (CheckForObstacleDown(forwardDistance))
             {
                 return true;
             }
@@ -264,10 +285,9 @@ namespace Platformer.Mechanics.AI
 
                 float angle = Vector3.Angle(testForward, toTarget);
 
-                if (angle <= viewFov * 0.5f)
+                if (angle <= viewFov)
                 {
-                    //we reset the timer if the target is at viewing distance.
-                    m_TimeSinceLastTargetView = timeBeforeTargetLost;
+                    RefreshSerchingTargetTime();
                 }
             }
 
@@ -275,6 +295,14 @@ namespace Platformer.Mechanics.AI
             {
                 ForgetTarget();
             }
+        }
+
+        /// <summary>
+        /// we reset the timer if the target is at viewing distance.
+        /// </summary>
+        public void RefreshSerchingTargetTime()
+        {
+            m_TimeSinceLastTargetView = timeBeforeTargetLost;
         }
 
         public void Die(Damager damager, Damageable damageable)
@@ -443,7 +471,8 @@ namespace Platformer.Mechanics.AI
             OnShoot?.Invoke();
         }
 
-        //This is called when the damager get enabled (so the enemy can damage the player). Likely be called by the animation throught animation event (see the attack animation of the Chomper)
+        //This is called when the damager get enabled (so the enemy can damage the player). 
+        // Likely be called by the animation throught animation event (see the attack animation of the Chomper)
         public void StartAttack()
         {
             if(meleeDamager)
@@ -479,6 +508,18 @@ namespace Platformer.Mechanics.AI
             }
         }
 
+        public void EnableContactDamager()
+        {
+            if (contactDamager)
+                contactDamager.EnableDamage();
+        }
+
+        public void DisableContactDamager()
+        {
+            if (contactDamager)
+                contactDamager.DisableDamage();
+        }
+   
         protected System.Collections.IEnumerator FlickerProcess(Damageable damageable)
         {
             float timer = 0f;

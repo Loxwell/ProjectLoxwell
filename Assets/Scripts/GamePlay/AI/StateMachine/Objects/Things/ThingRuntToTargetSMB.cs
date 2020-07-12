@@ -14,15 +14,19 @@ namespace InGame.StateMachine.Thing
         public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             m_MonoBehaviour.CheckTargetStillVisible();
-            float amount = m_MonoBehaviour.speed * 2.0f;
+            float amount = m_MonoBehaviour.speed * 2;
             if (m_MonoBehaviour.CheckForObstacle(amount))
             {
                 m_MonoBehaviour.ForgetTarget();
                 return;
             }
             else
-                m_MonoBehaviour.SetHorizontalSpeed(amount);
-            m_MonoBehaviour.CheckMeleeAttack();
+            {
+                if (!m_MonoBehaviour.CheckMeleeAttack())
+                    m_MonoBehaviour.SetHorizontalSpeed(amount);
+                else
+                    return;
+            }
         }
 
         public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

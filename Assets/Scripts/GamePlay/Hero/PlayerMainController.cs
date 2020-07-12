@@ -4,7 +4,6 @@ using UnityEngine;
 using LSG.LWBehaviorTree;
 using System;
 using MovementController = Platformer.Mechanics.PlayerMovementController;
-using HeroBT = BT.LSG.PlayerMainController.HeroBT;
 using AnimatorHelper = LSG.Utilities.AnimatorHelper;
 
 using static LSG.Utilities.BitField;
@@ -76,8 +75,6 @@ namespace LSG
         private MovementController m_controller;
         private Animator m_animator;
         private AnimatorHelper m_attackMotion;
-        private HeroBT m_bt;
-
         private EState m_state;
         private int m_hashSpeed, m_hashState, m_cachedAniState;
         private uint m_inputstate;
@@ -94,9 +91,6 @@ namespace LSG
             m_controller.OnLanded += OnGrounded;
             m_controller.OnPrepareToJump += OnJumping;
             m_controller.OnFlight += OnFall;
-
-            //heroBB.controller = this;
-            m_bt = new HeroBT(heroBB);
         }
 
         void OnEnable()
@@ -115,9 +109,6 @@ namespace LSG
         private void Update()
         {
             Animator.SetFloat(m_hashSpeed, Mathf.Abs(m_controller.Velocity.x));
-            //heroBB.isGrounded = m_controller.IsGrounded;
-            //heroBB.isControled = m_controller.ControlEnabled;
-            m_bt.Update();
         }
 
         public void SetStateCrouch()

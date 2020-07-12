@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 using Platformer.Mechanics.AI.StateMachine;
-using Platformer.Mechanics.AI;
+using Platformer.Mechanics;
 
 namespace InGame.StateMachine.Player
 {
@@ -23,7 +23,7 @@ namespace InGame.StateMachine.Player
             if (m_MonoBehaviour.CheckForFallInput())
                 m_MonoBehaviour.MakePlatformFallthrough();
             else if (m_MonoBehaviour.CheckForAttackInput())
-                m_MonoBehaviour.Attack(m_MonoBehaviour.aniCrouchingAttack);
+                m_MonoBehaviour.UpdateAttacking(m_MonoBehaviour.aniCrouchingAttack);
 
             m_MonoBehaviour.GroundedVerticalMovement(deltaTime);
             m_MonoBehaviour.GroundedHorizontalMovement(false, deltaTime);

@@ -103,7 +103,9 @@ namespace Platformer.Core
             Vector2 delta = position - m_CurrentPosition;
             m_PreviousPosition += delta;
             m_CurrentPosition = position;
-            m_Rigidbody2D.MovePosition(position);
+            m_Rigidbody2D.velocity = Vector2.zero;
+            //m_Rigidbody2D.MovePosition(position);
+            transform.position = position;
         }
 
         /// <summary>

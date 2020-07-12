@@ -28,12 +28,26 @@
             }
 
             /// <summary>
+            /// 초깃값
+            /// </summary>
+            /// <param name="param"></param>
+            internal virtual void Initialize(params object[] param)
+            {
+
+            }
+
+            /// <summary>
             /// This method is generally used to set references to null when required.
             /// It is automatically called by the Simulation when an event has completed.
             /// </summary>
             internal virtual void Cleanup()
             {
 
+            }
+
+            public static implicit operator bool (Simulation.Event e)
+            {
+                return e != null;
             }
         }
 

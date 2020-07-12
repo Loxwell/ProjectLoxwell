@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Platformer.Mechanics.AI.StateMachine;
-using Platformer.Mechanics.AI;
+using Platformer.Mechanics;
 
 namespace InGame.StateMachine.Player
 {
@@ -19,7 +19,7 @@ namespace InGame.StateMachine.Player
             m_MonoBehaviour.AirborneVerticalMovement(deltaTime);
             m_MonoBehaviour.CheckForGrounded();
             if (m_MonoBehaviour.CheckForAttackInput())
-                m_MonoBehaviour.Attack(m_MonoBehaviour.aniJumpingAttack);
+                m_MonoBehaviour.UpdateAttacking(m_MonoBehaviour.aniJumpingAttack);
             m_MonoBehaviour.CheckForCrouching();
         }
     }

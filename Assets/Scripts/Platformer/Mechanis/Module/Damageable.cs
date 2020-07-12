@@ -48,7 +48,7 @@ namespace Platformer.Module
         /// 안전 보장 시간
         /// </summary>
         protected float m_InvulnerabilityTimer;
-        protected float m_CurrentHealth;
+        protected int m_CurrentHealth;
 
         void OnEnable()
         {
@@ -76,7 +76,7 @@ namespace Platformer.Module
             }
         }
 
-        public float CurrentHealth
+        public int CurrentHealth
         {
             get { return m_CurrentHealth; }
         }
@@ -103,6 +103,11 @@ namespace Platformer.Module
             return m_DamageDirection;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="damager"></param>
+        /// <param name="ignoreInvincible">무적 상태 판정 무시</param>
         public void TakeDamage(Damager damager, bool ignoreInvincible /*Invincible == 천하무적의*/= false)
         {
             if ((m_Invulnerable && !ignoreInvincible) || m_CurrentHealth <= 0)
@@ -113,6 +118,7 @@ namespace Platformer.Module
             if (!m_Invulnerable)
             {
                 m_CurrentHealth -= damager.damage;
+                // HP 이벤트
                 OnHealthSet.Invoke(this);
             }
 
@@ -127,7 +133,7 @@ namespace Platformer.Module
                 EnableInvulnerability();
                 if (disableOnDeath) 
                     gameObject.SetActive(false);
-            }
+            } 
         }
 
         public void GainHealth(int amount)
@@ -176,7 +182,7 @@ namespace Platformer.Module
 
         public void LoadData(Platformer.GenericData.Utils.Data data)
         {
-            Platformer.GenericData.Utils.Data<float, bool> healthData = (Data<float, bool>)data;
+            Platformer.GenericData.Utils.Data<int, bool> healthData = (Data<int, bool>)data;
             m_CurrentHealth = healthData.value1 ? startingHealth : healthData.value0;
             OnHealthSet.Invoke(this);
         }

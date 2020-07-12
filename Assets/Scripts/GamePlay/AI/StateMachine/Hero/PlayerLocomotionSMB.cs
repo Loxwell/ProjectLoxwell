@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using Platformer.Mechanics.AI.StateMachine;
-using Platformer.Mechanics.AI;
+using Platformer.Mechanics;
 
 namespace InGame.StateMachine.Player
 {
@@ -33,7 +33,7 @@ namespace InGame.StateMachine.Player
             if (m_MonoBehaviour.CheckForJumpInput())
                 m_MonoBehaviour.SetVerticalMovement(m_MonoBehaviour.jumpSpeed);
             else if (m_MonoBehaviour.CheckForAttackInput())
-                m_MonoBehaviour.Attack(m_MonoBehaviour.aniStandAttack);
+                m_MonoBehaviour.UpdateAttacking(m_MonoBehaviour.aniStandAttack);
         }
     }
 }
